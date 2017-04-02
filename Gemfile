@@ -12,20 +12,21 @@ gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "jbuilder", "~> 2.5"
 gem "config"
+gem "devise"
 
 
 group :development, :test do
   gem "pry-rails"
   gem "faker"
+  gem "awesome_print"
+  gem "binding_of_caller"
+  gem "better_errors"
+  gem "dotenv-rails"
 end
 
 group :development do
   gem "web-console", ">= 3.3.0"
   gem "listen", "~> 3.0.5"
-  gem "awesome_print"
-  gem "binding_of_caller"
-  gem "better_errors"
-  gem "dotenv-rails"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
