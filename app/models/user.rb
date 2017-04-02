@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :posts
 
   enum gender: [:female, :male]
+  enum blood_type: [:type_a, :type_b, :type_ab, :type_o]
   enum role: [:normal, :limited, :admin]
 end
