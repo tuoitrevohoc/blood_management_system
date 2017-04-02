@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BloodManagementSystem</title>
+    <title><%= full_title yield :title %></title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= render "layouts/shim" %>
+
+    <!-- Specific Page Vendor CSS -->
+    <%= content_for :specific_page_css %>
   </head>
 
-  <body>
+  <body class="tos-desktop">
+    <%= render "layouts/header" %>
     <%= yield %>
+    <%= render "layouts/footer" %>
+
+    <%= javascript_include_tag "application" %>
+    <script type="text/javascript">
+      <%= render "shared/notify.js" %>
+    </script>
+
+    <!-- Specific Page Vendor JS -->
+    <%= content_for :specific_page_js %>
   </body>
 </html>
