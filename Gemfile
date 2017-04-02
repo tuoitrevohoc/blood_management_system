@@ -13,7 +13,11 @@ gem "uglifier", ">= 1.3.0"
 gem "jbuilder", "~> 2.5"
 gem "config"
 gem "devise"
-
+gem "jquery-rails"
+gem "bootstrap-sass", "~> 3.3.6"
+gem "font-awesome-rails"
+gem "bootstrap-glyphicons"
+gem "material_icons"
 
 group :development, :test do
   gem "pry-rails"
