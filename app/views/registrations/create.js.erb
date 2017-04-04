@@ -1,0 +1,6 @@
+<% if @success %>
+  <% flash[:success] = t ".sign_up_success" %>
+<% else %>
+  <% flash[:warning] = t ".warning_confirm_email" %>
+<% end %>
+location.href = "<%= root_path %>";

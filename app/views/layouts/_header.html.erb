@@ -12,7 +12,6 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/" title="<%= t "base_title" %>">BMS <span>ĐN</span></a>
-
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
@@ -26,12 +25,12 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#"><%= t ".profile" %></a></li>
                   <li><a href="#"><%= t ".settings" %></a></li>
-                  <li><a href="#"><%= t ".sign_out" %></a></li>
+                  <li><%= link_to t(".sign_out"), destroy_user_session_path, method: :delete %></li>
                 </ul>
               </li>
             <% else %>
-              <li><a href="#"> <%= t ".login" %></a></li>
-              <li><a href="#"><%= t ".sign_up" %></a></li>
+              <li><%= link_to t(".login"), "#", id: "login-link" %></li>
+              <li><%= link_to t(".sign_up"), "#", id: "sign-up-link" %></li>
             <% end %>
           </ul>
         </div>
@@ -39,3 +38,10 @@
     </nav>
   </div>
 </header>
+<div class="yield-block"></div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "layouts/header.js" %>
+  </script>
+<% end %>
