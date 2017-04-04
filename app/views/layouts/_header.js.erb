@@ -1,0 +1,18 @@
+$(document).ready(function() {
+  var link_login = $("#login-link");
+  var link_sign_up = $("#sign-up-link");
+
+  link_login.click(function() {
+    let url = "<%= new_user_session_path %>";
+    redirectTo(url);
+  });
+
+  link_sign_up.click(function() {
+    let url = "<%= new_user_registration_path %>";
+    let sign_up = redirectTo(url);
+  });
+
+  function redirectTo(url) {
+    return $.get(url, {}, null, "script");
+  }
+});

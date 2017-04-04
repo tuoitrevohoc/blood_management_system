@@ -1,9 +1,9 @@
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap-sprockets
-//= require jquery.slick
 
+//= require template/slick.min
 //= require template/wow.min
-//= require template/bootstrap.min
 //= require template/slick.min
 //= require template/jquery.easing.1.3
 //= require template/jquery.animate-enhanced.min

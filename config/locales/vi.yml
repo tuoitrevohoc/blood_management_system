@@ -25,3 +25,16 @@ vi:
       login: Đăng Nhập
       sign_up: Đăng Ký
       social_links: Liên Kết
+  shared:
+    login_modal:
+      header: Đăng Nhập
+      email: Email
+      password: Mật khẩu
+      submit: Đăng Nhập
+      remember: Tự động đăng nhập lần sau
+    sign_up_modal:
+      header: Đăng Ký
+      email: Email
+      password: Mật khẩu
+      password_confirmation: Nhập lại mật khẩu
+      submit: Đăng Ký Tài Khoản

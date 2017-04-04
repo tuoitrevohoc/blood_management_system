@@ -1,0 +1,14 @@
+vi:
+  errors:
+    messages:
+      blank: " không được bỏ trống."
+      invalid: " Không đúng định dạng."
+      too_short: " phải nhập ít nhất %{count} ký tự."
+      too_long: " Không được nhập quá %{count} ký tự."
+      taken: " đã được sử dụng."
+      confirmation: không khớp.
+  activerecord:
+    attributes:
+      user:
+        password: Mật khẩu
+        password_confirmation: Mật khẩu
