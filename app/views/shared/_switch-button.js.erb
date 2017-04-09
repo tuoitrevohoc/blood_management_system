@@ -1,0 +1,17 @@
+$(document).ready(function() {
+  $(".switch-button").bootstrapToggle({
+    on: "Bật",
+    off: "Tắt",
+    size: "mini",
+    onstyle: "danger"
+  });
+
+  $(".switch-button").change(function() {
+    let form = $(this).closest("form");
+    let path = form.attr("action");
+    let update = $.post(path, form.serialize(), null, "script");
+    update.error(function() {
+      showNotification("Lỗi! không thể lưu lúc này.", "danger");
+    });
+  });
+});

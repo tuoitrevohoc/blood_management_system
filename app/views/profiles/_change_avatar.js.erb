@@ -1,0 +1,8 @@
+$(document).ready(function() {
+  $(".btn-change-ava").change(function() {
+    let form = $(".user-profile-form");
+    form.children(".profile-info").remove();
+    form.append("<input type='hidden' name='reload' value='true'>");
+    form.submit();
+  });
+});

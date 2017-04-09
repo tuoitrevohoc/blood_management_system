@@ -1,0 +1,36 @@
+vi:
+  users:
+    genders:
+      male: Nam
+      female: Nữ
+    blood_types:
+      type_a: Nhóm A
+      type_b: Nhóm B
+      type_ab: Nhóm AB
+      type_o: Nhóm O
+  profiles:
+    edit:
+      header:
+        basic_info: Cập nhật thông tin
+        account_info: Cập nhật tài khoản
+        settings: Cài đặt
+    profile_form:
+      name: "Họ và tên"
+      address: "Địa chỉ"
+      gender: "Giới tính"
+      id_number: "CMND"
+      phone_number: "SĐT"
+      blood_type: "Nhóm máu"
+      btn_cancel: "Trở lại"
+      btn_submit: "Lưu"
+      btn_avatar: "Đổi avatar"
+    account_form:
+      email: "Email"
+      password: "Mật khẩu"
+      password_confirmation: "Nhập lại mật khẩu"
+      current_password: Mật khẩu hiện tại
+      btn_submit: Lưu
+    settings_form:
+      is_suscribed_email: "Nhận thông báo qua email"
+      is_public_profile: "Cho phép tìm kiếm thông tin"
+      is_volunteer: "Sẵng sàng hiến máu khi cần"

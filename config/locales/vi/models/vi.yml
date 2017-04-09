@@ -6,9 +6,18 @@ vi:
       too_short: " phải nhập ít nhất %{count} ký tự."
       too_long: " Không được nhập quá %{count} ký tự."
       taken: " đã được sử dụng."
-      confirmation: không khớp.
+      confirmation: " không khớp."
+      extension_whitelist_error: " chỉ hỗ trợ các định dạng sau: *.JPG/JPEG/GIF/PNG."
   activerecord:
     attributes:
       user:
+        avatar: Ảnh đại diện
+        name: Họ và tên
+        gender: Giới tính
+        blood_type: Nhóm máu
+        id_number: Số CMND
+        phone_number: SĐT
+        address: Địa chỉ
+        role: Quyền truy cập
         password: Mật khẩu
         password_confirmation: Mật khẩu

@@ -1,0 +1,30 @@
+<%= form_for user, url: profile_path do |f| %>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="form-group">
+        <%= f.label :is_suscribed_email, t(".is_suscribed_email") %>
+        <div class="toggle-button pull-right">
+          <%= f.check_box :is_suscribed_email, class: "switch-button" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :is_public_profile, t(".is_public_profile") %>
+        <div class="toggle-button pull-right">
+          <%= f.check_box :is_public_profile, class: "switch-button" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :is_volunteer, t(".is_volunteer") %>
+        <div class="toggle-button pull-right">
+          <%= f.check_box :is_volunteer, class: "switch-button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "shared/switch-button.js" %>
+  </script>
+<% end %>
