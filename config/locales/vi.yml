@@ -38,3 +38,7 @@ vi:
       password: Mật khẩu
       password_confirmation: Nhập lại mật khẩu
       submit: Đăng Ký Tài Khoản
+  resource:
+    profile: Thông tin cá nhân
+  update:
+    success: "%{resource} đã được cập nhật."

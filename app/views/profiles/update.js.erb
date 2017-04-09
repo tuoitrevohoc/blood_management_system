@@ -1,0 +1,7 @@
+<% if @user.errors.any? %>
+  $(".error_messages_container").html("<%= j render 'shared/error_messages', object: @user %>");
+  scrollToTop();
+<% else %>
+  $(".error_messages_container").html("");
+  showNotification("Đã lưu!", "success");
+<% end %>

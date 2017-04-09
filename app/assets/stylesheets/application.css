@@ -13,6 +13,7 @@
  *= require_self
  *= require font-awesome
  *= require material_icons
+ *= require libs/bootstrap-toggle.min
 
  *= require template/superslides
  *= require template/slick
