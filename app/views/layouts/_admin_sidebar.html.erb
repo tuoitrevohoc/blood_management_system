@@ -1,0 +1,51 @@
+<div class="sidebar" data-color="purple" data-image="">
+  <div class="logo">
+    <%= link_to "BMS ĐN", admin_root_path, class: "simple-text" %>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="active">
+        <%= link_to admin_dashboard_index_path do %>
+          <i class="material-icons">dashboard</i>
+          <p>Bảng Điều Khiển</p>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+          <i class="material-icons">search</i>
+          <p>Tìm Kiếm Nguồn Máu</p>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+          <i class="material-icons">people</i>
+          <p>Thành Viên</p>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+            <i class="material-icons">history</i>
+            <p>Lịch sử hiến máu<p>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+            <i class="material-icons">event</i>
+            <p>Sự Kiện</p>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+            <i class="material-icons">content_paste</i>
+            <p>Bài Đăng</p>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+            <i class="material-icons">assignment_turned_in</i>
+            <p>Kiểm Duyệt</p>
+        <% end %>
+      </li>
+    </ul>
+	</div>
+</div>
