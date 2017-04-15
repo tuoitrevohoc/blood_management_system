@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <%= search_form_for @q, url: admin_bloods_path, method: :get, id: "admin-search",
+        class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
+        <%= f.select :gender_eq, @form.genders, {include_blank: "Tất cả giới tính"},
+          {class: "form-control", title: "Lọc theo giới tính"} %>
+        <%= select_tag "q[non_attr][status]", options_for_select(@form.donateable,
+          params[:q] && params[:q][:non_attr] ? params[:q][:non_attr][:status] : nil),
+          class: "form-control", include_blank: "Tất cả trạng thái" %>
+        <%= f.select :blood_type_eq, @form.blood_types, {include_blank: "Tất cả nhóm máu"},
+          {class: "form-control", title: "Lọc theo nhóm máu"} %>
+        <div class="form-group is-empty">
+          <%= f.search_field :name_or_email_or_address_or_id_number_or_phone_number_cont,
+            class: "form-control", placeholder: "Tìm kiếm...",
+            title: "Tìm kiếm theo tên, email, địa chỉ, số CMND, SĐT,..." %>
+            <span class="material-input"></span>
+        </div>
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+          <i class="material-icons">search</i><div class="ripple-container"></div>
+        </button>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <p class="text-danger" id="waiting"></p>
+        <div class="card-content table-responsive">
+          <table class="table table-hover">
+            <thead class="text-primary">
+              <tr>
+                <th>
+                  <%= sort_link @q, :id do %>
+                    ID
+                    <span class="<%= visible_unsorted_icon :id %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
+                <th>Người Dùng</th>
+                <th>
+                  <%= sort_link @q, :gender do %>
+                    Giới Tính
+                    <span class="<%= visible_unsorted_icon :gender %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
+                <th>
+                  <%= sort_link @q, :blood_type do %>
+                    Nhóm Máu
+                    <span class="<%= visible_unsorted_icon :blood_type %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
+                <th>
+                  <%= sort_link @q, :status do %>
+                    Trạng Thái
+                    <span class="<%= visible_unsorted_icon :status %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody class="results">
+              <% if @users.any? %>
+                <%= render partial: "admin/bloods/user", collection: @users %>
+              <% else %>
+                <tr>
+                  <th colspan="6">khong co du lieu</th>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @users %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "shared/submit_selectbox.js" %>
+  </script>
+<% end %>

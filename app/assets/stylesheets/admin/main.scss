@@ -1,0 +1,51 @@
+.main-panel > .content {
+  padding: 0px;
+}
+
+@media (min-width: 992px) {
+  .navbar-form {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 15px;
+  }
+}
+
+form.header-form {
+  .form-group {
+    margin: 0;
+  }
+}
+
+.custom-pagination {
+  margin-top: 15px;
+  text-align: center;
+
+  .pagination-sm {
+    display: inline-flex;
+
+    li.active {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #9c27b0;
+
+      a {
+        color: white;
+      }
+    }
+
+    li {
+      a {
+        font-size: 14px;
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+.navbar-form.filter-form-customize {
+  .form-control {
+    margin-left: 20px;
+  }
+}
