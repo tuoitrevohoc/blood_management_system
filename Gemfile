@@ -22,6 +22,11 @@ gem "cancancan"
 gem "carrierwave"
 gem "mini_magick"
 gem "config"
+gem "bcrypt"
+gem "ransack"
+gem "activemodel-serializers-xml"
+gem "draper", github: "audionerd/draper", branch: "rails5"
+gem "kaminari"
 
 group :development, :test do
   gem "pry-rails"

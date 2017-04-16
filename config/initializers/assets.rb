@@ -8,6 +8,6 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-assets_stylesheet = %W(material/material-dashboard.css)
-assets_javascript = %W(material/material.min.js material/material-dashboard.js)
+assets_stylesheet = %W(material/material-dashboard.css admin/main.css)
+assets_javascript = %W(material/material.min.js material/material-dashboard.js admin/main.js)
 Rails.application.config.assets.precompile += assets_stylesheet + assets_javascript

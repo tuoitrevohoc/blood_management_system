@@ -43,3 +43,16 @@ vi:
     profile: Thông tin cá nhân
   update:
     success: "%{resource} đã được cập nhật."
+  views:
+    pagination:
+      first: Trang đầu
+      last: Trang cuối
+      next: Trang tiếp
+      previous: Trang trước
+      truncate: "..."
+  users:
+    statuses:
+      can_donate: "Hiến được"
+      almost: "Sắp hiến được"
+      cannot_donate: "Chưa hiến được"
+      unknown: "Chưa xác định"

@@ -1,0 +1,12 @@
+<tr>
+  <td><%= user.id %></td>
+  <td><%= user.name %></td>
+  <td><%= user.display_gender %></td>
+  <td><%= user.display_blood_type %></td>
+  <td>
+    <span class="label label-<%= user.status_class %>" title="<%= user.status_title %>">
+      <%= user.status_display %>
+    </span>
+  </td>
+  <td><%= user.email %></td>
+</tr>

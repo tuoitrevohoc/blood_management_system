@@ -1,1 +1,10 @@
 email_regex: !ruby/regexp /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+minimum_frequency:
+  male: 3
+  female: 4
+default_frequency: 4
+statuses:
+  can_donate: can_donate
+  almost: almost
+  cannot_donate: cannot_donate
+  unknown: unknown
