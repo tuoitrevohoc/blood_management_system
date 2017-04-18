@@ -11,4 +11,8 @@ module ApplicationHelper
   def visible_unsorted_icon criteria
     params[:q] && (params[:q][:s]&.include? criteria.to_s) ? "hidden" : "unsorted"
   end
+
+  def is_disabled_field? object, field
+    object.persisted? && object.try(field).present?
+  end
 end

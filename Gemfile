@@ -27,6 +27,7 @@ gem "ransack"
 gem "activemodel-serializers-xml"
 gem "draper", github: "audionerd/draper", branch: "rails5"
 gem "kaminari"
+gem "momentjs-rails"
 
 group :development, :test do
   gem "pry-rails"

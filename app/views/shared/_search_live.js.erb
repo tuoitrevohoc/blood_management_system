@@ -1,0 +1,29 @@
+$(document).ready(function() {
+  const MIN_CHARS = 3;
+  const MAX_CHARS = 7;
+  var form = $(".search-form-live");
+  var is_notified = false;
+  var search_field = $("#keyword");
+
+  search_field.on("keyup", function() {
+    var keyword_length = $(this).val().trim().length;
+    if (keyword_length == 0) {
+      $("#search-results").html("");
+      return false;
+    }
+    if(keyword_length < MIN_CHARS || keyword_length > MAX_CHARS) return false;
+    var searching = $.get(form.attr("action"), form.serialize(), null, "script");
+    searching.success(function() {
+      is_notified = false;
+    });
+    searching.error(function(e) {
+      if(!is_notified) showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
+      is_notified = true;
+    });
+  });
+
+  search_field.on("focus", function() {
+    $(this).select();
+    return;
+  });
+});

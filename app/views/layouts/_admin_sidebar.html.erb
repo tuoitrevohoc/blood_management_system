@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="purple" data-image="">
+<div class="sidebar" data-active-color="purple" data-image="">
   <div class="logo">
     <%= link_to "BMS ĐN", admin_root_path, class: "simple-text" %>
   </div>
@@ -22,8 +22,8 @@
           <p>Thành Viên</p>
         <% end %>
       </li>
-      <li>
-        <%= link_to "#" do %>
+      <li class="<%= active_class admin_histories_path %>">
+        <%= link_to new_admin_history_path do %>
             <i class="material-icons">history</i>
             <p>Lịch sử hiến máu<p>
         <% end %>
@@ -47,5 +47,5 @@
         <% end %>
       </li>
     </ul>
-	</div>
+  </div>
 </div>

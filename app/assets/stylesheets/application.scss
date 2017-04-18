@@ -10,19 +10,20 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_self
- *= require font-awesome
- *= require material_icons
- *= require libs/bootstrap-toggle.min
-
- *= require template/superslides
- *= require template/slick
- *= require template/jquery.circliful
- *= require template/animate
- *= require template/jquery.tosrus.all
- *= require template/themes/dark-red-theme
- *= require template/style
-
- *= require customize_alert
- *= require main.scss
  */
+
+@import "font-awesome";
+@import "material_icons";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "libs/bootstrap-toggle.min";
+
+@import "template/superslides";
+@import "template/slick";
+@import "template/jquery.circliful";
+@import "template/animate";
+@import "template/jquery.tosrus.all";
+@import "template/themes/dark-red-theme";
+@import "template/style";
+
+@import "main.scss";

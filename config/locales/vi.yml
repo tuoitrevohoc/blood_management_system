@@ -1,4 +1,7 @@
 vi:
+  date:
+    formats:
+      default_date: "%d-%m-%Y"
   base_title: Hệ thống quản lý hiến máu TP Đà Nẵng
   layouts:
     header:

@@ -1,0 +1,37 @@
+<% if users.any? %>
+  <div class="card-content">
+    <div class="table-responsive">
+      <table class="table table-group">
+        <thead class="text-primary">
+          <tr>
+            <th colspan="4">Họ Tên</th>
+            <th colspan="6">Email</th>
+            <th colspan="8">Địa Chỉ</th>
+            <th colspan="3">CMND</th>
+            <th colspan="3">SĐT</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="26" class="table-content">
+              <div class="nano">
+                <div class="nano-content">
+                  <table class="table table-group">
+                    <tbody class="records">
+                      <%= render partial: "admin/histories/user", collection: users %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% elsif is_search %>
+  <div class="card-content">
+    <p class="text-danger">Không tìm thấy kết quả nào cho <b><%= params[:keyword] %></b></p>
+  </div>
+<% end %>

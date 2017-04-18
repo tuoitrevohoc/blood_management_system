@@ -1,0 +1,17 @@
+$("#search-results").html("<%= j render 'admin/histories/search_result', users: @users, is_search: true %>");
+$(".nano").nanoScroller();
+
+$(".pick-user").click(function(e) {
+  e.preventDefault();
+  let path = $(this).attr("href");
+  $.ajax({
+    type: "GET",
+    url: path,
+    data: {},
+    success: function(data) {},
+    error: function(e) {
+      showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
+    }
+  });
+  $(".main-panel").animate({scrollTop: $("#history-form-anchor").offset().top}, "slow");
+});

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_reader :is_signed_up_by_admin
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,6 +8,8 @@ class User < ApplicationRecord
   has_many :histories
   has_many :events
   has_many :posts
+
+  accepts_nested_attributes_for :histories, allow_destroy: true
 
   enum gender: [:female, :male]
   enum blood_type: [:type_a, :type_b, :type_ab, :type_o]
@@ -20,6 +23,8 @@ class User < ApplicationRecord
   validates :name, :gender, :blood_type, :id_number, :phone_number, presence: true, allow_nil: true
   validates :email, presence: true, format: Settings.email_regex
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
+
+  before_save downcase_email: -> {self.email.downcase!}
 
   def status
     return :unknown unless self.histories.any?
@@ -37,6 +42,22 @@ class User < ApplicationRecord
 
   def can_donate?
     status == :can_donate
+  end
+
+  def cannot_donate?
+    status == :cannot_donate
+  end
+
+  def last_donated_place
+    histories.newest.first.place
+  end
+
+  def signed_up_by_admin! *args
+    @is_signed_up_by_admin = args[0].nil? ? true : args[0]
+  end
+
+  def is_signed_up_by_admin?
+    @is_signed_up_by_admin
   end
 
   class << self
@@ -57,6 +78,10 @@ class User < ApplicationRecord
     rescue ArgumentError
     ensure
       return collection
+    end
+
+    def secure_random_password
+      SecureRandom.hex 4
     end
   end
 end
