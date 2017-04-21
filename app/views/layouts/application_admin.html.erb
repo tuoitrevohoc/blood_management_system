@@ -7,7 +7,8 @@
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= stylesheet_link_tag "material/material-dashboard.css", media: "all" %>
     <%= stylesheet_link_tag "admin/main", media: "all" %>
-    <%# render "layouts/admin_shim" %>
+    <%= stylesheet_link_tag "customize_alert.css", media: "all" %>
+    <%= stylesheet_link_tag "customize_checkboxes.css", media: "all" %>
 
     <!-- Specific Page Vendor CSS -->
     <%= content_for :specific_page_css %>
@@ -23,17 +24,17 @@
         </div>
         <%= render "layouts/admin_footer" %>
       </div>
-
-      <%= javascript_include_tag "application" %>
-      <%= javascript_include_tag "material/material.min.js" %>
-      <%= javascript_include_tag "material/material-dashboard.js" %>
-      <%= javascript_include_tag "admin/main" %>
-      <script type="text/javascript">
-      <%= render "shared/notify.js" %>
-      </script>
-
-      <!-- Specific Page Vendor JS -->
-      <%= content_for :specific_page_js %>
     </div>
+
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "material/material.min.js" %>
+    <%= javascript_include_tag "material/material-dashboard.js" %>
+    <%= javascript_include_tag "admin/main" %>
+    <script type="text/javascript">
+      <%= render "shared/notify.js" %>
+    </script>
+
+    <!-- Specific Page Vendor JS -->
+    <%= content_for :specific_page_js %>
   </body>
 </html>

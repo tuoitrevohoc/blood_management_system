@@ -1,0 +1,41 @@
+<% provide :page_title, "Quản Lý Lịch Sử Hiến Máu" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">Tìm Kiếm Thông Tin</h4>
+          <p class="category"></p>
+        </div>
+        <div class="card-content">
+          <%= render "search_form" %>
+        </div>
+        <div id="search-results">
+          <%= render "search_result", users: @users, is_search: false %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" id="history-form-anchor">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">Khởi Tạo Lịch Sử Hiến Máu</h4>
+          <p class="category"></p>
+        </div>
+        <div class="card-content" id="user-history-form">
+          <%= render "user_history_form", user: @user, user_form: @user_form, history_form: @history_form %>
+        </div>
+        <div class="pull-right btn-capcha">
+          <%= render "shared/confirmation_checkbox", confirm_for: ".new_user" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_include_tag "admin/jquery.nanoscroller.min.js" %>
+<% end %>
+
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_link_tag "libs/nanoscroller.css" %>
+<% end %>

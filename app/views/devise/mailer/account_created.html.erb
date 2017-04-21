@@ -1,0 +1,24 @@
+<p>Chào bạn <b><%= @user.name.titleize %></b>,</p>
+<p>Xin chân thành cảm ơn bạn đã hiến máu tại <b><%= @place&.name&.titleize %></b>.</p>
+<p>
+  Để thuận tiện cho việc quản lý sức khỏe cũng như ghi nhận lại lịch sử hiến máu của các tình nguyện viên, chúng tôi đã giúp bạn tạo tài khoản tại <b><%= link_to "BMS DN", root_url %></b>.<br>
+  Dưới đây là thông tin đăng nhập của bạn. <%= link_to "Click vào đây để kích hoạt tài khoản của bạn", confirmation_url(@user, confirmation_token: @token) %>, và đừng quên đổi mật khẩu sau khi đăng nhập.<br>
+  <table style="border: none;">
+    <tr>
+      <td style="padding-right: 10px;">Email:</td>
+      <td><strong><%= @user.email %></strong></td>
+    </tr>
+    <tr>
+      <td style="padding-right: 10px;">Mật khẩu:</td>
+      <td><strong><%= @password %></strong></td>
+    </tr>
+  </table>
+</p>
+<p>Mọi thông tin chi tiết bạn có thể liên hệ với admin qua địa chỉ: <i><%= link_to "admin@bmsdn.org", "mailto:admin@@bmsdn.org" %></i>.</p>
+<p>Thân chào bạn.</p>
+<p>
+  <small>
+    Nếu có bất kỳ sự nhầm lẫn nào vui lòng thông báo cho chúng tôi <%= link_to "tại đây", "#" %> sau đó hãy xóa email này.<br>
+    Xin lỗi nếu đã làm phiền đến bạn.
+  </small>
+</p>

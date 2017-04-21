@@ -1,0 +1,13 @@
+$(document).ready(function() {
+  var confirmation_block = $("#capcha_confirmation");
+  $(document).on("submit", $(confirmation_block.data("confirm-for")), function(e) {
+    if (!capchaChecked()) {
+      e.preventDefault();
+      var checkbox = confirmation_block.next().find("span.check");
+      checkbox.addClass("alert-empty");
+      setTimeout(function() {
+        checkbox.removeClass("alert-empty");
+      }, 800);
+    }
+  });
+});

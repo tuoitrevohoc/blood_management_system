@@ -1,0 +1,13 @@
+<div class="checkbox customize-capcha">
+  <label>
+    <%= check_box_tag :capcha_confirmation, "&#10003;".html_safe, false,
+      id: :capcha_confirmation, data: {confirm_for: confirm_for} %>
+  </label>
+  <label>Xác nhận</label>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "shared/check_capcha_confirmation.js" %>
+  </script>
+<% end %>

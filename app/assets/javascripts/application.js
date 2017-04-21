@@ -13,5 +13,8 @@
 //= require template/jquery.tosrus.min.all
 //= require template/custom
 
+//= require moment
+//= require moment/vi
+//= require bootstrap-datetimepicker
 //= require bootstrap-notify
 //= require main

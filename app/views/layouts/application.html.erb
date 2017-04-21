@@ -5,13 +5,14 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", media: "all" %>
+    <%= stylesheet_link_tag "customize_alert.css", media: "all" %>
     <%= render "layouts/shim" %>
 
     <!-- Specific Page Vendor CSS -->
     <%= content_for :specific_page_css %>
   </head>
 
-  <body class="tos-desktop">
+  <body>
     <%= render "layouts/header" %>
     <%= yield %>
     <%= render "layouts/footer" %>

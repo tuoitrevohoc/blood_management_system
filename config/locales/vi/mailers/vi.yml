@@ -1,0 +1,4 @@
+vi:
+  users_mailer:
+    confirmation_instructions:
+      subject: "Thư cảm ơn!"

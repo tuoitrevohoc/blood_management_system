@@ -1,17 +1,17 @@
 /*!
-    
+
  =========================================================
  * Material Dashboard - v1.1.1.0
  =========================================================
- 
+
  * Product Page: http://www.creative-tim.com/product/material-dashboard
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
- 
+
  =========================================================
- 
+
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
+
  */
 
 // Material Dashboard Wizard Functions
@@ -44,7 +44,7 @@ $(document).ready(function(){
     window_width = $(window).width();
 
     // check if there is an image set for the sidebar's background
-    md.checkSidebarImage();
+    // md.checkSidebarImage();
 
     //  Activate the tooltips
     $('[rel="tooltip"]').tooltip();
@@ -337,14 +337,14 @@ md = {
 // leading edge, instead of the trailing.
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    }, wait);
+    if (immediate && !timeout) func.apply(context, args);
+  };
 };
