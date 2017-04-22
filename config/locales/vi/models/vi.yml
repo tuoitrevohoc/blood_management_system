@@ -11,6 +11,8 @@ vi:
       wrong: " không đúng."
       access_denied: "Bạn không có quyền truy cập."
       wrong_password: "Mật khẩu không đúng."
+      after: " phải sau %{date}."
+      after_or_equal_to: " phải sau hoặc bằng %{date}."
   activerecord:
     attributes:
       user:
