@@ -1,0 +1,48 @@
+<%= form_for admin_history, url: admin_administrator_account_admin_histories_path(user),
+  html: {class: "admin-history-form"} do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="error-messages-container">
+        <%= render "shared/error_messages", object: f.object %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :start_time, "Từ ngày", class: "control-label" %>
+        <%= f.text_field :start_time, class: "form-control date-picker", autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :end_time, "Đến ngày", class: "control-label" %>
+        <%= f.text_field :end_time, class: "form-control date-picker", autocomplete: "off" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :palce_id, "Tại cơ sở", class: "control-label" %>
+      <%= f.select :place_id, place_form.places, {include_blank: "-- Không giới hạn --"},
+        class: "form-control select2" %>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= label_tag :password, "Xác nhận mật khẩu", class: "control-label" %>
+        <%= password_field_tag :password, nil, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.submit "Lưu", class: "btn btn-primary pull-right" %>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "admin/administrator_accounts/set_limited_admin_form.js" %>
+  </script>
+<% end %>

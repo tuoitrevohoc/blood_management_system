@@ -5,9 +5,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :histories
-  has_many :events
-  has_many :posts
+  has_many :histories, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :histories_created, class_name: History.name, foreign_key: :admin_id, dependent: :destroy
+  has_many :admin_histories, dependent: :destroy
+  has_many :admin_histories_created, class_name: AdminHistory.name, foreign_key: :admin_id, dependent: :destroy
 
   accepts_nested_attributes_for :histories, allow_destroy: true
 
@@ -25,6 +28,8 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
 
   before_save downcase_email: -> {self.email.downcase!}
+
+  scope :administrator_accounts, -> {limited.or admin}
 
   def status
     return :unknown unless self.histories.any?

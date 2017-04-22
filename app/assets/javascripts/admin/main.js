@@ -1,4 +1,4 @@
-function initialize_date_picker(dp_selector, max_date) {
+function initialize_date_picker(dp_selector) {
   return $(dp_selector).datetimepicker({
       useCurrent: false,
       format: "DD-MM-YYYY",

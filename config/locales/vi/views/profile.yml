@@ -1,13 +1,4 @@
 vi:
-  users:
-    genders:
-      male: Nam
-      female: Nữ
-    blood_types:
-      type_a: Nhóm A
-      type_b: Nhóm B
-      type_ab: Nhóm AB
-      type_o: Nhóm O
   profiles:
     edit:
       header:

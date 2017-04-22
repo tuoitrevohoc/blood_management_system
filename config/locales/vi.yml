@@ -53,9 +53,3 @@ vi:
       next: Trang tiếp
       previous: Trang trước
       truncate: "..."
-  users:
-    statuses:
-      can_donate: "Hiến được"
-      almost: "Sắp hiến được"
-      cannot_donate: "Chưa hiến được"
-      unknown: "Chưa xác định"

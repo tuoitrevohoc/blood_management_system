@@ -17,4 +17,5 @@
 //= require moment/vi
 //= require bootstrap-datetimepicker
 //= require bootstrap-notify
+//= require select2-full
 //= require main

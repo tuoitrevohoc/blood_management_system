@@ -15,4 +15,9 @@ module ApplicationHelper
   def is_disabled_field? object, field
     object.persisted? && object.try(field).present?
   end
+
+  def avatar_for user, size: 130
+    version = size < 80 ? :thumb : :medium
+    image_tag user.avatar.try(version), alt: user.name.titleize, class: "img", size: size
+  end
 end

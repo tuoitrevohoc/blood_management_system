@@ -8,6 +8,9 @@ vi:
       taken: " đã được sử dụng."
       confirmation: " không khớp."
       extension_whitelist_error: " chỉ hỗ trợ các định dạng sau: *.JPG/JPEG/GIF/PNG."
+      wrong: " không đúng."
+      access_denied: "Bạn không có quyền truy cập."
+      wrong_password: "Mật khẩu không đúng."
   activerecord:
     attributes:
       user:
@@ -21,3 +24,6 @@ vi:
         role: Quyền truy cập
         password: Mật khẩu
         password_confirmation: Mật khẩu
+      admin_history:
+        start_time: Thời gian bắt đầu
+        end_time: Thời gian kết thúc

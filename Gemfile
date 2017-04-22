@@ -28,6 +28,7 @@ gem "activemodel-serializers-xml"
 gem "draper", github: "audionerd/draper", branch: "rails5"
 gem "kaminari"
 gem "momentjs-rails"
+gem "select2-rails"
 
 group :development, :test do
   gem "pry-rails"
