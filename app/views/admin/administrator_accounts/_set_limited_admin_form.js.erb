@@ -1,0 +1,33 @@
+$(document).ready(function() {
+  var date_picker = $(".date-picker");
+  var dp_end_time = $("#admin_history_end_time");
+  var dp_start_time = $("#admin_history_start_time");
+
+  date_picker.datetimepicker({
+    useCurrent: false,
+    format: "DD-MM-YYYY HH:mm",
+    keepOpen: true,
+    minDate: moment(),
+    showClose: true,
+    showClear: true,
+    icons: {
+      close: "fa fa-check"
+    }
+  });
+
+  dp_start_time.on("dp.change", function(e) {
+    var minDate;
+    if (e.date) {
+      minDate = e.date
+    } else {
+      minDate = moment();
+    }
+    dp_end_time.data("DateTimePicker").minDate(minDate);
+  });
+
+  dp_end_time.on("dp.change", function(e) {
+    dp_start_time.data("DateTimePicker").maxDate(e.date);
+  });
+
+  $(".select2").select2({theme: "bootstrap"});
+});

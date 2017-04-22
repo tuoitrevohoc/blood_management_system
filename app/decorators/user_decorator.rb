@@ -47,4 +47,16 @@ class UserDecorator < Draper::Decorator
     end
     type&.html_safe
   end
+
+  def display_role
+    type = case role
+    when "admin"
+      "<span class='label label-danger'>Admin</span>"
+    when "limited"
+      "<span class='label label-info'>Limited</span>"
+    else
+      "<span class='label label-success'>Limited</span>"
+    end
+    type&.html_safe
+  end
 end

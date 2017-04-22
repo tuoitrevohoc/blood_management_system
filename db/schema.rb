@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417151800) do
+ActiveRecord::Schema.define(version: 20170422040748) do
+
+  create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_admin_histories_on_place_id", using: :btree
+    t.index ["user_id"], name: "index_admin_histories_on_user_id", using: :btree
+  end
 
   create_table "event_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image"
@@ -108,6 +120,8 @@ ActiveRecord::Schema.define(version: 20170417151800) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "admin_histories", "places"
+  add_foreign_key "admin_histories", "users"
   add_foreign_key "event_images", "events"
   add_foreign_key "events", "places"
   add_foreign_key "histories", "places"

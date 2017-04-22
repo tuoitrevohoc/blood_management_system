@@ -1,0 +1,19 @@
+vi:
+  users:
+    statuses:
+      can_donate: "Hiến được"
+      almost: "Sắp hiến được"
+      cannot_donate: "Chưa hiến được"
+      unknown: "Chưa xác định"
+    roles:
+      normal: "Thành viên"
+      limited: "Admin có giới hạn"
+      admin: "Admin"
+    genders:
+      male: Nam
+      female: Nữ
+    blood_types:
+      type_a: Nhóm A
+      type_b: Nhóm B
+      type_ab: Nhóm AB
+      type_o: Nhóm O

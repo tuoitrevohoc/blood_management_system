@@ -162,3 +162,44 @@ table.table{
     bottom: 7px;
   }
 }
+
+a:hover {
+  color: #9c27b0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-actions {
+  a {
+    margin: 0 5px;
+  }
+  .btn-edit {
+    color: #ff9800 !important;
+  }
+  .btn-destroy {
+    color: #f44336 !important;
+  }
+}
+
+.btn-clear-search {
+  color: rgba(85, 85, 85, 0.55);
+}
+
+.btn-clear-search:hover {
+  color: #9c27b0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.admin-history-form {
+  span.select2-selection {
+    border-color: #d2d2d2;
+    border-radius: inherit;
+    border-width: 0px;
+    border-bottom-width: 1px;
+  }
+}
+
+.non-break-line {
+  white-space: nowrap;
+}

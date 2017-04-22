@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header" data-background-color="purple">
+              <h4 class="title">Cài đặt quyền</h4>
+              <p class="category">Chọn quyền và nhập lại mật khẩu của bạn để xác nhận.</p>
+            </div>
+            <div class="card-content">
+              <%= render "admin/administrator_accounts/set_admin_form",
+                user: @user, form: @form %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header" data-background-color="purple">
+              <h4 class="title">Cài đặt quyền</h4>
+              <p class="category">
+                <ul class="list">
+                  <li>Cài đặt quyền ngắn hạn cho admin để có thể thêm lịch sử hiến máu trong một khoảng thời gian ngắn.</li>
+                  <li>Chỉ dành cho tài khoản <b>Admin có giới hạn</b>.</li>
+                </ul>
+              </p>
+            </div>
+            <div class="card-content">
+              <%= render "admin/administrator_accounts/set_limited_admin_form",
+                admin_history: @admin_history, user: @user, place_form: @place_form %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%= render "admin/administrator_accounts/profile", user: @user %>
+    </div>
+  </div>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%# render "shared/submit_selectbox.js" %>
+  </script>
+<% end %>

@@ -10,4 +10,8 @@ class Support::UserForm
   def donateable
     Settings.statuses.map {|k, v| [I18n.t("users.statuses.#{k}"), v]}
   end
+
+  def roles
+    User.roles.keys.map {|role| [I18n.t("users.roles.#{role}"), role]}
+  end
 end
