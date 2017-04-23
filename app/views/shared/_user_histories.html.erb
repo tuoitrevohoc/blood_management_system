@@ -1,0 +1,46 @@
+<h2>
+  <%= link_to user, class: "normal-text" do %>
+    Lịch sử hiến máu của <%= user.name.titleize %>&nbsp;<span class="fa fa-angle-double-right"></span>
+  <% end %>
+</h2>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover table-group">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cơ sở tiếp nhận</th>
+          <th>Số lượng</th>
+          <th>Ngày</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" class="table-content">
+            <div class="nano">
+              <div class="nano-content">
+                <table class="table table-group">
+                  <tbody>
+                    <%= render partial: "shared/history", collection: histories.decorate %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_include_tag "admin/jquery.nanoscroller.min.js" %>
+  <script type="text/javascript">
+    <%= render "shared/nano_scroller.js" %>
+  </script>
+<% end %>
+
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_link_tag "libs/nanoscroller.css" %>
+<% end %>
