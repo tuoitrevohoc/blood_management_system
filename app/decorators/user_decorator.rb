@@ -55,7 +55,7 @@ class UserDecorator < Draper::Decorator
     when "limited"
       "<span class='label label-info'>Limited</span>"
     else
-      "<span class='label label-success'>Limited</span>"
+      "<span class='label label-success'>Member</span>"
     end
     type&.html_safe
   end

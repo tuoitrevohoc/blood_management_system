@@ -179,6 +179,10 @@ a:hover {
   .btn-destroy {
     color: #f44336 !important;
   }
+  .btn-destroy.disabled {
+    color: #ababab !important;
+    cursor: not-allowed;
+  }
 }
 
 .btn-clear-search {

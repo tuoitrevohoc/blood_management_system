@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :bloods, only: :index
     resources :histories, only: [:index, :new, :create]
     resource :histories, only: :update
-    resources :administrator_accounts do
+    resources :administrator_accounts, except: [:show, :new] do
       resources :admin_histories, only: :create
     end
   end

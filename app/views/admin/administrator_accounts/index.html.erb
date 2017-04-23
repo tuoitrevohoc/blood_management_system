@@ -8,6 +8,8 @@
             <i class="fa fa-close"></i>
           <% end %>
         <% end %>
+        <%= f.select :role_eq, @form.roles, {include_blank: "Tất cả"},
+          {class: "form-control", title: "Lọc theo quyền truy cập"} %>
         <div class="form-group is-empty">
           <%= f.search_field :name_or_email_or_id_cont, class: "form-control",
             placeholder: "Tìm kiếm...", title: "Tìm kiếm theo tên, email hoặc ID" %>
@@ -72,3 +74,9 @@
     </div>
   </div>
 </div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "shared/submit_selectbox.js" %>
+  </script>
+<% end %>

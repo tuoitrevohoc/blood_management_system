@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   ransacker :gender, formater: proc {|v| genders[v]}
   ransacker :blood_type, formater: proc {|v| blood_types[v]}
+  ransacker :role, formater: proc {|r| roles[r]}
 
   mount_uploader :avatar, AvatarUploader
 
@@ -28,8 +29,6 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
 
   before_save downcase_email: -> {self.email.downcase!}
-
-  scope :administrator_accounts, -> {limited.or admin}
 
   def status
     return :unknown unless self.histories.any?
@@ -63,6 +62,15 @@ class User < ApplicationRecord
 
   def is_signed_up_by_admin?
     @is_signed_up_by_admin
+  end
+
+  def available_places current = Time.current
+    if admin?
+      Place.all
+    else
+      places = admin_histories.available.pluck :place_id
+      Place.where id: places
+    end
   end
 
   class << self

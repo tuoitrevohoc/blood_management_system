@@ -15,19 +15,5 @@ $(document).ready(function() {
     }
   });
 
-  dp_start_time.on("dp.change", function(e) {
-    var minDate;
-    if (e.date) {
-      minDate = e.date
-    } else {
-      minDate = moment();
-    }
-    dp_end_time.data("DateTimePicker").minDate(minDate);
-  });
-
-  dp_end_time.on("dp.change", function(e) {
-    dp_start_time.data("DateTimePicker").maxDate(e.date);
-  });
-
   $(".select2").select2({theme: "bootstrap"});
 });

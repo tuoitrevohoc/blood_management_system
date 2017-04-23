@@ -5,11 +5,16 @@
   <td><%= user.display_role %></td>
   <td><%= user.email %></td>
   <td class="btn-actions text-center">
-    <% unless user == current_user %>
-      <%= link_to edit_admin_administrator_account_path(user), class: "btn-edit" do %>
-        <i class="material-icons">settings</i>
+    <%= link_to edit_admin_administrator_account_path(user), class: "btn-edit" do %>
+      <i class="material-icons">settings</i>
+    <% end %>
+    <% if user == current_user %>
+      <%= link_to "javascript:void(0);", class: "btn-destroy disabled" do %>
+        <i class="material-icons">delete</i>
       <% end %>
-      <%= link_to edit_admin_administrator_account_path(user), class: "btn-destroy" do %>
+    <% else %>
+      <%= link_to admin_administrator_account_path(user), class: "btn-destroy",
+        method: :destroy, data: {confirm: "Xác nhận xóa tài khoản #{user.name&.titleize}?"} do %>
         <i class="material-icons">delete_forever</i>
       <% end %>
     <% end %>

@@ -1,5 +1,6 @@
 <% if flash.any? %>
   <% flash.each do |type, message| %>
     showNotification("<%= message %>", "<%= type %>");
+    <% flash.discard(type) %>
   <% end %>
 <% end %>

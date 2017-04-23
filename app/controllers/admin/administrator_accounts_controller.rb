@@ -1,11 +1,12 @@
 class Admin::AdministratorAccountsController < Admin::BaseController
   before_action :load_user, only: [:edit, :update, :destroy]
   before_action :set_form, only: [:edit, :update]
-  before_action :verify_password, :verify_accessible, only: :update
+  before_action :verify_password, :verify_accessible, only: [:update, :destroy]
 
   def index
-    @q = User.administrator_accounts.ransack params[:q]
+    @q = User.all.ransack params[:q]
     @users = @q.result.page(params[:page]).per 10
+    @form = Support::UserForm.new
   end
 
   def edit
@@ -18,6 +19,15 @@ class Admin::AdministratorAccountsController < Admin::BaseController
     end
     @admin_history = @user.admin_histories.new
     render :edit
+  end
+
+  def destroy
+    if @user.destroy
+      flash[:success] = "Đã xóa!"
+    else
+      flash[:danger] = "Xóa không thành công."
+    end
+    redirect_to admin_administrator_accounts_path
   end
 
   private

@@ -1,5 +1,6 @@
 class Admin::HistoriesController < Admin::BaseController
   before_action :load_user, only: :update
+  before_action :verify_accessible
 
   def new
     @user = User.new
@@ -36,11 +37,11 @@ class Admin::HistoriesController < Admin::BaseController
   private
   def set_forms
     @user_form =  Support::UserForm.new
-    @history_form =  Support::HistoryForm.new
+    @history_form =  Support::HistoryForm.new places: current_user.available_places
   end
 
   def load_user
-    unless (@user = User.find_by id: params[:user][:id])
+    unless (@user = User.includes(:admin_histories).find_by id: params[:user][:id])
       flash[:danger] = "Không tìm thấy thành viên."
       redirect_to new_admin_history_path
     end
@@ -62,5 +63,12 @@ class Admin::HistoriesController < Admin::BaseController
     @users = []
     @user.histories.new if build_histories
     set_forms
+  end
+
+  def verify_accessible
+    if !current_user.admin? && current_user.admin_histories.available.empty?
+      flash[:warning] = "Truy cập không được phép!"
+      redirect_to admin_root_path
+    end
   end
 end
