@@ -1,6 +1,6 @@
 <tr class="<%= user.cannot_donate? ? "text-gray row-gray" : "row-pickable" %>"
   title="Bấm để thêm lịch sử hiến máu cho <%= user.name.titleize %>">
-  <td colspan="4"><%= user.name %></td>
+  <td colspan="4"><%= link_to user.name, user_path(user), target: :_blank %></td>
   <td colspan="6"><%= user.email %></td>
   <td colspan="8"><%= user.address %></td>
   <td colspan="3"><%= user.id_number %></td>
@@ -11,7 +11,7 @@
         <i class="fa fa-warning" title="Chưa thể hiến máu lại"></i>
       </span>
     <% else %>
-      <%= link_to admin_ajax_user_path(user), class: "link-success pick-user" do %>
+      <%= link_to admin_ajax_user_path(user), class: "label label-success pick-user" do %>
         <i class="fa fa-check-square-o">&nbsp;Chọn</i>
       <% end %>
     <% end %>

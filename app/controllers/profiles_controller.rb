@@ -1,6 +1,11 @@
 class ProfilesController < ApplicationController
   before_action :set_form, only: [:edit, :update]
 
+  def show
+    @user = current_user.decorate
+    @histories = @user.histories.includes(:place).newest
+  end
+
   def edit
     @user = current_user
   end

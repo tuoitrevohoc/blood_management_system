@@ -26,7 +26,7 @@
                   <% if current_user.admin? || current_user.limited? %>
                     <li><%= link_to t(".dashboard"), admin_root_path %></li>
                   <% end %>
-                  <li><a href="#"><%= t ".profile" %></a></li>
+                  <li><%= link_to t(".profile"), profile_path %></li>
                   <li><%= link_to t(".settings"), edit_profile_path %></li>
                   <li><%= link_to t(".sign_out"), destroy_user_session_path, method: :delete %></li>
                 </ul>

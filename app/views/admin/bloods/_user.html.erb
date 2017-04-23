@@ -1,6 +1,6 @@
 <tr>
   <td><%= user.id %></td>
-  <td><%= user.name %></td>
+  <td><%= link_to user.name, user_path(user), target: :_blank %></td>
   <td><%= user.display_gender %></td>
   <td><%= user.display_blood_type %></td>
   <td>

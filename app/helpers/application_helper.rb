@@ -16,8 +16,13 @@ module ApplicationHelper
     object.persisted? && object.try(field).present?
   end
 
-  def avatar_for user, size: 130
+  def avatar_for user, size: 130, width: nil
     version = size < 80 ? :thumb : :medium
-    image_tag user.avatar.try(version), alt: user.name.titleize, class: "img", size: size
+    if width.present?
+      image_tag user.avatar.try(version), alt: user.name.titleize, class: "img",
+        size: size, style: "width:#{width};height:auto;"
+    else
+      image_tag user.avatar.try(version), alt: user.name.titleize, class: "img", size: size
+    end
   end
 end
