@@ -1,24 +1,48 @@
-# README
+# BMS DN
+Blood Management System Danang
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## License
 
-Things you may want to cover:
+This is an open source project. All source code in this project is available jointly under the MIT License
+and the Beerware License. See [LICENSE.md](LICENSE.md) for details.
 
-* Ruby version
+## See demo here
+https://bmsdn.herokuapp.com
 
-* System dependencies
+## Getting started
 
-* Configuration
+To get started with the app, after clone the repo:
 
-* Database creation
+First, you'll need to copy `database.yml` to run the app, just copy and rename `config/database.example.yml`:
 
-* Database initialization
+```shell
+$ mv /config/database.example.yml /config/database.yml
+```
 
-* How to run the test suite
+Then, the application needs gems:
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+$ bundle install --without production
+```
 
-* Deployment instructions
+Next, migrate the database:
 
-* ...
+```shell
+$ rails db:migrate
+```
+
+Then, run the server
+
+```shell
+$ rails server
+```
+
+You can visit the web page at http://0.0.0.0:3000 or http://localhost:3000.
+
+We’ll be resizing images using the image manipulation program ImageMagick,
+which we need to install on the development environment.
+
+```shell
+$ sudo apt-get update
+$ sudo apt-get install imagemagick --fix-missing
+```
