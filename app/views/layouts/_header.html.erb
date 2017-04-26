@@ -36,8 +36,8 @@
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to t(".login"), "#", id: "login-link" %></li>
-              <li><%= link_to t(".sign_up"), "#", id: "sign-up-link" %></li>
+              <li><%= link_to t(".login"), new_user_session_path, id: "login-link" %></li>
+              <li><%= link_to t(".sign_up"), new_user_session_path, id: "sign-up-link" %></li>
             <% end %>
           </ul>
         </div>
@@ -46,9 +46,3 @@
   </div>
 </header>
 <div class="yield-block"></div>
-
-<%= content_for :specific_page_js do %>
-  <script type="text/javascript">
-    <%= render "layouts/header.js" %>
-  </script>
-<% end %>
