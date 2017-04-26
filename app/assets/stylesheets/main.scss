@@ -57,7 +57,7 @@ $primary_color: rgba(151, 0, 1, 1);
 }
 
 .list {
-  margin-left: 15px;
+  margin-left: 25px;
   list-style-type: disc;
 }
 
@@ -94,7 +94,7 @@ label.boolean.control-label.checkbox.toggle-button {
 
 .courseArchive_sidebar {
   min-height: inherit;
-  .single_sidebar {
+  .single_sidebar_large {
     margin-top: 30px;
   }
 }
@@ -142,7 +142,7 @@ label.boolean.control-label.checkbox.toggle-button {
 }
 
 #imgBanner {
-  background-image: url("img/banner.jpg");
+  background-image: url("img/banner.png");
   background-size: 100%;
 }
 
@@ -207,4 +207,20 @@ label.boolean.control-label.checkbox.toggle-button {
 a:hover {
   color: $primary_color;
   cursor: pointer;
+}
+
+.right_sidebar {
+  padding: 0px 15px;
+}
+
+.no-data {
+  min-height: 200px;
+}
+
+.slick-loading .slick-list {
+  background: #fff url("img/ajax-loader.gif") center center no-repeat;
+}
+
+.pd-t-70 {
+  padding-top: 70px;
 }

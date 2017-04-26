@@ -1,0 +1,64 @@
+<div class="col-md-4">
+  <div class="courseArchive_sidebar right_sidebar">
+    <div class="single_sidebar">
+      <h2>
+        <%= link_to "#", class: "normal-text" do %>
+          Sự Kiện Sắp Diễn Ra <span class="fa fa-angle-double-right"></span>
+        <% end %>
+      </h2>
+      <div class="up-comming-events">
+        <%= render "shared/right_sidebar/events", events: [] %>
+      </div>
+    </div>
+
+    <div class="single_sidebar">
+      <h2>
+        <%= link_to guest_articles_path, class: "normal-text" do %>
+          Bài Viết Mới <span class="fa fa-angle-double-right"></span>
+        <% end %>
+      </h2>
+      <div class="new-articles">
+        <%= render "shared/right_sidebar/articles", articles: [] %>
+      </div>
+    </div>
+    <div class="single_sidebar">
+      <h2>Liên Kết <span class="fa fa-angle-double-right"></span></h2>
+      <ul class="list">
+        <li><a href="http://chuthapdodanang.org.vn">Hội Chữ Thập Đỏ TP. ĐN</a></li>
+        <li><a href="#">Link B</a></li>
+        <li><a href="#">Link C</a></li>
+        <li><a href="#">Link C</a></li>
+      </ul>
+    </div>
+    <div class="single_sidebar">
+      <h2>Fanpage <span class="fa fa-angle-double-right"></span></h2>
+      <div class="fanpage">
+        <div class="fb-page" data-href="https://www.facebook.com/radio.ktx.579/"
+          data-tabs="timeline" data-width="330" data-height="300"
+          data-small-header="true" data-adapt-container-width="true"
+          data-hide-cover="false" data-show-facepile="true">
+          <blockquote cite="https://www.facebook.com/radio.ktx.579/" class="fb-xfbml-parse-ignore">
+            <a href="https://www.facebook.com/radio.ktx.579/">Radio KTX DMC</a>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="single_sidebar">
+      <h2>Sponsor Add <span class="fa fa-angle-double-right"></span></h2>
+      <a class="side_add" href="#"><img src="<%= image_path("fallback/medium_default_article.png") %>" alt="img"></a>
+    </div>
+  </div>
+</div>
+
+<%= content_for :script_after_body do %>
+  <div id="fb-root"></div>
+  <script>
+    <%= render "shared/facebook_social_plugins.js" %>
+  </script>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "shared/right_sidebar.js" %>
+  </script>
+<% end %>

@@ -1,13 +1,14 @@
 vi:
   date:
     formats:
-      default_date: "%d-%m-%Y"
+      default_date: &default_date "%d-%m-%Y"
   time:
     am: "AM"
     pm: "PM"
     formats:
       short: "%HH:%mm:%ss"
       article_timestamp: "%I %p, %d-%m-%Y"
+      default_date: *default_date
   base_title: Hệ thống quản lý hiến máu TP Đà Nẵng
   layouts:
     header:

@@ -1,0 +1,13 @@
+$(document).ready(function() {
+  renderUpcommingEvents();
+  renderNewArticles();
+});
+
+function renderUpcommingEvents() {
+  return false;
+}
+
+function renderNewArticles() {
+  var url = "<%= ajax_right_sidebar_articles_path %>";
+  $.get(url, {}, null, "script");
+}

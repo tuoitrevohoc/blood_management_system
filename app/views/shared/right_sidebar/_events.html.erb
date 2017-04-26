@@ -1,0 +1,7 @@
+<% if events.any? %>
+  <ul class="news_tab">
+    <%= render collection: events, partial: "shared/right_sidebar/event" %>
+  </ul>
+<% else %>
+  <div class="no-data"></div>
+<% end %>
