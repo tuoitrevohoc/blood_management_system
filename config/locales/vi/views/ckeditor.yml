@@ -1,0 +1,9 @@
+vi:
+  ckeditor:
+    page_title: "Quản lý file"
+    confirm_delete: "Xóa file?"
+    buttons:
+      cancel: "Hủy"
+      upload: "Thêm ảnh"
+      delete: "Xóa"
+      next: "Tiếp"

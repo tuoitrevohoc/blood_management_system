@@ -29,6 +29,8 @@ gem "draper", github: "audionerd/draper", branch: "rails5"
 gem "kaminari"
 gem "momentjs-rails"
 gem "select2-rails"
+gem "ckeditor"
+gem "social-share-button"
 
 group :development, :test do
   gem "pry-rails"

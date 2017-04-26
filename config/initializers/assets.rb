@@ -9,5 +9,5 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 assets_stylesheet = %W(customize_alert.css customize_checkboxes.css material/material-dashboard.css admin/main.css libs/nanoscroller.css)
-assets_javascript = %W(material/material.min.js material/material-dashboard.js admin/main.js admin/jquery.nanoscroller.min.js)
+assets_javascript = %W(material/material.min.js material/material-dashboard.js admin/main.js admin/jquery.nanoscroller.min.js ckeditor/*)
 Rails.application.config.assets.precompile += assets_stylesheet + assets_javascript

@@ -2,6 +2,12 @@ vi:
   date:
     formats:
       default_date: "%d-%m-%Y"
+  time:
+    am: "AM"
+    pm: "PM"
+    formats:
+      short: "%HH:%mm:%ss"
+      article_timestamp: "%I %p, %d-%m-%Y"
   base_title: Hệ thống quản lý hiến máu TP Đà Nẵng
   layouts:
     header:
@@ -9,7 +15,7 @@ vi:
       event: Sự Kiện
       contact: Liên Hệ
       account: Tài Khoản
-      post: Xem Tin
+      post: Tin Tức
       search: Tìm Nguồn Máu
       login: Đăng Nhập
       sign_up: Đăng Ký
@@ -53,3 +59,9 @@ vi:
       next: Trang tiếp
       previous: Trang trước
       truncate: "..."
+  social_share_button:
+    share_to: "Chia sẻ qua %{name}"
+    twitter: Twitter
+    facebook: Facebook
+    google_plus: Google Plus
+    email: Email
