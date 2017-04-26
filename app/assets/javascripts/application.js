@@ -18,4 +18,5 @@
 //= require bootstrap-datetimepicker
 //= require bootstrap-notify
 //= require select2-full
+//= require social-share-button
 //= require main

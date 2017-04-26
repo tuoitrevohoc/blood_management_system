@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422040748) do
+ActiveRecord::Schema.define(version: 20170426035416) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -22,6 +22,31 @@ ActiveRecord::Schema.define(version: 20170422040748) do
     t.datetime "updated_at", null: false
     t.index ["place_id"], name: "index_admin_histories_on_place_id", using: :btree
     t.index ["user_id"], name: "index_admin_histories_on_user_id", using: :btree
+  end
+
+  create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "content",    limit: 65535
+    t.string   "title_slug"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "is_public",                default: false
+    t.string   "image"
+    t.index ["title_slug"], name: "index_articles_on_title_slug", using: :btree
+    t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
+  end
+
+  create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
   end
 
   create_table "event_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -122,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170422040748) do
 
   add_foreign_key "admin_histories", "places"
   add_foreign_key "admin_histories", "users"
+  add_foreign_key "articles", "users"
   add_foreign_key "event_images", "events"
   add_foreign_key "events", "places"
   add_foreign_key "histories", "places"

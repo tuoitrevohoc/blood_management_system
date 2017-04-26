@@ -5,6 +5,7 @@ module ApplicationHelper
   end
 
   def active_class url
+    url.slice! ".html"
     "active" if request.original_fullpath.include? url
   end
 

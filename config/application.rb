@@ -12,5 +12,9 @@ module BloodManagementSystem
     config.i18n.default_locale = :vi
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
     config.action_view.field_error_proc = Proc.new {|html_tag, instance| html_tag.html_safe}
+
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

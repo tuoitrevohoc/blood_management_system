@@ -29,3 +29,6 @@ vi:
       admin_history:
         start_time: Thời gian bắt đầu
         end_time: Thời gian kết thúc
+      article:
+        title: Tiêu đề
+        content: Nội dung
