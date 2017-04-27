@@ -58,3 +58,16 @@ $ sudo apt-get install imagemagick --fix-missing
 
 - Server __Staging__: Branch `deploy_heroku`
 - Server __Production__: Branch `docker`
+
+### Deploy using docker
+Check out branch `docker`
+
+Build the docker image
+```sh
+sudo docker build . -t sontd/blood_management_system
+```
+Push the image to dockerhub
+```sh
+docker push sontd/blood_management_system
+```
+__Note:__ Docker version 17.09.0-ce, build afdb6d4
