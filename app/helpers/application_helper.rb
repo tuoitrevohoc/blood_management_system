@@ -80,7 +80,7 @@ module ApplicationHelper
   def cell_style_id attribute
     case attribute
     when :display_user_birthday
-      :s62
+      'ss:StyleID="s62"'
     else
       nil
     end

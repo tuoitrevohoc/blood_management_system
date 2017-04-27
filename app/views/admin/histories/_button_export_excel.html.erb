@@ -1,0 +1,5 @@
+<%= link_to admin_histories_path(format: :xls, q: params[:q]), id: "download-links", target: :_blank,
+  rel: :nofollow, class: "btn btn-sm btn-success #{:disabled if histories.empty?}",
+  title: "Tải về file excel: #{file_name}", disabled: histories.empty? do %>
+  <i class="fa fa-file-excel-o"></i>&nbsp;Tải Xuống Excel
+<% end %>
