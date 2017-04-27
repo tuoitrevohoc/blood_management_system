@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :ajax do
+    get "right_sidebar/events"
+    get "right_sidebar/articles"
+  end
+
   mount Ckeditor::Engine => "/ckeditor"
   # root "home#index"
   devise_for :users, controllers: {registrations: "registrations"}
