@@ -7,7 +7,8 @@ class ArticleDecorator < Draper::Decorator
 
   def first_paragraph
     limit = 500
-    original = Nokogiri::HTML.parse(object.content).css("p").first.text
+    content_parsed = Nokogiri::HTML.parse(object.content).css("p").first
+    original = content_parsed.present? ? content_parsed.text : strip_tags(object.content)
     original.length < limit ? original : original.first(limit) << "..."
   end
 end

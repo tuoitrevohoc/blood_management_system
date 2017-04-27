@@ -14,7 +14,7 @@ class Admin::HistoriesController < Admin::BaseController
       @user.signed_up_by_admin!
       token = @user.confirmation_token
       UsersMailer.confirmation_instructions(@user, token).deliver if @user.email.present?
-      flash[:success] = "Đã tạo tài khoản và thêm 1 lịch sử hiến máu cho #{@user.name.titleize}."
+      flash[:success] = "Đã tạo tài khoản và thêm 1 lịch sử hiến máu cho #{@user.name&.titleize}."
       redirect_to new_admin_history_path
     else
       load_empty_data build_histories: false
@@ -26,7 +26,7 @@ class Admin::HistoriesController < Admin::BaseController
     if @user.update user_params
       # TODO: update add thank you letter later.
       sign_in @user, bypass: true if @user == current_user
-      flash[:success] = "Đã thêm 1 lịch sử hiến máu cho #{@user.name.titleize}."
+      flash[:success] = "Đã thêm 1 lịch sử hiến máu cho #{@user.name&.titleize}."
       redirect_to new_admin_history_path
     else
       load_empty_data build_histories: false
@@ -55,7 +55,7 @@ class Admin::HistoriesController < Admin::BaseController
     params[:user][:histories_attributes][attribute_id].merge! date: Date.current,
       admin_id: current_user.id, is_verified: true
     params.require(:user).permit :name, :email, :gender, :birthday, :id_number,
-      :phone_number, :address, :blood_type, :password,
+      :phone_number, :address, :blood_type, :password, :lat, :lon,
       histories_attributes: [:volume, :date, :place_id]
   end
 

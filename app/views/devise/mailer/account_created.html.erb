@@ -1,4 +1,4 @@
-<p>Chào bạn <b><%= @user.name.titleize %></b>,</p>
+<p>Chào bạn <b><%= @user.name&.titleize %></b>,</p>
 <p>Xin chân thành cảm ơn bạn đã hiến máu tại <b><%= @place&.name&.titleize %></b>.</p>
 <p>
   Để thuận tiện cho việc quản lý sức khỏe cũng như ghi nhận lại lịch sử hiến máu của các tình nguyện viên, chúng tôi đã giúp bạn tạo tài khoản tại <b><%= link_to "BMS DN", root_url %></b>.<br>
