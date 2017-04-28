@@ -1,35 +1,4 @@
 $(document).ready(function() {
-  const DEFAULT_RADIUS = 160;
-  const DEFAULT_LAT = 21.0227731;
-  const DEFAULT_LNG = 105.8018581;
-
   initialize_locationpicker();
   try_current_position();
-
-  function initialize_locationpicker() {
-    $(".location-picker").locationpicker({
-      radius: DEFAULT_RADIUS,
-      inputBinding: {
-          latitudeInput: $(".lp-lat"),
-          longitudeInput: $(".lp-lon"),
-          locationNameInput: $(".lp-input")
-      },
-      enableAutocomplete: true
-    });
-  }
-
-  function try_current_position() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var current_position = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
-        $(".location-picker").locationpicker("location", current_position);
-      });
-    } else {
-      var current_position = {latitude: DEFAULT_LAT, longitude: DEFAULT_LNG};
-      $(".location-picker").locationpicker("location", current_position);
-    }
-  }
 });

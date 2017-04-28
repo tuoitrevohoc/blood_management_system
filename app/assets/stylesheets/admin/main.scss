@@ -245,6 +245,8 @@ a:hover {
 }
 
 .maps {
-  height: 500px;
   margin-bottom: 10px;
+  .location-picker {
+    height: 500px;
+  }
 }

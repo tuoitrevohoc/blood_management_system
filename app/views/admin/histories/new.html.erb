@@ -34,6 +34,9 @@
 
 <%= content_for :specific_page_js do %>
   <%= javascript_include_tag "admin/jquery.nanoscroller.min.js" %>
+  <script type="text/javascript">
+    <%= render "admin/histories/new.js" %>
+  </script>
 <% end %>
 
 <%= content_for :script_after_body do %>
