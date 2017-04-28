@@ -23,8 +23,14 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:user).permit :name, :gender, :blood_type, :id_number,
+    current_prams = params.require(:user).permit :name, :gender, :blood_type, :id_number,
       :phone_number, :address, :avatar, :email, :password, :password_confirmation,
-      :is_suscribed_email, :is_public_profile, :is_volunteer
+      :is_suscribed_email, :is_public_profile, :is_volunteer, :formatted_address,
+      :lat, :lon
+    geo_data = [:formatted_address, :lat, :lon]
+    geo_data.each do |attribute|
+      current_prams.reject! {|key, value| value.blank?}
+    end
+    current_prams
   end
 end

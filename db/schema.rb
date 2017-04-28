@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427111620) do
+ActiveRecord::Schema.define(version: 20170428061220) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20170427111620) do
     t.date     "birthday"
     t.float    "lat",                    limit: 24
     t.float    "lon",                    limit: 24
+    t.string   "formatted_address"
     t.index ["address"], name: "index_users_on_address", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
