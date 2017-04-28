@@ -13,6 +13,7 @@
   </head>
 
   <body>
+    <%= javascript_include_tag "common_constants" %>
     <%= content_for :script_after_body %>
     <%= render "layouts/header" %>
     <%= yield %>
