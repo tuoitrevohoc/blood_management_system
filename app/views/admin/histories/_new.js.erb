@@ -1,6 +1,7 @@
 $(document).ready(function() {
-  $(".toggle-maps").click(function() {
+  $(document).on("click", ".toggle-maps", function(e) {
     $(".maps").toggleClass("hidden");
     $(".toggle-maps").toggleClass("show-maps");
+    $(".location-picker").locationpicker("autosize");
   });
 });
