@@ -1,6 +1,6 @@
 <%= form_tag admin_ajax_users_path, method: :get, class: "search-form search-form-live", remote: true do %>
   <%= text_field_tag :keyword, params[:keyword], placeholder: "Tìm kiếm...",
-    class: "form-control", autocomplete: "off" %>
+    class: "form-control select-on-focus", autocomplete: "off" %>
 <% end %>
 
 <%= content_for :specific_page_js do %>

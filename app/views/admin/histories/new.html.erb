@@ -36,6 +36,10 @@
   <%= javascript_include_tag "admin/jquery.nanoscroller.min.js" %>
 <% end %>
 
+<%= content_for :script_after_body do %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5WpyjImkemkAiHkeZQYqHEc5ybF0uIIg&libraries=places"></script>
+<% end %>
+
 <%= content_for :specific_page_css do %>
   <%= stylesheet_link_tag "libs/nanoscroller.css" %>
 <% end %>

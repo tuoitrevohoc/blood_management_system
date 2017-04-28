@@ -20,10 +20,10 @@ module ApplicationHelper
   def avatar_for user, size: 130, width: nil
     version = size < 80 ? :thumb : :medium
     if width.present?
-      image_tag user.avatar.try(version), alt: user.name.titleize, class: "img",
+      image_tag user.avatar.try(version), alt: user.name&.titleize, class: "img",
         size: size, style: "width:#{width};height:auto;"
     else
-      image_tag user.avatar.try(version), alt: user.name.titleize, class: "img", size: size
+      image_tag user.avatar.try(version), alt: user.name&.titleize, class: "img", size: size
     end
   end
 end

@@ -211,3 +211,40 @@ a:hover {
 .input-group-addon-file {
   background-color: #9c27b0 !important;
 }
+
+.form-group.has-success-no-color {
+  label.control-label {
+    color: #AAAAAA;
+  }
+  input.form-control {
+    border-color: #9c27b0;
+  }
+}
+
+.form-group.has-success-no-color.is-focused .form-control {
+  background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+.form-control-addon {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 6px;
+}
+
+.form-control-addon:hover {
+  cursor: pointer;
+}
+
+.toggle-maps {
+  color: #9c27b0;
+}
+
+.show-maps {
+  color: #cecece;
+}
+
+.maps {
+  height: 500px;
+  margin-bottom: 10px;
+}

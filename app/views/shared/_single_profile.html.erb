@@ -1,6 +1,6 @@
 <h2>
   <%= link_to user, class: "normal-text" do %>
-    <%= user.name.titleize %>&nbsp;<span class="fa fa-angle-double-right"></span>
+    <%= user.name&.titleize %>&nbsp;<span class="fa fa-angle-double-right"></span>
   <% end %>
 </h2>
 <div class="row">

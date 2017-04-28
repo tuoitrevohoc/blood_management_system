@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426035416) do
+ActiveRecord::Schema.define(version: 20170427111620) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -107,23 +107,23 @@ ActiveRecord::Schema.define(version: 20170426035416) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "email",                             default: "",   null: false
+    t.string   "encrypted_password",                default: "",   null: false
     t.string   "name"
     t.string   "address"
-    t.integer  "gender",                 default: 0
+    t.integer  "gender",                            default: 0
     t.string   "id_number"
     t.string   "phone_number"
     t.integer  "blood_type"
-    t.boolean  "is_suscribed_email",     default: true
-    t.integer  "role",                   default: 0
+    t.boolean  "is_suscribed_email",                default: true
+    t.integer  "role",                              default: 0
     t.string   "avatar"
     t.string   "uid"
     t.string   "provider"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",                     default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -132,14 +132,19 @@ ActiveRecord::Schema.define(version: 20170426035416) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "is_public_profile",      default: true
-    t.boolean  "is_volunteer",           default: true
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.boolean  "is_public_profile",                 default: true
+    t.boolean  "is_volunteer",                      default: true
     t.date     "birthday"
+    t.float    "lat",                    limit: 24
+    t.float    "lon",                    limit: 24
     t.index ["address"], name: "index_users_on_address", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["lat", "lon"], name: "index_users_on_lat_and_lon", using: :btree
+    t.index ["lat"], name: "index_users_on_lat", using: :btree
+    t.index ["lon"], name: "index_users_on_lon", using: :btree
     t.index ["name", "address"], name: "index_users_on_name_and_address", using: :btree
     t.index ["name"], name: "index_users_on_name", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

@@ -1,5 +1,5 @@
 <tr class="<%= user.cannot_donate? ? "text-gray row-gray" : "row-pickable" %>"
-  title="Bấm để thêm lịch sử hiến máu cho <%= user.name.titleize %>">
+  title="Bấm để thêm lịch sử hiến máu cho <%= user.name&.titleize %>">
   <td colspan="4"><%= link_to user.name, user_path(user), target: :_blank %></td>
   <td colspan="6"><%= user.email %></td>
   <td colspan="8"><%= user.address %></td>
