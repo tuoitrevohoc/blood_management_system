@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428061220) do
+ActiveRecord::Schema.define(version: 20170429141744) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -61,11 +61,13 @@ ActiveRecord::Schema.define(version: 20170428061220) do
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.datetime "date_time"
-    t.string   "content"
+    t.text     "content",    limit: 65535
     t.integer  "place_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "image"
+    t.boolean  "is_public",                default: false
     t.index ["place_id"], name: "index_events_on_place_id", using: :btree
     t.index ["title"], name: "index_events_on_title", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
@@ -89,10 +91,11 @@ ActiveRecord::Schema.define(version: 20170428061220) do
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "address"
-    t.float    "logititude", limit: 24
-    t.float    "latitude",   limit: 24
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.float    "longitude",         limit: 24
+    t.float    "latitude",          limit: 24
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "formatted_address"
     t.index ["address"], name: "index_places_on_address", using: :btree
     t.index ["name", "address"], name: "index_places_on_name_and_address", unique: true, using: :btree
     t.index ["name"], name: "index_places_on_name", using: :btree

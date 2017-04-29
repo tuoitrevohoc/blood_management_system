@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">Thên Sự Kiện</h4>
+          <p class="category">Đăng tải thông tin sự kiện sắp diễn ra.</p>
+        </div>
+        <div class="card-content">
+          <%= render "event_form", event: @event, form: @form %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :script_after_body do %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5WpyjImkemkAiHkeZQYqHEc5ybF0uIIg&libraries=places"></script>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_include_tag "locationpicker/locationpicker.jquery.min.js" %>
+<% end %>

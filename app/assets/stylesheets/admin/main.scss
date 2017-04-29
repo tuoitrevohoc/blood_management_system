@@ -262,3 +262,17 @@ a:hover {
     height: 500px;
   }
 }
+
+#register-place-modal {
+  z-index: 1500;
+  .modal-body {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.modal-footer {
+  input.btn {
+    margin: 0;
+  }
+}

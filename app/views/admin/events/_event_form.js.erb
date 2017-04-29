@@ -1,0 +1,32 @@
+$(document).ready(function() {
+  $(".date-picker").datetimepicker({
+    useCurrent: false,
+    format: "DD-MM-YYYY HH:mm:ss",
+    minDate: moment(),
+    showClose: true,
+    showClear: true,
+    icons: {
+      close: "fa fa-check"
+    }
+  });
+
+  $(".select2").select2({
+    theme: "bootstrap",
+    language: {
+      noResults: function() {
+        var link_to_modal = "<a href='#' id='register-place'>Thêm mới?</a>";
+        return "Địa điểm này không có sẵn. " + link_to_modal;
+      }
+    },
+    escapeMarkup: function(markup) {return markup;}
+  });
+
+  $(document).on("click", "#register-place", function() {
+    var url = "<%= new_admin_ajax_place_path %>";
+    var search_query = $("select").data("select2").$dropdown.find("input").val();
+    var request_new_place = $.get(url, {place: {name: search_query}}, null, "script");
+    request_new_place.error(function() {
+      showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
+    });
+  });
+});

@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to "Thêm Sự Kiện", new_admin_event_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <p class="text-danger" id="waiting"></p>
+        <div class="card-content table-responsive">
+          <table class="table table-hover">
+            <thead class="text-primary">
+              <tr>
+                <th colspan="1">ID</th>
+                <th colspan="4">Tiêu Đề</th>
+                <th colspan="2">Trạng Thái</th>
+                <th colspan="2">Ngày Bắt đầu</th>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
+            <tbody class="results">
+              <% if @events.any? %>
+                <%= render partial: "admin/events/event", collection: @events.decorate %>
+              <% else %>
+                <tr>
+                  <th colspan="10">Không có dữ liệu.</th>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @events %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%# render "" %>
+  </script>
+<% end %>
