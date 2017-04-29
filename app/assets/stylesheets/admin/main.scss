@@ -11,6 +11,18 @@
   .sidebar .sidebar-wrapper {
     overflow: auto;
   }
+  .sidebar {
+    img.logo-image {
+      position: absolute;
+      top: 5px;
+      left: 18px;
+      width: 48px;
+    }
+    a.simple-text {
+      text-align: left;
+      padding-left: 60px;
+    }
+  }
 }
 
 .main-panel > .content {
