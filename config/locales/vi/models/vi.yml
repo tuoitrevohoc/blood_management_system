@@ -32,3 +32,12 @@ vi:
       article:
         title: Tiêu đề
         content: Nội dung
+      event:
+        title: Tiêu đề
+        image: Ảnh minh họa
+        date_time: Thời gian
+        place: Địa điểm
+        content: Nội dung
+      place:
+        name: Tên cơ sở
+        address: Địa chỉ

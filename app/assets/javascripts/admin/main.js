@@ -31,9 +31,9 @@ function initialize_locationpicker() {
   $(".location-picker").locationpicker({
     radius: DEFAULT_RADIUS,
     inputBinding: {
-        latitudeInput: $(".lp-lat"),
-        longitudeInput: $(".lp-lon"),
-        locationNameInput: $(".lp-input")
+      latitudeInput: $(".lp-lat"),
+      longitudeInput: $(".lp-lon"),
+      locationNameInput: $(".lp-input")
     },
     enableAutocomplete: true
   });

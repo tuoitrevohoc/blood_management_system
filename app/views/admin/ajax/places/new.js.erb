@@ -1,0 +1,30 @@
+$(".modal-wrapper").html("<%= j render 'admin/events/register_place_modal', place: @place %>");
+$("#register-place-modal").modal({backdrop: "static", keyboard: false});
+$("#register-place-modal").modal("show");
+
+$("#register-place-modal").on("shown.bs.modal", function() {
+  $("#btn-submit-place-form").click(function(e) {
+    var address = $("#place-address").val();
+    var data = {address: address, key: GM_KEY};
+    var geocode = $.get(GM_API_GEOCODE_URL, data, null, "json");
+    geocode.success(function(data) {
+      if (data.status == "ZERO_RESULTS") {
+        cleanGeoData();
+      } else {
+        var geodata = data.results[0];
+        $("#place-formatted-address").val(geodata.formatted_address);
+        $("#place-lat").val(geodata.geometry.location.lat);
+        $("#place-lon").val(geodata.geometry.location.lng);
+        $("#register-place-modal form").submit();
+        $("#btn-submit-place-form").addClass("disabled");
+      }
+    });
+    geocode.error(function(e) {
+      cleanGeoData();
+    });
+  });
+
+  function cleanGeoData() {
+    return $("#place-formatted-address, #place-lat, #place-lon").val("");
+  }
+});

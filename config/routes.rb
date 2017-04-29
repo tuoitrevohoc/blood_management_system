@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   namespace :admin do
     namespace :ajax do
       resources :users, only: [:index, :show]
+      resources :places, only: [:new, :create]
     end
     root "dashboard#index"
     resources :dashboard, only: :index
@@ -28,5 +29,6 @@ Rails.application.routes.draw do
       resources :admin_histories, only: :create
     end
     resources :articles, only: [:new, :create]
+    resources :events
   end
 end

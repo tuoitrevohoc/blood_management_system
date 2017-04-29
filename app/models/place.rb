@@ -3,6 +3,8 @@ class Place < ApplicationRecord
   has_many :histories
   has_many :users, through: :history_id
 
+  validates :name, :address, presence: true
+
   class << self
     def concat_name_address truncate: false
       if truncate
