@@ -1,5 +1,6 @@
 <div class="sidebar" data-active-color="purple" data-image="">
   <div class="logo">
+    <%= image_tag "favicon.ico", class: "img logo-image" %>
     <%= link_to "BMS ĐN", admin_root_path, class: "simple-text" %>
   </div>
   <div class="sidebar-wrapper">
@@ -16,12 +17,6 @@
           <p>Tìm Kiếm Nguồn Máu</p>
         <% end %>
       </li>
-      <li>
-        <%= link_to "#" do %>
-          <i class="material-icons">people</i>
-          <p>Thành Viên</p>
-        <% end %>
-      </li>
       <li class="<%= active_class admin_histories_path %>">
         <%= link_to new_admin_history_path do %>
             <i class="material-icons">history</i>
@@ -35,9 +30,9 @@
         <% end %>
       </li>
       <li>
-        <%= link_to "#" do %>
+        <%= link_to new_admin_article_path do %>
             <i class="material-icons">content_paste</i>
-            <p>Bài Đăng</p>
+            <p>Tin Tức - Bài Viết</p>
         <% end %>
       </li>
       <li>
@@ -48,8 +43,8 @@
       </li>
       <li class="<%= active_class admin_administrator_accounts_path %>">
         <%= link_to admin_administrator_accounts_path do %>
-            <i class="material-icons">group_add</i>
-            <p>Quản Trị Viên</p>
+            <i class="material-icons">people</i>
+            <p>Tài Khoản</p>
         <% end %>
       </li>
     </ul>
