@@ -276,3 +276,22 @@ a:hover {
     margin: 0;
   }
 }
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.section-404 {
+  padding-left: 30px;
+  h1 {
+    font-size: 100px;
+    margin-bottom: 0px;
+    line-height: 50px;
+    span {
+      font-size: 26px;
+    }
+  }
+  h3 {
+    margin: 0px;
+  }
+}

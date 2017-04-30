@@ -1,5 +1,6 @@
 class Admin::EventsController < Admin::BaseController
-  before_action :set_form, only: [:new, :create]
+  before_action :set_form, only: [:new, :create, :edit, :update]
+  before_action :load_event, only: [:edit, :update, :destroy]
 
   def index
     @events = Event.newest.page(params[:page]).per 10
@@ -19,10 +20,31 @@ class Admin::EventsController < Admin::BaseController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @event.update event_params
+      flash[:success] = "Đã lưu!"
+      redirect_to admin_events_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @event.destroy
+      flash[:success] = "Đã xóa sự kiện."
+    else
+      flash[:danger] = "Lỗi, thử lại sau."
+    end
+    redirect_to admin_events_path
+  end
+
   private
   def event_params
-    params[:event].merge! is_public: is_public?
-    params.require(:event).permit :title, :image, :date_time, :place_id, :content
+    params[:event].merge! is_public: is_public?, user_id: current_user.id, title_slug: make_slug
+    params.require(:event).permit :title, :image, :date_time, :place_id, :content, :title_slug
   end
 
   def is_public?
@@ -31,5 +53,13 @@ class Admin::EventsController < Admin::BaseController
 
   def set_form
     @form = Support::EventForm.new
+  end
+
+  def load_event
+    render_404 unless (@event = Event.find_by id: params[:id])
+  end
+
+  def make_slug
+    params[:event][:title].parameterize  << "-" << SecureRandom.hex(3).upcase
   end
 end

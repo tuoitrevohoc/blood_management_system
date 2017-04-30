@@ -9,4 +9,8 @@ class Admin::BaseController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def render_404
+    render "shared/404_admin", status: 404
+  end
 end

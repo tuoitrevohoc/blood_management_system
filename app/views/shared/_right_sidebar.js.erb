@@ -4,7 +4,8 @@ $(document).ready(function() {
 });
 
 function renderUpcommingEvents() {
-  return false;
+  var url = "<%= ajax_right_sidebar_events_path %>";
+  $.get(url, {}, null, "script");
 }
 
 function renderNewArticles() {

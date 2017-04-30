@@ -45,14 +45,14 @@
   </div>
 <% end %>
 
-<div class="modal-wrapper"></div>
 <%= content_for :modal_bottom_page do %>
+  <div class="modal-wrapper"></div>
 <% end %>
 
 <%= content_for :specific_page_js do %>
   <%= javascript_include_tag "ckeditor/init" %>
   <script type="text/javascript">
-    <%= render "admin/events/event_form.js" %>
     <%= render "shared/init_ckeditor.js" %>
+    <%= render "admin/events/event_form.js" %>
   </script>
 <% end %>

@@ -9,7 +9,7 @@
       <%= link_to "#" do %>
         <%= event.title %>
       <% end %>
-     <span class="feed_date"><%= l event.date_time, format: :default_date %></span>
+     <span class="feed_date"><%= l event.date_time.to_datetime, format: :article_timestamp %></span>
     </div>
   </div>
 </li>
