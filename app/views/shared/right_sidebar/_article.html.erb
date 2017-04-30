@@ -1,12 +1,12 @@
 <li>
   <div class="media">
     <div class="media-left">
-      <%= link_to "#", class: "news_img" do %>
+      <%= link_to guest_article_path(article.title_slug), class: "news_img" do %>
         <%= image_tag article.image.small, class: "media-object", alt: article.title %>
       <% end %>
     </div>
     <div class="media-body">
-      <%= link_to "#" do %>
+      <%= link_to guest_article_path(article.title_slug) do %>
         <%= article.title %>
       <% end %>
      <span class="feed_date"><%= l article.created_at, format: :default_date %></span>

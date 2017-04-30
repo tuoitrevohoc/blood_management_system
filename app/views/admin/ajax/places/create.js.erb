@@ -1,6 +1,7 @@
 <% if @place.errors.any? %>
-  $(".error-msg-wrapper").html("<%= render 'shared/error_messages', object: @place %>");
+  $(".error-msg-wrapper").html("<%= j render 'shared/error_messages', object: @place %>");
 <% else %>
+  $(".error-msg-wrapper").html("");
   var opt_text = "<%= @place.name + ' - ' + @place.address %>";
   var opt_value = <%= @place.id %>;
   var option = new Option(opt_text, opt_value);
