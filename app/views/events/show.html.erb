@@ -1,0 +1,56 @@
+<%= render "layouts/banner", banner_text: nil %>
+<section id="courseArchive">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="courseArchive_content event-details">
+          <div class="row">
+            <div class="col-lg-12 col-12 col-sm-12">
+              <div class="single_blog">
+                <div class="events_slider_area">
+                  <div class="events_slider">
+                    <div><%= image_tag @event.image, alt: @event.title %></div>
+                  </div>
+                </div>
+                <h2 class="blog_title">
+                  <%= link_to @event.title, guest_event_path(@event.title_slug) %>
+                </h2>
+                <div class="blog_commentbox">
+                  <p class="no-border">
+                    <i class="fa fa-clock-o"></i>&nbsp;<%= @event.formated_timestamp %>
+                  </p>
+                  <div class="social-share-block pull-right">
+                    <%= social_share_button_tag @event.title %>
+                  </div>
+                </div>
+                <div class="article-content">
+                  <%= @event.content.html_safe %>
+                </div>
+                <div class="sign-up text-center">
+                  <%= link_to "Đánh dấu sẽ tham gia", "#", class: "wpcf7-submit" %>
+                </div>
+              </div>
+              <div class="like-share-fb">
+                <div class="fb-like" data-href="<%= guest_article_url @event.title_slug %>"
+                  data-layout="standard" data-action="like" data-size="large"
+                  data-show-faces="true" data-share="true">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fb-comments" data-href="<%= guest_article_url @event.title_slug %>"
+            data-width="750" data-numposts="5">
+          </div>
+        </div>
+      </div>
+      <%= render "shared/right_bar" %>
+    </div>
+  </div>
+</section>
+
+<%= content_for :script_after_body do %>
+  <div id="fb-root"></div>
+  <script>
+    <%= render "shared/facebook_social_plugins.js" %>
+  </script>
+<% end %>

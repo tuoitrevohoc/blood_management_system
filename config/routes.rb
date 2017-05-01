@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "trang-chu.html", to: "home#index", as: :guest_home
   get "/tin-tuc/:slug.html", to: "articles#show", as: :guest_article
   get "/tin-tuc.html", to: "articles#index", as: :guest_articles
+  get "/su-kien/:slug.html", to: "events#show", as: :guest_event
+  get "/su-kien.html", to: "events#index", as: :guest_events
 
   namespace :admin do
     namespace :ajax do

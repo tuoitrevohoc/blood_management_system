@@ -12,6 +12,6 @@ class Event < ApplicationRecord
   end
 
   def date_time
-    I18n.l attributes["date_time"], format: :full
+    I18n.l attributes["date_time"], format: :full if date_time?
   end
 end

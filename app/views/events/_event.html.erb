@@ -1,0 +1,17 @@
+<div class="col-lg-12 col-12 col-sm-12">
+  <div class="single_blog_archive wow fadeInUp">
+    <div class="blogimg_container article-img-container">
+      <%= link_to guest_event_path(event.title_slug), class: "blog_img" do %>
+        <%= image_tag event.image.large, alt: event.title %>
+      <% end %>
+    </div>
+    <h2 class="blog_title">
+      <%= link_to event.title, guest_event_path(event.title_slug) %>
+    </h2>
+    <div class="blog_commentbox">
+      <p><i class="fa fa-clock-o"></i>&nbsp;<%= event.formated_timestamp %></p>
+    </div>
+    <p class="blog_summary"><%= event.first_paragraph %></p>
+    <%= link_to "Xem Thêm", guest_event_path(event.title_slug), class: "blog_readmore" %>
+  </div>
+</div>

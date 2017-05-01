@@ -1,0 +1,22 @@
+<%= render "layouts/banner", banner_text: nil %>
+
+<section id="courseArchive">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="courseArchive_content article-index">
+          <div class="row">
+            <%= render @events.decorate if @events.any? %>
+          </div>
+          <div class="single_blog_prevnext">
+            <%= link_to_prev_page @events, "<i class=\"fa fa-angle-left\"></i> Trang Trước".html_safe,
+              class: "prev_post wow fadeInLeft animated", style: "visibility: visible; animation-name: fadeInLeft;" %>
+            <%= link_to_next_page @events, "Trang Sau <i class=\"fa fa-angle-right\"></i>".html_safe,
+              class: "next_post wow fadeInRight animated", style: "visibility: visible; animation-name: fadeInRight;" %>
+          </div>
+        </div>
+      </div>
+      <%= render "shared/right_bar" %>
+    </div>
+  </div>
+</section>
