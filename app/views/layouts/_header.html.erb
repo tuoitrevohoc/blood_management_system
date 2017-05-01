@@ -21,7 +21,9 @@
             <li class="<%= active_class guest_articles_path %>">
               <%= link_to t(".post"), guest_articles_path %>
             </li>
-            <li><a href="#"><%= t ".event" %></a></li>
+            <li class="<%= active_class guest_events_path %>">
+              <%= link_to t(".event"), guest_events_path %>
+            </li>
             <% if current_user %>
               <li><a href="#"><%= t ".search" %></a></li>
               <li class="dropdown">

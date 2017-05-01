@@ -1,4 +1,4 @@
-class EventDecorator < Draper::Decorator
+class EventDecorator < ArticleDecorator
   delegate_all
 
   def display_status
@@ -8,5 +8,9 @@ class EventDecorator < Draper::Decorator
       "<span class='label label-default'>Đã qua</span>"
     end
     label.html_safe
+  end
+
+  def formated_timestamp
+    I18n.l date_time.to_datetime, format: :article_timestamp
   end
 end
