@@ -1,0 +1,31 @@
+$(document).ready(function() {
+  var form = $("form");
+  var hovering = false;
+
+  $(".nav-icon-left").bind("mouseover", function() {
+    hovering = true;
+    scroll(form, "left");
+  }).bind("mouseout", function() {
+    hovering = false;
+  }).bind("click", function(event) {
+    event.preventDefault();
+    form.animate({scrollLeft: "-=400px"}, 300);
+  });
+
+  $(".nav-icon-right").bind("mouseover", function() {
+    hovering = true;
+    scroll(form, "right");
+  }).bind("mouseout", function() {
+    hovering = false;
+  }).bind("click", function(event) {
+    event.preventDefault();
+    form.animate({scrollLeft: "+=400px"}, 300);
+  });
+
+  function scroll(content, direction) {
+    var step = direction == "left" ? "-=35px" : "+=35px";
+    $(content).animate({scrollLeft: step}, 50, function() {
+      if (hovering) {scroll(content, direction);}
+    });
+  }
+})

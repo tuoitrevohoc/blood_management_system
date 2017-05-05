@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     end
     root "dashboard#index"
     resources :dashboard, only: :index
-    resources :bloods, only: :index
+    resources :bloods, only: :index do
+      collection do
+        get :maps, to: "bloods_maps#maps"
+      end
+    end
     resources :histories, only: [:index, :new, :create]
     resource :histories, only: :update
     resources :administrator_accounts, except: [:show, :new] do
