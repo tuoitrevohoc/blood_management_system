@@ -1,0 +1,153 @@
+$(document).ready(function() {
+  var lat = parseFloat($("#map-center-lat").val());
+  var lng = parseFloat($("#map-center-lng").val());
+  var zoom = 15;
+  var centerPosition = {};
+  if (lat && lng) {
+    centerPosition = {lat: lat, lng: lng};
+    setupMap(centerPosition);
+  } else {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        centerPosition = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        setupMap(centerPosition);
+      });
+    } else {
+      centerPosition = {latitude: DEFAULT_LAT, longitude: DEFAULT_LNG};
+      setupMap(centerPosition);
+    }
+  }
+
+  var autocomplete;
+  initAutocomplete();
+
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById("map-center-address")),
+      {types: ["geocode"]});
+    autocomplete.addListener("place_changed", reinitMap);
+  }
+
+  function reinitMap() {
+    var place = autocomplete.getPlace();
+    $("#map-center-lat").val(place.geometry.location.lat());
+    $("#map-center-lng").val(place.geometry.location.lng());
+    $("#admin-search").submit();
+  }
+
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
+
+  function setupMap(centerPosition) {
+    var radius = parseInt($("#map-radius :selected").val());
+    if (radius > 2) {zoom = 13;}
+    var locations = <%= raw users %>;
+    var map = initializeMap("map", centerPosition);
+    drawCenterMarker(map);
+    drawMapCircle(map, radius);
+    importMarkers(map, locations);
+  }
+
+  function initializeMap(id, centerPosition) {
+    return new google.maps.Map(document.getElementById(id), {
+      zoom: zoom,
+      center: centerPosition,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+  }
+
+  function drawCenterMarker(map) {
+    return new google.maps.Marker({
+      position: map.getCenter(),
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        strokeColor: COLORS.success,
+        strokeOpacity: 1,
+        strokeWeight: 2,
+        fillColor: COLORS.success,
+        fillOpacity: 0.8,
+      },
+      draggable: true,
+      map: map
+    });
+  }
+
+  function drawMapCircle(map, radius) {
+    return new google.maps.Circle({
+      strokeColor: COLORS.info,
+      strokeOpacity: 0.75,
+      strokeWeight: 2,
+      fillColor: COLORS.info,
+      fillOpacity: 0.15,
+      map: map,
+      center: map.getCenter(),
+      radius: radius * 1000
+    });
+  }
+
+  function importMarkers(map, locations) {
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: locations[i].position,
+        map: map
+      });
+
+      google.maps.event.addListener(marker, "click", (function(marker, i) {
+        return function() {
+          var miniAvatar = "<img src='" + locations[i].avatar + "' style='width: 24px; height: atuto;'>";
+          var linkProfile = "<a href='/users/" + locations[i].id + "'>" + locations[i].name + "</a>";
+          var status = getStatus(locations[i]);
+          var content = miniAvatar + "&nbsp;" + linkProfile + "&nbsp;" + status;
+          infowindow.setContent(content);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+    return true;
+  }
+
+  function getStatus(user) {
+    var circleClass, textClass;
+    switch (user.status) {
+      case "can_donate":
+        circleClass = "fa fa-circle";
+        textClass = "text-success";
+        title = "Hiến được";
+        break;
+      case "almost":
+        circleClass = "fa fa-circle-o";
+        textClass = "text-primary";
+        title = "Sắp hiến được";
+        break;
+      case "cannot_donate":
+        circleClass = "fa fa-circle-o";
+        textClass = "text-warning";
+        title = "Chưa hiến lại được";
+        break;
+      default:
+        circleClass = "fa fa-circle-thin";
+        textClass = "text-default";
+        title = "Chưa rõ";
+    }
+    return "<i class='" + circleClass + " " + textClass + "' title='" + title + "'></i>";
+  }
+});

@@ -1,6 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
+      <%= link_to "Xem Trên Bản Đồ", maps_admin_bloods_path + "?" + request.query_string,
+        class: "btn btn-primary no-margin link-to-blood-map" %>
       <%= search_form_for @q, url: admin_bloods_path, method: :get, id: "admin-search",
         class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
         <%= f.select :gender_eq, @form.genders, {include_blank: "Tất cả giới tính"},

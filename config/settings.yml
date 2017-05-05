@@ -8,3 +8,11 @@ statuses:
   almost: almost
   cannot_donate: cannot_donate
   unknown: unknown
+radiuses:
+  1km: 1
+  2km: 2
+  5km: 5
+default_radius: 1
+default_position:
+  lat: 16.075588999999994
+  lng: 108.15342699999997

@@ -295,3 +295,82 @@ a:hover {
     margin: 0px;
   }
 }
+
+#map {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 70px);
+  margin-top: 70px;
+}
+
+#nav-filter-form .form-control {
+  margin-right: 20px;
+  min-width: 75px;
+}
+
+#map-center-address {
+  width: 300px;
+}
+
+@media screen and (max-width: 1800px) {
+  .form-inline {
+    display: inline-flex;
+    max-width: 92%;
+    overflow-x: hidden;
+  }
+  .nav-icon {
+    display: inherit !important;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  #admin-search {
+    display: block;
+    position: innitial !important;
+  }
+  .nav-icon {
+    display: none !important;
+  }
+  #admin-search {
+    .form-group .form-control, .form-group {
+      width: 100%;
+    }
+    .form-group:last-child, #search-query {
+      width: 90%;
+    }
+  }
+  .btn[type="submit"] {
+    position: absolute;
+    margin: 0;
+    right: 0;
+    top: 230px;
+    height: 42px;
+    border: 1px solid #d2d2d2;
+  }
+}
+
+.form-inline {
+  display: inline-flex;
+}
+
+.nav-icon-left {
+  margin-right: 5px;
+}
+.nav-icon-right {
+  margin-left: 5px;
+}
+.nav-icon {
+  line-height: 42px;
+  height: 42px;
+  vertical-align: bottom;
+  display: none;
+}
+.nav-icon:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.form-wrapper {
+  display: -webkit-box;
+  padding: 0 15px;
+}

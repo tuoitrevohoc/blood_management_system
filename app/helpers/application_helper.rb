@@ -18,7 +18,15 @@ module ApplicationHelper
   end
 
   def avatar_for user, size: 130, width: nil
-    version = size < 80 ? :thumb : :medium
+    version = case true
+    when size > 80
+      :medium
+    when size < 40
+      :small
+    else
+      :thumb
+    end
+
     if width.present?
       image_tag user.avatar.try(version), alt: user.name&.titleize, class: "img",
         size: size, style: "width:#{width};height:auto;"

@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+  <i class="nav-icon nav-icon-left material-icons">navigate_before</i>
+  <%= search_form_for q, url: maps_admin_bloods_path, method: :get, id: "admin-search",
+    class: "navbar-form header-form navbar-right filter-form-customize form-inline" do |f| %>
+    <%= text_field_tag "map[center][address]", center[:address], class: "form-control select-on-focus",
+      placeholder: "Nhập trí trung tâm", title: "Vị trí trung tâm trên bản đồ", id: "map-center-address" %>
+    <%= select_tag "map[radius]", options_for_select(Settings.radiuses.to_h, radius),
+      {class: "form-control", title: "Bán kính", id: "map-radius"} %>
+    <%= hidden_field_tag "map[center][lat]", center[:lat], id: "map-center-lat" %>
+    <%= hidden_field_tag "map[center][lng]", center[:lng], id: "map-center-lng" %>
+    <%= f.select :gender_eq, form.genders, {include_blank: "Tất cả giới tính"},
+      {class: "form-control", title: "Lọc theo giới tính"} %>
+    <%= select_tag "q[non_attr][status]", options_for_select(form.donateable,
+      params[:q] && params[:q][:non_attr] ? params[:q][:non_attr][:status] : nil),
+      class: "form-control", include_blank: "Tất cả trạng thái" %>
+    <%= f.select :blood_type_eq, form.blood_types, {include_blank: "Tất cả nhóm máu"},
+      {class: "form-control", title: "Lọc theo nhóm máu"} %>
+    <div class="form-group is-empty">
+      <%= f.search_field :name_or_email_or_address_or_id_number_or_phone_number_cont,
+        class: "form-control", placeholder: "Tìm kiếm...", id: "search-query",
+        title: "Tìm kiếm theo tên, email, địa chỉ, số CMND, SĐT,..." %>
+        <span class="material-input"></span>
+    </div>
+    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+      <i class="material-icons">search</i><div class="ripple-container"></div>
+    </button>
+  <% end %>
+  <i class="nav-icon nav-icon-right material-icons">navigate_next</i>
+</div>
