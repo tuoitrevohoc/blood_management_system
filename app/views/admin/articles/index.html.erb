@@ -1,18 +1,17 @@
 <div class="container-fluid">
   <div class="row filter-row">
     <div class="col-md-12">
-      <%= search_form_for @q, url: admin_administrator_accounts_path, method: :get, id: "admin-search",
+      <%= link_to "Thêm Bài Viết", new_admin_article_path, class: "btn btn-primary no-margin" %>
+      <%= search_form_for @q, url: admin_articles_path, method: :get, id: "admin-search",
         class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
         <% if params[:q] %>
-          <%= link_to admin_administrator_accounts_path, class: "btn-clear-search" do %>
+          <%= link_to admin_articles_path, class: "btn-clear-search" do %>
             <i class="fa fa-close"></i>
           <% end %>
         <% end %>
-        <%= f.select :role_eq, @form.roles, {include_blank: "Tất cả"},
-          {class: "form-control", title: "Lọc theo quyền truy cập"} %>
         <div class="form-group is-empty">
-          <%= f.search_field :name_or_email_or_id_cont, class: "form-control",
-            placeholder: "Tìm kiếm...", title: "Tìm kiếm theo tên, email hoặc ID" %>
+          <%= f.search_field :title_or_content_cont, class: "form-control",
+            placeholder: "Tìm kiếm...", title: "Tìm kiếm bằng tiêu đề hoặc nội dung." %>
             <span class="material-input"></span>
         </div>
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -21,6 +20,7 @@
       <% end %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -36,30 +36,29 @@
                     </span>
                   <% end %>
                 </th>
-                <th>Người Dùng</th>
+                <th>Tiêu Đề</th>
                 <th>
-                  <%= sort_link @q, :gender do %>
-                    Giới Tính
-                    <span class="<%= visible_unsorted_icon :gender %>">&nbsp;
+                  <%= sort_link @q, :is_public do %>
+                    Trạng thái
+                    <span class="<%= visible_unsorted_icon :is_public %>">&nbsp;
                       <i class="fa fa-unsorted"></i>
                     </span>
                   <% end %>
                 </th>
                 <th>
-                  <%= sort_link @q, :role do %>
-                    Quyền
-                    <span class="<%= visible_unsorted_icon :role %>">&nbsp;
+                  <%= sort_link @q, :created_at do %>
+                    Ngày đăng
+                    <span class="<%= visible_unsorted_icon :created_at %>">&nbsp;
                       <i class="fa fa-unsorted"></i>
                     </span>
                   <% end %>
                 </th>
-                <th>Email</th>
                 <th></th>
               </tr>
             </thead>
             <tbody class="results">
-              <% if @users.any? %>
-                <%= render partial: "admin/administrator_accounts/user", collection: @users.decorate %>
+              <% if @articles.any? %>
+                <%= render @articles.decorate %>
               <% else %>
                 <tr>
                   <th colspan="6">Không có dữ liệu.</th>
@@ -67,7 +66,7 @@
               <% end %>
             </tbody>
           </table>
-          <%= paginate @users %>
+          <%= paginate @articles %>
         </div>
       </div>
     </div>
@@ -76,6 +75,5 @@
 
 <%= content_for :specific_page_js do %>
   <script type="text/javascript">
-    <%= render "shared/submit_selectbox.js" %>
   </script>
 <% end %>
