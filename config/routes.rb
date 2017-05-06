@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :administrator_accounts, except: [:show, :new] do
       resources :admin_histories, only: :create
     end
-    resources :articles, only: [:new, :create]
+    resources :articles, except: :show
     resources :events
   end
 end

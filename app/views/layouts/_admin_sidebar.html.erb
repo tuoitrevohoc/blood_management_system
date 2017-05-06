@@ -29,8 +29,8 @@
             <p>Sự Kiện</p>
         <% end %>
       </li>
-      <li>
-        <%= link_to new_admin_article_path do %>
+      <li class="<%= active_class admin_articles_path %>">
+        <%= link_to admin_articles_path do %>
             <i class="material-icons">content_paste</i>
             <p>Tin Tức - Bài Viết</p>
         <% end %>

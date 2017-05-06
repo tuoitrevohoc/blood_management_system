@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row filter-row">
     <div class="col-md-12">
       <%= link_to "Xem Trên Bản Đồ", maps_admin_bloods_path + "?" + request.query_string,
         class: "btn btn-primary no-margin link-to-blood-map" %>
@@ -27,7 +27,6 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <p class="text-danger" id="waiting"></p>
         <div class="card-content table-responsive">
           <table class="table table-hover">
             <thead class="text-primary">
