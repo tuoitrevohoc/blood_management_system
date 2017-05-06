@@ -1,7 +1,7 @@
 <div class="form-wrapper">
   <i class="nav-icon nav-icon-left material-icons">navigate_before</i>
   <%= search_form_for q, url: maps_admin_bloods_path, method: :get, id: "admin-search",
-    class: "navbar-form header-form navbar-right filter-form-customize form-inline" do |f| %>
+    class: "navbar-form header-form navbar-right filter-form-customize form-inline nav-bar-search" do |f| %>
     <%= text_field_tag "map[center][address]", center[:address], class: "form-control select-on-focus",
       placeholder: "Nhập trí trung tâm", title: "Vị trí trung tâm trên bản đồ", id: "map-center-address" %>
     <%= select_tag "map[radius]", options_for_select(Settings.radiuses.to_h, radius),
@@ -21,7 +21,7 @@
         title: "Tìm kiếm theo tên, email, địa chỉ, số CMND, SĐT,..." %>
         <span class="material-input"></span>
     </div>
-    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+    <button type="submit" class="btn btn-white btn-round btn-just-icon btn-submit-nav-bar">
       <i class="material-icons">search</i><div class="ripple-container"></div>
     </button>
   <% end %>

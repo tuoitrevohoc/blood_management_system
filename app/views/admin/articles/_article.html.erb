@@ -2,21 +2,23 @@
   <td><%= article.id %></td>
   <td>
     <%= link_to article.title, guest_article_path(article.title_slug),
-      title: article.first_paragraph, target: :_blank %>
+      title: article.first_paragraph, target: :_blank, class: "text-clamp-2" %>
   </td>
   <td><%= article.display_status %></td>
   <td>
-    <span title="<%= article.created_at %>">
+    <span title="<%= article.created_at %>" class="no-wrap">
       <%= l article.created_at, format: :article_timestamp %>
     </span>
   </td>
   <td class="btn-actions text-center">
-    <%= link_to [:edit, :admin, article], class: "btn-edit", title: "Chỉnh sửa" do %>
-      <i class="material-icons">mode_edit</i>
-    <% end %>
-    <%= link_to [:admin, article], class: "btn-destroy", method: :destroy,
-      data: {confirm: "Xác nhận xóa bài viết: \"#{article.title}\"?"}, title: "Xóa" do %>
-      <i class="material-icons">delete_forever</i>
-    <% end %>
+    <div class="no-wrap">
+      <%= link_to [:edit, :admin, article], class: "btn-edit", title: "Chỉnh sửa" do %>
+        <i class="material-icons">mode_edit</i>
+      <% end %>
+      <%= link_to [:admin, article], class: "btn-destroy", method: :destroy,
+        data: {confirm: "Xác nhận xóa bài viết: \"#{article.title}\"?"}, title: "Xóa" do %>
+        <i class="material-icons">delete_forever</i>
+      <% end %>
+    </div>
   </td>
 </tr>

@@ -1,0 +1,21 @@
+<% if article_counter % 3 == 0 %>
+  <div class="row">
+<% end %>
+<div class="col-md-4 single-article-small">
+  <div class="single_course wow fadeInUp">
+    <div class="article-img-area">
+      <%= link_to guest_article_path(article.title_slug) do %>
+        <%= image_tag article.image.medium, alt: article.title %>
+      <% end %>
+    </div>
+    <div class="singCourse_content">
+      <h3 class="singCourse_title">
+        <%= link_to article.title, guest_article_path(article), title: article.title, class: "text-clamp-2" %>
+      </h3>
+      <p class="text-clamp-2"><%= article.decorate.first_paragraph %></p>
+    </div>
+  </div>
+</div>
+<% if article_counter % 3 == 2 %>
+  </div>
+<% end %>
