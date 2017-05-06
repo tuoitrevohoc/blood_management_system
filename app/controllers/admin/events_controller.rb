@@ -1,9 +1,12 @@
+require "slugify"
+
 class Admin::EventsController < Admin::BaseController
   before_action :set_form, only: [:new, :create, :edit, :update]
   before_action :load_event, only: [:edit, :update, :destroy]
 
   def index
-    @events = Event.newest.page(params[:page]).per 10
+    @q = Event.newest.ransack params[:q]
+    @events = @q.result.page(params[:page]).per 10
   end
 
   def new
@@ -60,6 +63,6 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def make_slug
-    params[:event][:title].parameterize  << "-" << SecureRandom.hex(3).upcase
+    Slugify.create(params[:event][:title]) << "-" << SecureRandom.hex(3).upcase
   end
 end

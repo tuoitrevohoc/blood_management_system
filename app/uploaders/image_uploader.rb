@@ -30,6 +30,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{model.class.to_s.underscore}_#{model.title_slug}.jpg"
+    "#{model.class.to_s.underscore}_#{model.title_slug}.jpg" if original_filename.present?
   end
 end
