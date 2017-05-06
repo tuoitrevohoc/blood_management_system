@@ -35,6 +35,6 @@ Rails.application.routes.draw do
       resources :admin_histories, only: :create
     end
     resources :articles, except: :show
-    resources :events
+    resources :events, except: :show
   end
 end

@@ -1,3 +1,5 @@
+require "slugify"
+
 class Admin::ArticlesController < Admin::BaseController
   before_action :load_article, only: [:edit, :update, :destroy]
 
@@ -52,7 +54,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def make_slug
-    params[:article][:title].parameterize  << "-" << SecureRandom.hex(3).upcase
+    Slugify.create(params[:article][:title]) << "-" << SecureRandom.hex(3).upcase
   end
 
   def load_article

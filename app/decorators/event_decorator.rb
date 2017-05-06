@@ -1,7 +1,7 @@
 class EventDecorator < ArticleDecorator
   delegate_all
 
-  def display_status
+  def display_status_2
     label = if object.date_time > Time.current
       "<span class='label label-success'>Sắp diễn ra</span>"
     else

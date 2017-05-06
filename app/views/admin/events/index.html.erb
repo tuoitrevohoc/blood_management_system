@@ -1,7 +1,23 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row filter-row">
     <div class="col-md-12">
       <%= link_to "Thêm Sự Kiện", new_admin_event_path, class: "btn btn-primary no-margin" %>
+      <%= search_form_for @q, url: admin_events_path, method: :get, id: "admin-search",
+        class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
+        <% if params[:q] %>
+          <%= link_to admin_events_path, class: "btn-clear-search" do %>
+            <i class="fa fa-close"></i>
+          <% end %>
+        <% end %>
+        <div class="form-group is-empty">
+          <%= f.search_field :title_or_content_cont, class: "form-control",
+            placeholder: "Tìm kiếm...", title: "Tìm kiếm bằng tiêu đề hoặc nội dung." %>
+            <span class="material-input"></span>
+        </div>
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+          <i class="material-icons">search</i><div class="ripple-container"></div>
+        </button>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -11,10 +27,32 @@
           <table class="table table-hover">
             <thead class="text-primary">
               <tr>
-                <th colspan="1">ID</th>
+                <th colspan="1">
+                  <%= sort_link @q, :id do %>
+                    ID
+                    <span class="<%= visible_unsorted_icon :id %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
                 <th colspan="4">Tiêu Đề</th>
+                <th colspan="2">
+                  <%= sort_link @q, :is_public do %>
+                    Hiển thị
+                    <span class="<%= visible_unsorted_icon :is_public %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
                 <th colspan="2">Trạng Thái</th>
-                <th colspan="2">Ngày Bắt đầu</th>
+                <th colspan="2">
+                  <%= sort_link @q, :date_time do %>
+                    Ngày Bắt đầu
+                    <span class="<%= visible_unsorted_icon :date_time %>">&nbsp;
+                      <i class="fa fa-unsorted"></i>
+                    </span>
+                  <% end %>
+                </th>
                 <th colspan="1"></th>
               </tr>
             </thead>
@@ -23,7 +61,7 @@
                 <%= render partial: "admin/events/event", collection: @events.decorate %>
               <% else %>
                 <tr>
-                  <th colspan="10">Không có dữ liệu.</th>
+                  <th colspan="12">Không có dữ liệu.</th>
                 </tr>
               <% end %>
             </tbody>

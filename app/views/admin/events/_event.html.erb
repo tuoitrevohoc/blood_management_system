@@ -1,7 +1,8 @@
 <tr>
   <td colspan="1"><%= event.id %></td>
-  <td colspan="4"><%= link_to event.title, [:admin, event], target: :_blank %></td>
+  <td colspan="4"><%= link_to event.title, guest_event_path(event.title_slug), target: :_blank %></td>
   <td colspan="2"><%= event.display_status %></td>
+  <td colspan="2"><%= event.display_status_2 %></td>
   <td colspan="2"><%= l event.date_time.to_datetime, format: :article_timestamp %></td>
   <td colspan="1" class="btn-actions text-center">
     <%= link_to edit_admin_event_path(event), class: "btn-edit" do %>
