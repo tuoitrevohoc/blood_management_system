@@ -389,3 +389,16 @@ a:hover {
     }
   }
 }
+
+.sidebar[data-active-color="purple"] li.active > a,
+.off-canvas-sidebar[data-active-color="purple"] li.active > a {
+  background-color: #9c27b0 !important;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4) !important;
+}
+
+.sidebar .nav li.active > a,
+.sidebar .nav li.active > a i,
+.off-canvas-sidebar .nav li.active > a,
+.off-canvas-sidebar .nav li.active > a i {
+  color: #FFFFFF !important;
+}

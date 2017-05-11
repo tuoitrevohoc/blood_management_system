@@ -18,11 +18,31 @@
         <% end %>
       </li>
       <li class="<%= active_class admin_histories_path %>">
-        <%= link_to new_admin_history_path do %>
-            <i class="material-icons">history</i>
-            <p>Lịch sử hiến máu<p>
+        <%= link_to "#history-sub-menu", class: "collapsed", data: {toggle: "collapse"}, aria: {expanded: false} do %>
+          <i class="material-icons">history</i>
+          <p>
+            Lịch sử hiến máu
+            <b class="caret"></b>
+          <p>
         <% end %>
+        <div class="collapse" id="history-sub-menu" aria-expanded="false" style="height: 0px;">
+          <ul class="nav">
+            <li>
+              <%= link_to [:new, :admin, :history] do %>
+                <i class="material-icons">add</i>
+                <p>Thêm mới<p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to [:admin, :histories] do %>
+                <i class="material-icons">list</i>
+                <p>Danh sách<p>
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </li>
+
       <li class="<%= active_class admin_events_path %>">
         <%= link_to admin_events_path do %>
             <i class="material-icons">event</i>
@@ -33,12 +53,6 @@
         <%= link_to admin_articles_path do %>
             <i class="material-icons">content_paste</i>
             <p>Tin Tức - Bài Viết</p>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "#" do %>
-            <i class="material-icons">assignment_turned_in</i>
-            <p>Kiểm Duyệt</p>
         <% end %>
       </li>
       <li class="<%= active_class admin_administrator_accounts_path %>">

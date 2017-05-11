@@ -1,0 +1,25 @@
+<tr>
+  <td><%= history.id %></td>
+  <td><%= link_to history.user_name, history.user, target: :_blank %></td>
+  <td>
+    <%= link_to [:admin, :histories, {q: {place_id_eq: history.place_id}}],
+      title: history.place_address do %>
+      <%= history.place_name %>
+    <% end %>
+  </td>
+  <td><%= history.volume_label %></td>
+  <td>
+    <span class="no-wrap"><%= history.timestamp %></span>
+  </td>
+  <td>
+    <% if history.admin %>
+      <%= link_to history.admin_name, edit_admin_administrator_account_path(history.admin), target: :_blank %>
+    <% end %>
+  </td>
+  <td class="btn-actions text-center">
+    <%= link_to [:admin, history], class: "btn-destroy",
+      data: {confirm: "Xác nhận xóa lịch sử hiến máu này?", method: :delete} do %>
+      <i class="material-icons">delete_forever</i>
+    <% end %>
+  </td>
+</tr>

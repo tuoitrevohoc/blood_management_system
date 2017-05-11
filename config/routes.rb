@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         get :maps, to: "bloods_maps#maps"
       end
     end
-    resources :histories, only: [:index, :new, :create]
+    resources :histories, only: [:index, :new, :create, :destroy]
     resource :histories, only: :update
     resources :administrator_accounts, except: [:show, :new] do
       resources :admin_histories, only: :create

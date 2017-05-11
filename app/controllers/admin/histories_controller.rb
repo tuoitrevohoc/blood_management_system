@@ -1,6 +1,12 @@
 class Admin::HistoriesController < Admin::BaseController
   before_action :load_user, only: :update
   before_action :verify_accessible
+  before_action :load_history, only: :destroy
+
+  def index
+    @q = History.includes(:user, :place, :admin).newest.ransack params[:q]
+    @histories = @q.result.page(params[:page]).per 10
+  end
 
   def new
     @user = User.new
@@ -32,6 +38,15 @@ class Admin::HistoriesController < Admin::BaseController
       load_empty_data build_histories: false
       render :new
     end
+  end
+
+  def destroy
+    if @history.destroy
+      flash[:success] = "Đã xóa lịch sử hiến máu."
+    else
+      flash[:danger] = "Lỗi! không thể xóa thành công."
+    end
+    redirect_to admin_histories_path
   end
 
   private
@@ -70,5 +85,9 @@ class Admin::HistoriesController < Admin::BaseController
       flash[:warning] = "Truy cập không được phép!"
       redirect_to admin_root_path
     end
+  end
+
+  def load_history
+    render_404 unless (@history = History.find_by id: params[:id])
   end
 end
