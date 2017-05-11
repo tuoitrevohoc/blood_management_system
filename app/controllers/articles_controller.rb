@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :load_article, :authorize, only: :show
 
   def index
-    @articles = Article.available.newest.page(params[:page]).per 10
+    @articles = Article.available.without_pinned.newest.page(params[:page]).per 10
   end
 
   def show

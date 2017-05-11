@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   end
 
   mount Ckeditor::Engine => "/ckeditor"
-  # root "home#index"
+  root "home#index"
   devise_for :users, controllers: {registrations: "registrations"}
-  root "articles#index"
   resource :profile, only: [:edit, :update, :show]
   resources :users, only: :show
 

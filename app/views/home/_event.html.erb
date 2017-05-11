@@ -1,0 +1,15 @@
+<li>
+  <div class="media">
+    <div class="media-left">
+      <%= link_to guest_event_path(event.title_slug), class: "news_img" do %>
+        <%= image_tag event.image.medium, alt: event.title, class: "media-object" %>
+      <% end %>
+    </div>
+    <div class="media-body">
+      <%= link_to event.title, guest_event_path(event.title_slug) %>
+      <span class="feed_date">
+        <%= l event.date_time.to_datetime, format: :article_timestamp %>
+      </span>
+    </div>
+  </div>
+</li>

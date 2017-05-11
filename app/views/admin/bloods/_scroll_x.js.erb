@@ -8,8 +8,9 @@ $(document).ready(function() {
   }).bind("mouseout", function() {
     hovering = false;
   }).bind("click", function(event) {
+    hovering = false;
     event.preventDefault();
-    form.animate({scrollLeft: "-=400px"}, 300);
+    form.animate({scrollLeft: "-=200px"}, 300);
   });
 
   $(".nav-icon-right").bind("mouseover", function() {
@@ -18,12 +19,13 @@ $(document).ready(function() {
   }).bind("mouseout", function() {
     hovering = false;
   }).bind("click", function(event) {
+    hovering = false;
     event.preventDefault();
-    form.animate({scrollLeft: "+=400px"}, 300);
+    form.animate({scrollLeft: "+=200px"}, 300);
   });
 
   function scroll(content, direction) {
-    var step = direction == "left" ? "-=35px" : "+=35px";
+    var step = direction == "left" ? "-=10px" : "+=10px";
     $(content).animate({scrollLeft: step}, 50, function() {
       if (hovering) {scroll(content, direction);}
     });

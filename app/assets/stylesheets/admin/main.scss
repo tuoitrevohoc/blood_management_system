@@ -324,14 +324,14 @@ a:hover {
 }
 
 @media screen and (max-width: 990px) {
-  #admin-search {
+  #admin-search.nav-bar-search {
     display: block;
     position: innitial !important;
   }
   .nav-icon {
     display: none !important;
   }
-  #admin-search {
+  #admin-search.nav-bar-search {
     .form-group .form-control, .form-group {
       width: 100%;
     }
@@ -339,7 +339,7 @@ a:hover {
       width: 90%;
     }
   }
-  .btn[type="submit"] {
+  .btn-submit-nav-bar {
     position: absolute;
     margin: 0;
     right: 0;
@@ -377,4 +377,15 @@ a:hover {
 
 .filter-row div:first-child {
   height: 41px;
+}
+
+@media screen and (max-width: 990px) {
+  .filter-form-customize {
+    padding-right: 65px;
+    margin-top: 0;
+    margin-bottom: 0;
+    button {
+      margin-top: -10px;
+    }
+  }
 }

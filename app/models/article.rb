@@ -8,4 +8,10 @@ class Article < ApplicationRecord
 
   scope :available, -> {where is_public: true}
   scope :newest, -> {order created_at: :desc}
+  scope :random, -> {order "RAND()"}
+  scope :top_newest, -> time = 7.days.ago do
+    ransack(created_at_lteq: time).result
+  end
+  scope :without_pinned, -> {where is_pinned: false}
+  scope :pinned, -> {where is_pinned: true}
 end

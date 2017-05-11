@@ -1,0 +1,27 @@
+<section id="aboutUs">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-7">
+      <div class="aboutus_area wow fadeInLeft event">
+        <h2 class="titile">Sự kiện sắp diễn ra</h2>
+        <div class="first-event">
+          <p>
+            <%= image_tag @event.image, width: 200 %>
+            <%= link_to @event.title.titleize, guest_event_path(@event.title_slug) %>
+            <span><%= @event.first_paragraph %></span>
+            <span class="time-stamp"><%= l @event.date_time.to_datetime, format: :article_timestamp %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="newsfeed_area wow fadeInRight">
+        <ul class="news_tab">
+          <%= render collection: @events, partial: "home/event" %>
+        </ul>
+        <%= link_to "Xem thêm", guest_events_path, class: "see_all" %>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

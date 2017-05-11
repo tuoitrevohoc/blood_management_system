@@ -1,0 +1,12 @@
+<li>
+  <img src="../assets/images/articles/<%= pinned_article_counter + 1 %>.jpg">
+  <div class="slider_caption article-caption">
+    <%= link_to guest_article_path(pinned_article.title_slug) do %>
+      <h2><%= pinned_article.title.titleize %></h2>
+    <% end %>
+    <p>
+      <%= pinned_article.first_paragraph %>
+    </p>
+    <%= link_to "Xem Thêm", guest_article_path(pinned_article.title_slug), class: "slider_btn" %>
+  </div>
+</li>

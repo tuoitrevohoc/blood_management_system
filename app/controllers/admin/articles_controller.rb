@@ -45,8 +45,8 @@ class Admin::ArticlesController < Admin::BaseController
 
   private
   def article_params
-    params[:article].merge! is_public: is_public?, title_slug: make_slug
-    params.require(:article).permit :title, :content, :image, :is_public, :title_slug
+    params[:article].merge! is_public: is_public?, title_slug: make_slug, user_id: current_user.id
+    params.require(:article).permit :title, :content, :image, :is_public, :title_slug, :user_id
   end
 
   def is_public?
