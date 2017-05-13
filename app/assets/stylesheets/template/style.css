@@ -12,14 +12,14 @@ License URI: http://www.gnu.org/licenses/gpl.html
 
 /* Table of Content
 ==================================================
-	#BASIC TYPOGRAPHY
-	#HOME HEADER
-	#HOME SLIDER SECTION
-	#HOME ABOUT US
-	#HOME WHY US SECTION
-	#HOME COURSE SECTION
-	#HOME OUR TUTORS SECTION
-	#HOME STUDENTS TESTIMONIAL SECTION
+  #BASIC TYPOGRAPHY
+  #HOME HEADER
+  #HOME SLIDER SECTION
+  #HOME ABOUT US
+  #HOME WHY US SECTION
+  #HOME COURSE SECTION
+  #HOME OUR TUTORS SECTION
+  #HOME STUDENTS TESTIMONIAL SECTION
   #FOOTER
   #COURSE ARCHIVE PAGE
   #COURSE SINGLE PAGE
@@ -60,7 +60,7 @@ a:focus{
 }
 
 h1,h2,h3,h4,h5,h6{
-	font-family: 'Varela', sans-serif;
+  font-family: 'Varela', sans-serif;
 }
 
 h2 {
@@ -122,93 +122,6 @@ img{
   background-position: 13px -50px;
   text-decoration: none;
   outline: none;
-}
-
-/*--------------------*/
-/* HOME HEADER */
-/*--------------------*/
-
-#header{
-	float: left;
-	display: inline;
-	width: 100%;
-  background-color: #313b3d;
-}
-
-/*--------.menu_area-------- */
-.menu_area{
-  float: left;
-  display: inline;
-  width: 100%;
-}
-.navbar-default .navbar-brand {
-  color: #fff;
-  font-size: 25px;
-  font-weight: bold;
-  margin-top: 15px;
-}
-.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
-  background-color: transparent;
-  color: #fff;
-}
-.navbar-default {
-  background-color: #313b3d;
-  border-color: transparent;
-}
-#navbar{overflow-x: hidden;}
-.navbar-default .navbar-nav > li > a {
-  color: #fff;
-  padding: 30px 15px;
-  text-transform: uppercase;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-}
-.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-  background-color: transparent;
-}
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-  background-color: transparent;
-}
-.navbar-nav > li > .dropdown-menu {
-  background-color: #48575a;
-}
-.navbar-nav > li > .dropdown-menu:before {
-  border-bottom: 15px solid #48575a;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  content: "";
-  height: 0;
-  position: absolute;
-  right: 25px;
-  top: -15px;
-  width: 0;
-}
-.navbar-nav > li > .dropdown-menu li a {
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
-  color: #fff;
-  display: block;
-  opacity: 0.8;
-  padding: 10px;
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-}
-.navbar-nav > li > .dropdown-menu > li:last-child a {
-  border-bottom: medium none;
-}
-.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
-  background-color:transparent;
-  text-decoration: none;
-}
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
-  background-color: transparent;
-}
-.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-  background-color: transparent;
-}
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
-  background-color: transparent;
 }
 
 /*--------------------*/
@@ -1655,19 +1568,19 @@ div[data-dimension] {
 /*THEME STYLE SWITCHER*/
 
 .theme_style_switcher {
-	background-color: rgba(0, 0, 0, 0.75);
-	border-bottom-right-radius: 4px;
-	height: auto;
-	left: -250px;
-	padding: 15px;
-	position: fixed;
-	top: 140px;
-	width: 250px;
-	z-index: 1000;
-	text-align: center;
-	-webkit-transition: all 0.35s ease 0s;
-	-o-transition: all 0.35s ease 0s;
-	transition: all 0.35s ease 0s;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-bottom-right-radius: 4px;
+  height: auto;
+  left: -250px;
+  padding: 15px;
+  position: fixed;
+  top: 140px;
+  width: 250px;
+  z-index: 1000;
+  text-align: center;
+  -webkit-transition: all 0.35s ease 0s;
+  -o-transition: all 0.35s ease 0s;
+  transition: all 0.35s ease 0s;
 }
 .theme_style_switcher a {
   display: inline-block;
@@ -1695,7 +1608,7 @@ div[data-dimension] {
   z-index: 1000;
 }
 .style-switch-active{
-	left: 0;
+  left: 0;
 }
 .style-switch-button i {
   color: #fff;
@@ -1738,7 +1651,7 @@ div[data-dimension] {
 
 
 /*======================///////////////
-			start responsive style
+      start responsive style
 =====================///////////////////////*/
 
 
@@ -1803,7 +1716,7 @@ div[data-dimension] {
 
 @media(max-width:480px ){
   .slider_right_caption {top: 15%;}
-	.slider_caption h2 {font-size: 20px;line-height: 30px;}
+  .slider_caption h2 {font-size: 20px;line-height: 30px;}
   .slider_caption p { font-size: 13px;}
   .slider_btn {font-size: 13px;padding: 5px 10px;}
   .error_page_content h1 {font-size: 100px;}

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations"}
   resource :profile, only: [:edit, :update, :show]
   resources :users, only: :show
+  resource :contact, only: [:new, :create]
 
   get "trang-chu.html", to: "home#index", as: :guest_home
   get "/tin-tuc/:slug.html", to: "articles#show", as: :guest_article
