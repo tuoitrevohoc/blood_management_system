@@ -1,7 +1,9 @@
 $(document).ready(function() {
   $(".btn-change-ava").change(function() {
     let form = $(".user-profile-form");
-    form.children(".profile-info").remove();
+    $(".user-profile-form").find("input.form-control, select, textarea, \
+      button.btn-primary, #user-formatted-address, #user-lat, #user-lon"
+    ).attr("disabled", "disabled");
     form.append("<input type='hidden' name='reload' value='true'>");
     form.submit();
   });

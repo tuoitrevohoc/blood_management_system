@@ -2,7 +2,7 @@
   <div class="media">
     <div class="media-left">
       <%= link_to guest_event_path(event.title_slug), class: "news_img" do %>
-        <%= image_tag event.image.medium, alt: event.title, class: "media-object" %>
+        <%= image_tag event.image.medium.url, alt: event.title, class: "media-object" %>
       <% end %>
     </div>
     <div class="media-body">

@@ -2,7 +2,7 @@
   <div class="single_blog_archive wow fadeInUp">
     <div class="blogimg_container article-img-container">
       <%= link_to guest_event_path(event.title_slug), class: "blog_img" do %>
-        <%= image_tag event.image.large, alt: event.title %>
+        <%= image_tag event.image.large.url, alt: event.title %>
       <% end %>
     </div>
     <h2 class="blog_title">

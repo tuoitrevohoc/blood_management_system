@@ -97,5 +97,9 @@ class User < ApplicationRecord
     def secure_random_password
       SecureRandom.hex 4
     end
+
+    def secure_random_uuid
+      SecureRandom.uuid
+    end
   end
 end

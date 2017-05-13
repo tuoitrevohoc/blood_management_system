@@ -46,6 +46,7 @@ class Admin::ArticlesController < Admin::BaseController
   private
   def article_params
     params[:article].merge! is_public: is_public?, title_slug: make_slug, user_id: current_user.id
+    params[:article].delete :title_slug if @article&.title == params[:article][:title]
     params.require(:article).permit :title, :content, :image, :is_public, :title_slug, :user_id
   end
 

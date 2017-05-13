@@ -45,7 +45,7 @@ class Admin::EventsController < Admin::BaseController
   end
 
   private
-  def event_params creating_slug: false
+  def event_params
     params[:event].merge! is_public: is_public?, user_id: current_user.id, title_slug: make_slug
     params[:event].delete :title_slug if @event&.title == params[:event][:title]
     params.require(:event).permit :title, :image, :date_time, :place_id, :content,

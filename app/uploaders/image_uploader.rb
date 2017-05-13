@@ -1,12 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-
-  storage :file
-  # storage :fog
-
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  include Cloudinary::CarrierWave
 
   def default_url
     ActionController::Base.helpers.asset_path("fallback/" +
@@ -31,5 +25,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def filename
     "#{model.class.to_s.underscore}_#{model.title_slug}.jpg" if original_filename.present?
+  end
+
+  def public_id
+    model.title_slug
   end
 end

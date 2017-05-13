@@ -1,11 +1,6 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-
-  storage :file
-
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  include Cloudinary::CarrierWave
 
   def default_url
     ActionController::Base.helpers.asset_path("fallback/" +
@@ -26,5 +21,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   def extension_whitelist
     %w(jpg jpeg gif png)
+  end
+
+  def public_id
+    "#{model.class.to_s.underscore}_#{model.id}_#{model.class.secure_random_uuid}"
   end
 end

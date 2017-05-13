@@ -1,7 +1,7 @@
 <%= form_for user, url: profile_path, html: {multipart: true, class: "user-profile-form"},
   remote: true, authenticity_token: true do |f| %>
   <div class="col-md-3 avatar">
-    <%= image_tag @user.avatar, class: "image-responsive", alt: @user.name %>
+    <%= image_tag @user.avatar.url, class: "image-responsive", alt: @user.name %>
     <label class="btn btn-primary btn-sm btn-file">
       <%= t ".btn_avatar" %> <%= f.file_field :avatar,
         class: "btn btn-file hidden btn-change-ava" %>
