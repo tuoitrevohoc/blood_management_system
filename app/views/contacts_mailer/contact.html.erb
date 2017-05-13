@@ -1,0 +1,41 @@
+<p>Chào <%= @mail_to %>,</p>
+<p>Bạn có một tin nhắn mới từ <b><%= @params[:email] %></b></p>
+<blockquote cite="<%= @params[:name] %>">
+  <%= simple_format @params[:content] %>
+  <cite>
+    <%= link_to @params[:name], "mailto:#{@params[:email]}", target: :_top %>
+  </cite>
+</blockquote>
+
+<style media="screen">
+  blockquote {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    width: 500px;
+    margin: 0.25em 0;
+    padding: 0.25em 50px;
+    line-height: 1.45;
+    position: relative;
+    color: #383838;
+  }
+  blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+    padding-left: 15px;
+  }
+  blockquote cite {
+    color: #999999;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+  }
+  blockquote cite:before {
+    content: "\2014 \2009";
+  }
+</style>

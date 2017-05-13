@@ -402,3 +402,8 @@ a:hover {
 .off-canvas-sidebar .nav li.active > a i {
   color: #FFFFFF !important;
 }
+
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
+  color: #ffffff !important;
+}

@@ -16,3 +16,4 @@ default_radius: 1
 default_position:
   lat: 16.075588999999994
   lng: 108.15342699999997
+admin_email: <%= ENV["ADMIN_EMAIL"] %>
