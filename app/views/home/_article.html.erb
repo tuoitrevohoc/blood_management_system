@@ -5,7 +5,7 @@
   <div class="single_course wow fadeInUp">
     <div class="article-img-area">
       <%= link_to guest_article_path(article.title_slug) do %>
-        <%= image_tag article.image.medium, alt: article.title %>
+        <%= image_tag article.image.medium.url, alt: article.title %>
       <% end %>
     </div>
     <div class="singCourse_content">
