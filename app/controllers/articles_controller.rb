@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :load_article, :authorize, only: :show
 
   def index

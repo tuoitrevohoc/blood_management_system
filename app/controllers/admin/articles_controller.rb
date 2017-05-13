@@ -4,7 +4,7 @@ class Admin::ArticlesController < Admin::BaseController
   before_action :load_article, only: [:edit, :update, :destroy]
 
   def index
-    @q = Article.ransack params[:q]
+    @q = Article.newest.ransack params[:q]
     @articles = @q.result.page(params[:page]).per 10
   end
 
@@ -26,7 +26,9 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    if @article.update article_params
+    @article.assign_attributes update_params
+    @article.assign_attributes title_slug: make_slug if @article.title_changed?
+    if @article.save
       flash[:success] = is_public? ? "Thay đổi đã được lưu." : "Đã đóng bài viết."
       redirect_to admin_articles_path
     else
@@ -46,8 +48,12 @@ class Admin::ArticlesController < Admin::BaseController
   private
   def article_params
     params[:article].merge! is_public: is_public?, title_slug: make_slug, user_id: current_user.id
-    params[:article].delete :title_slug if @article&.title == params[:article][:title]
     params.require(:article).permit :title, :content, :image, :is_public, :title_slug, :user_id
+  end
+
+  def update_params
+    params[:article].merge! is_public: is_public?
+    params.require(:article).permit :title, :content, :image, :is_public
   end
 
   def is_public?

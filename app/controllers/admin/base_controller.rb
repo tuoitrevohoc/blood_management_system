@@ -1,16 +1,25 @@
-class Admin::BaseController < ApplicationController
-  before_action :admin_and_limited_only!
+class Admin::BaseController < BaseController
   layout "application_admin"
 
-  protected
-  def admin_and_limited_only!
-    unless current_user.admin? || current_user.limited?
-      flash[:danger] = "Bạn không có quyền truy cập."
-      redirect_to root_path
+  def current_ability
+    @current_ability ||= AdminAbility.new current_user
+  end
+
+  rescue_from CanCan::AccessDenied do
+    flash[:warning] = "Access denied Admin::BaseController"
+    if current_user&.normal?
+      render "shared/404", layout: "application", status: 404
+    else
+      render_403
     end
   end
 
+  protected
   def render_404
     render "shared/404_admin", status: 404
+  end
+
+  def render_403
+    render "shared/403_admin", status: 403
   end
 end

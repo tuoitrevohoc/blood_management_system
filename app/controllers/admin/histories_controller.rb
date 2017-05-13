@@ -1,6 +1,5 @@
 class Admin::HistoriesController < Admin::BaseController
   before_action :load_user, only: :update
-  before_action :verify_accessible
   before_action :load_history, only: :destroy
 
   def index
@@ -78,13 +77,6 @@ class Admin::HistoriesController < Admin::BaseController
     @users = []
     @user.histories.new if build_histories
     set_forms
-  end
-
-  def verify_accessible
-    if !current_user.admin? && current_user.admin_histories.available.empty?
-      flash[:warning] = "Truy cập không được phép!"
-      redirect_to admin_root_path
-    end
   end
 
   def load_history

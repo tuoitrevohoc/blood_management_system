@@ -2,23 +2,21 @@ class Ability
   include CanCan::Ability
 
   def initialize user
-    user ||= User.new
-    case user.role
+    case user&.role
     when "normal"
-      cannot :manage, :all
       can :read, :all
-      can :read, User, is_public_profile: true
+      can :read, [History, Place]
+      can :manage, History, user_id: user.id
       can :manage, User, id: user.id
-      can :read, [Post, History]
-      can :manage, [Post, History], user_id: user.id
-      can :read, Article, is_public: true
+      can :manage, [:profile, :contract]
+      cannot :manage, User, is_public_profile: false
+      cannot :manage, [Event, Article], is_public: false
+      cannot :manage, AdminHistory
     when "limited"
       can :access, :ckeditor
       can [:read, :create, :destroy], Ckeditor::Picture
       can [:read, :create, :destroy], Ckeditor::AttachmentFile
       can :manage, :all
-      cannot :manage, [Place, User, Event]
-      can :read, [Place, User, Event]
     when "admin"
       can :access, :ckeditor
       can [:read, :create, :destroy], Ckeditor::Picture
@@ -26,8 +24,7 @@ class Ability
       can :manage, :all
     else
       cannot :manage, :all
-      can :read, :all
-      can :read, Article, is_public: true
+      can :read, [Article, Event], is_public: true
     end
   end
 end
