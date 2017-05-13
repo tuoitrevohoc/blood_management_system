@@ -1,7 +1,10 @@
 class Admin::AdministratorAccountsController < Admin::BaseController
+  skip_load_and_authorize_resource
+  authorize_resource User
+
   before_action :load_user, only: [:edit, :update, :destroy]
   before_action :set_form, only: [:edit, :update]
-  before_action :verify_password, :verify_accessible, only: [:update, :destroy]
+  before_action :verify_password, only: [:update, :destroy]
 
   def index
     @q = User.all.ransack params[:q]
@@ -46,14 +49,6 @@ class Admin::AdministratorAccountsController < Admin::BaseController
   def verify_password
     unless current_user.valid_password? params[:password]
       @user.errors.add :password, :wrong
-      @admin_history = @user.admin_histories.new
-      render :edit
-    end
-  end
-
-  def verify_accessible
-    if current_user == @user
-      @user.errors.add :base, :access_denied
       @admin_history = @user.admin_histories.new
       render :edit
     end

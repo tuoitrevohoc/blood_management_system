@@ -1,5 +1,7 @@
-class Ajax::RightSidebarController < ApplicationController
+class Ajax::RightSidebarController < BaseController
   skip_before_action :authenticate_user!
+  skip_load_and_authorize_resource
+  authorize_resource class: false
 
   def events
     @events = Event.available.not_expired.random.take 1

@@ -27,7 +27,9 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def update
-    if @event.update event_params
+    @event.assign_attributes update_params
+    @event.assign_attributes title_slug: make_slug if @event.title_changed?
+    if @event.save
       flash[:success] = "Đã lưu!"
       redirect_to admin_events_path
     else
@@ -47,9 +49,13 @@ class Admin::EventsController < Admin::BaseController
   private
   def event_params
     params[:event].merge! is_public: is_public?, user_id: current_user.id, title_slug: make_slug
-    params[:event].delete :title_slug if @event&.title == params[:event][:title]
     params.require(:event).permit :title, :image, :date_time, :place_id, :content,
       :title_slug, :is_public, :user_id
+  end
+
+  def update_params
+    params[:event].merge! is_public: is_public?
+    params.require(:event).permit :title, :image, :date_time, :place_id, :content, :is_public
   end
 
   def is_public?

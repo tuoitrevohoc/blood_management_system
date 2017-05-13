@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :title, presence: true, length: {maximum: 200}
+  validates :title_slug, presence: true, length: {maximum: 256}
   validates :content, presence: true, length: {maximum: 65535}
 
   scope :available, -> {where is_public: true}

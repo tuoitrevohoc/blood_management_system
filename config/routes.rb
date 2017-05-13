@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show]
       resources :places, only: [:new, :create]
     end
-    root "dashboard#index"
+    root "events#index"
     resources :dashboard, only: :index
     resources :bloods, only: :index do
       collection do

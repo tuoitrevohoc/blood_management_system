@@ -28,10 +28,10 @@ module ApplicationHelper
     end
 
     if width.present?
-      image_tag user.avatar.try(version), alt: user.name&.titleize, class: "img",
-        size: size, style: "width:#{width};height:auto;"
+      image_tag user.avatar.try(version)&.url, alt: user.name&.titleize, class: "img",
+        style: "width:#{width};height:auto;"
     else
-      image_tag user.avatar.try(version), alt: user.name&.titleize, class: "img", size: size
+      image_tag user.avatar.try(version)&.url, alt: user.name&.titleize, class: "img", size: size
     end
   end
 end

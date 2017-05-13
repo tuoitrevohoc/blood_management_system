@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  validates :title, :date_time, :place, :content, presence: true
+  validates :title, :date_time, :place, :content, :title_slug, presence: true
 
   scope :newest, -> {order date_time: :desc}
   scope :oldest, -> {order :date_time}
