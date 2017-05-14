@@ -31,7 +31,7 @@ module ApplicationHelper
       image_tag user.avatar.try(version)&.url, alt: user.name&.titleize, class: "img",
         style: "width:#{width};height:auto;"
     else
-      image_tag user.avatar.try(version)&.url, alt: user.name&.titleize, class: "img", size: size
+      image_tag user.avatar.try(version)&.url, alt: user.name&.titleize, class: "img"
     end
   end
 end
