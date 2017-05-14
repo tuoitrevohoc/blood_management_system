@@ -1,6 +1,6 @@
 class Admin::AdminHistoriesController < Admin::BaseController
   before_action :load_user, :set_form
-  before_action :verify_password
+  before_action :verify_password, :verify_updatable
 
   def create
     @admin_history = @user.admin_histories.build admin_history_params
@@ -35,6 +35,14 @@ class Admin::AdminHistoriesController < Admin::BaseController
     unless current_user.valid_password? params[:password]
       @admin_history = @user.admin_histories.new
       @admin_history.errors.add :base, :wrong_password
+      render "admin/administrator_accounts/edit"
+    end
+  end
+
+  def verify_updatable
+    unless @user.limited?
+      @admin_history = @user.admin_histories.new
+      @admin_history.errors.add :base, :not_a_limited_admin
       render "admin/administrator_accounts/edit"
     end
   end

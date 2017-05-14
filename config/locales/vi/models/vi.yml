@@ -13,6 +13,7 @@ vi:
       wrong_password: "Mật khẩu không đúng."
       after: " phải sau %{date}."
       after_or_equal_to: " phải sau hoặc bằng %{date}."
+      not_a_limited_admin: "Tài khoản được cấp quyền phải là Admin có giới hạn."
   activerecord:
     attributes:
       user:
@@ -29,6 +30,7 @@ vi:
       admin_history:
         start_time: Thời gian bắt đầu
         end_time: Thời gian kết thúc
+        place: Cơ sở
       article:
         title: Tiêu đề
         content: Nội dung

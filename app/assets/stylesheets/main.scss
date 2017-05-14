@@ -402,3 +402,15 @@ a:hover {
   text-align: center;
   font-style: italic;
 }
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.slides-navigation a.prev {
+  background-image: url("img/slider/navigation-icon.png");
+}
+
+.slides-navigation a.next {
+  background-image: url("img/slider/navigation-icon.png");
+}

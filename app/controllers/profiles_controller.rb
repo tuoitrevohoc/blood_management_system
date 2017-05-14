@@ -5,7 +5,7 @@ class ProfilesController < BaseController
 
   def show
     @user = current_user.decorate
-    @histories = @user.histories.includes(:place).newest
+    @histories = current_user.histories.includes(:place).newest
   end
 
   def edit

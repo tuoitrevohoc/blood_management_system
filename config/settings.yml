@@ -17,3 +17,10 @@ default_position:
   lat: 16.075588999999994
   lng: 108.15342699999997
 admin_email: <%= ENV["ADMIN_EMAIL"] %>
+cloudinary_default_path: "https://res.cloudinary.com/sontd/image/upload/"
+avatar_cloudinary:
+  file: "default_avatar_bmsdn.png"
+  version: "v1494756572"
+image_cloudinary:
+  file: "default_article.png"
+  version: "v1494760421"
