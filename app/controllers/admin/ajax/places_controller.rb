@@ -1,4 +1,4 @@
-class Admin::Ajax::PlacesController < ApplicationController
+class Admin::Ajax::PlacesController < Admin::BaseController
   def new
     @place = Place.new place_params
   end

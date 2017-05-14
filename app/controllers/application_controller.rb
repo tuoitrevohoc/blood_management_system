@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do
-    flash[:warning] = "Access denied ApplicationController"
     render_404
   end
 

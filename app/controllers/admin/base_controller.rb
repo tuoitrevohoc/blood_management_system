@@ -6,7 +6,6 @@ class Admin::BaseController < BaseController
   end
 
   rescue_from CanCan::AccessDenied do
-    flash[:warning] = "Access denied Admin::BaseController"
     if current_user&.normal?
       render "shared/404", layout: "application", status: 404
     else
