@@ -7,7 +7,7 @@ $(document).ready(function() {
 function initialize_date_picker(dp_selector) {
   return $(dp_selector).datetimepicker({
       useCurrent: false,
-      format: "DD-MM-YYYY",
+      format: "YYYY/MM/DD",
       showClose: true,
       showClear: true,
       icons: {

@@ -10,6 +10,7 @@
     </h2>
     <div class="blog_commentbox">
       <p><i class="fa fa-clock-o"></i>&nbsp;<%= event.formated_timestamp %></p>
+      <p><i class="fa fa-map-marker"></i>&nbsp;<%= event.place_name %></p>
     </div>
     <p class="blog_summary"><%= event.first_paragraph %></p>
     <%= link_to "Xem Thêm", guest_event_path(event.title_slug), class: "blog_readmore" %>

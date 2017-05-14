@@ -1,0 +1,11 @@
+$(document).ready(function() {
+  $("#event-map").locationpicker({
+    location: {
+      latitude: <%= event.place_latitude %>,
+      longitude: <%= event.place_longitude %>
+    },
+    radius: 500,
+    zoom: 16,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+});

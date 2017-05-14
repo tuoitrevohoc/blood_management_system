@@ -6,6 +6,8 @@ class Event < ApplicationRecord
 
   validates :title, :date_time, :place, :content, :title_slug, presence: true
 
+  delegate :name, :address, :latitude, :longitude, :formatted_address, to: :place, prefix: :place, allow_nil: true
+
   scope :newest, -> {order date_time: :desc}
   scope :oldest, -> {order :date_time}
   scope :available, -> current = Time.current {where is_public: true}
