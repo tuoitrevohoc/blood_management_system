@@ -28,9 +28,11 @@
                 <div class="article-content">
                   <%= @event.content.html_safe %>
                 </div>
-                <div class="sign-up text-center">
-                  <%= link_to "Đánh dấu sẽ tham gia", "#", class: "wpcf7-submit" %>
-                </div>
+                <div class="map" id="event-map"></div>
+                <p class="map-caption">
+                  <b><%= @event.place_name %></b><br>
+                  <%= @event.place_formatted_address || @event.place_address %>
+                </p>
               </div>
               <div class="like-share-fb">
                 <div class="fb-like" data-href="<%= guest_article_url @event.title_slug %>"
@@ -54,5 +56,13 @@
   <div id="fb-root"></div>
   <script>
     <%= render "shared/facebook_social_plugins.js" %>
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5WpyjImkemkAiHkeZQYqHEc5ybF0uIIg&libraries=places"></script>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_include_tag "locationpicker/locationpicker.jquery.min.js" %>
+  <script type="text/javascript">
+    <%= render "location_picker.js", event: @event %>
   </script>
 <% end %>

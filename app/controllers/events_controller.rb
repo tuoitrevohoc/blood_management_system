@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :load_event, :authorize, only: :show
 
   def index
-    @events = Event.available.newest.page(params[:page]).per 10
+    @events = Event.includes(:place).available.newest.page(params[:page]).per 10
   end
 
   def show
@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
   private
   def load_event
-    render_404 unless (@event = Event.find_by title_slug: params[:slug])
+    render_404 unless (@event = Event.includes(:place).find_by title_slug: params[:slug])
   end
 
   def authorize
