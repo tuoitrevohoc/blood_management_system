@@ -17,7 +17,7 @@ vi:
       event: Sự Kiện
       contact: Liên Hệ
       account: Tài Khoản
-      post: Tin Tức
+      post: Bài Viết
       contact: Liên Hệ
       login: Đăng Nhập
       sign_up: Đăng Ký
@@ -32,11 +32,14 @@ vi:
       home: Trang Chủ
       event: Sự Kiện
       settings: Tài Khoản
-      post: Xem Tin
-      search: Tìm Nguồn Máu
+      post: Bài Viết
       login: Đăng Nhập
       sign_up: Đăng Ký
       social_links: Liên Kết
+      contact: Liên Hệ
+      profile: Trang Cá Nhân
+      login: Đăng Nhập
+      sign_up: Đăng Ký
   shared:
     login_modal:
       header: Đăng Nhập

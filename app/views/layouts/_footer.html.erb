@@ -12,11 +12,16 @@
           <div class="single_footer_widget">
             <h3><%= t ".links" %></h3>
             <ul class="footer_widget_nav">
-              <li><a href="#"><%= t ".home" %></a></li>
-              <li><a href="#"><%= t ".event" %></a></li>
-              <li><a href="#"><%= t ".post" %></a></li>
-              <li><a href="#"><%= t ".search" %></a></li>
-              <li><a href="#"><%= t ".contact" %></a></li>
+              <li><%= link_to t(".home"), guest_home_path %></li>
+              <li><%= link_to t(".event"), guest_events_path %></li>
+              <li><%= link_to t(".post"), guest_articles_path %></li>
+              <li><%= link_to t(".contact"), new_contact_path %></a></li>
+              <% if current_user %>
+                <li><%= link_to t(".profile"), profile_path %></li>
+              <% else %>
+                <li><%= link_to t(".login"), new_user_session_path, id: "login-link" %></li>
+                <li><%= link_to t(".sign_up"), new_user_session_path, id: "sign-up-link" %></li>
+              <% end %>
             </ul>
           </div>
         </div>
@@ -42,14 +47,14 @@
         <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="footer_bootomLeft">
             <p>
-              Designed by <a href="https://www.facebook.com/sontran.ds"><b>SonTran</b></a>.
+              Developed by <a href="https://www.facebook.com/sontran.ds"><b>SonTran</b></a>.
               Copyright &copy; All Rights Reserved
             </p>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="footer_bootomRight">
-            <p>Base on <a href="http://wpfreeware.com/" rel="nofollow">WpF Degree</a> Template</p>
+            <p>Based on <a href="http://wpfreeware.com/" rel="nofollow">WpF Degree</a> Template</p>
           </div>
         </div>
       </div>

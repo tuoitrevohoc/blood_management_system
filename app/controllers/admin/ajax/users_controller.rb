@@ -1,4 +1,4 @@
-class Admin::Ajax::UsersController < ApplicationController
+class Admin::Ajax::UsersController < Admin::BaseController
   before_action :load_user, :set_form, only: :show
 
   def index
