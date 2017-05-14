@@ -3,8 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/" +
-      [version_name, "default_article.png"].compact.join('_'))
+    "#{Settings.cloudinary_default_path}#{cloudinary_version}/#{Settings.image_cloudinary.file}"
   end
 
   version :large do
@@ -29,5 +28,24 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def public_id
     model.title_slug
+  end
+
+  private
+  def cloudinary_version
+    h, w = nil
+    case version_name
+    when :large
+      w = 800
+      h = 600
+    when :medium
+      w = 320
+      h = 240
+    when :small
+      w = 80
+      h = 60
+    else
+      return Settings.avatar_cloudinary.version
+    end
+    "c_fit,h_#{h},w_#{w}"
   end
 end

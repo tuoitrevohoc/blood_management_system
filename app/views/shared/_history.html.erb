@@ -1,13 +1,13 @@
 <tr>
-  <td><%= history_counter + 1 %></td>
-  <td>
+  <td colspan="1"><%= history_counter + 1 %></td>
+  <td colspan="5">
     <span title="<%= history.place_address %>">
       <%= history.place_name %>
     </span>
   </td>
-  <td><%= history.display_volume %></td>
-  <td><%= l history.date, format: :default_date %></td>
-  <td class="text-center">
+  <td colspan="2"><%= history.display_volume %></td>
+  <td colspan="4"><%= l history.date, format: :default_date %></td>
+  <td colspan="1" class="text-center">
     <span class="material-icons-sm icon-<%= history.is_verified? ? "verified" : "unverified" %>"
       title="<%= history.is_verified? ? "Đã xác thực" : "Chưa xác thực" %>">
       <i class="material-icons">beenhere</i>
