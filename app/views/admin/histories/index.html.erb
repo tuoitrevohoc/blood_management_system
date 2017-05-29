@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <div class="row filter-row">
-    <div class="col-md-12">
+  <div class="row filter-row-2">
+    <div class="col-md-12 thin-row">
       <%= link_to "Thêm mới", [:new, :admin, :history], class: "btn btn-primary no-margin" %>
       <%= search_form_for @q, url: [:admin, :histories], method: :get, id: "admin-search",
         class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
@@ -9,11 +9,10 @@
             <i class="fa fa-close"></i>
           <% end %>
         <% end %>
-        <div class="form-group is-empty">
-          <%= f.search_field :user_name_or_place_name_cont, class: "form-control",
-            placeholder: "Tìm kiếm...", title: "Tìm kiếm bằng tiêu đề hoặc nội dung." %>
-            <span class="material-input"></span>
-        </div>
+        <%= f.text_field :date_gteq, class: "form-control date-picker dp-1", placeholder: "Từ ngày...", title: "Từ ngày..." %>
+        <%= f.text_field :date_lteq, class: "form-control date-picker dp-2", placeholder: "Đến ngày...", title: "Đến ngày..." %>
+        <%= f.search_field :user_name_or_place_name_cont, class: "form-control",
+          placeholder: "Tìm kiếm...", title: "Tìm kiếm theo tên người dùng hoặc tên địa cơ sở tiếp nhận" %>
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
           <i class="material-icons">search</i><div class="ripple-container"></div>
         </button>
@@ -22,74 +21,15 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
-        <div class="card-content table-responsive">
-          <table class="table table-hover">
-            <thead class="text-primary">
-              <tr>
-                <th>
-                  <%= sort_link @q, :id do %>
-                    ID
-                    <span class="<%= visible_unsorted_icon :id %>">&nbsp;
-                      <i class="fa fa-unsorted"></i>
-                    </span>
-                  <% end %>
-                </th>
-                <th>
-                  <%= sort_link @q, :user_id do %>
-                    Người Dùng
-                    <span class="<%= visible_unsorted_icon :user_id %>">&nbsp;
-                      <i class="fa fa-unsorted"></i>
-                    </span>
-                  <% end %>
-                </th>
-                <th>
-                  <%= sort_link @q, :place_id do %>
-                    Cơ sở tiếp nhận
-                    <span class="<%= visible_unsorted_icon :place_id %>">&nbsp;
-                      <i class="fa fa-unsorted"></i>
-                    </span>
-                  <% end %>
-                </th>
-                <th>
-                  <%= sort_link @q, :volume do %>
-                    Số lượng
-                    <span class="<%= visible_unsorted_icon :volume %>">&nbsp;
-                      <i class="fa fa-unsorted"></i>
-                    </span>
-                  <% end %>
-                </th>
-                <th>
-                  <%= sort_link @q, :created_at do %>
-                    Ngày hiến
-                    <span class="<%= visible_unsorted_icon :created_at %>">&nbsp;
-                      <i class="fa fa-unsorted"></i>
-                    </span>
-                  <% end %>
-                </th>
-                <th>
-                  <%= sort_link @q, :admin_id do %>
-                    Người tạo
-                    <span class="<%= visible_unsorted_icon :admin_id %>">&nbsp;
-                      <i class="fa fa-unsorted"></i>
-                    </span>
-                  <% end %>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="results">
-              <% if @histories.any? %>
-                <%= render @histories.decorate %>
-              <% else %>
-                <tr>
-                  <th colspan="6">Không có dữ liệu.</th>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <%= paginate @histories %>
-        </div>
+      <div class="card" id="search-results">
+        <%= render "table_result", q: @q, histories: @histories %>
       </div>
     </div>
   </div>
 </div>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "filter_form.js" %>
+  </script>
+<% end %>
