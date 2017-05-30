@@ -4,3 +4,8 @@ vi:
       ml_250: 250ml
       ml_350: 350ml
       ml_450: 450ml
+    other_volumes:
+      250: "250ml"
+      350: "350ml"
+      450: "450ml"
+      other_volume: "Khác..."

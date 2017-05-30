@@ -1,0 +1,26 @@
+$(function() {
+  var vol_selectbox = $(".history-volume");
+  var other_vol_selectbox = $(".history-volume.select-2");
+
+  vol_selectbox.change(function() {
+    if ($(this).val() === "other_volume") {
+      var default_vol = $(this).find("option").first().val();
+      var other_vol = prompt("Nhập số lượng hiến (ml):").match(/\d+/);
+      if (other_vol < 0 || other_vol > 1000 || !other_vol) {
+        $(this).val(default_vol);
+        return false;
+      }
+      other_vol = other_vol[0];
+      var option = new Option(other_vol + "ml", other_vol);
+      var option_other = new Option("Khác...", "other_volume");
+      other_vol_selectbox.find("option").last().remove();
+      other_vol_selectbox.append(option);
+      other_vol_selectbox.val(other_vol);
+      other_vol_selectbox.append(option_other);
+      $(this).attr("disabled", "disabled");
+      $(this).addClass("hidden");
+      other_vol_selectbox.prop("disabled", false);
+      other_vol_selectbox.removeClass("hidden");
+    }
+  });
+});
