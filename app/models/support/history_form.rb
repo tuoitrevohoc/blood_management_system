@@ -6,12 +6,7 @@ class Support::HistoryForm
   end
 
   def volumes
-    vols = History.volumes.keys.map {|v| [I18n.t("histories.volumes.#{v}"), v]}
-    vols << ["Khác...", "other_volume"]
-  end
-
-  def other_volumes
-    I18n.t("histories.other_volumes").map {|k,v | [v, k]}
+    History.volumes.keys.map {|v| [I18n.t("histories.volumes.#{v}"), v]}
   end
 
   def places
