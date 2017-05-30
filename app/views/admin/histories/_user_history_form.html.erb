@@ -80,7 +80,9 @@
         <div class="col-md-2">
           <div class="form-group label-floating">
             <%= field.label :volume, "Số lượng", class: "control-label" %>
-            <%= field.select :volume, history_form.volumes, {}, class: "form-control" %>
+            <%= field.select :volume, history_form.volumes, {}, class: "form-control history-volume select-1" %>
+            <%= field.select :other_volume, history_form.other_volumes, {},
+              class: "form-control history-volume select-2 hidden", disabled: "disabled" %>
           </div>
         </div>
         <div class="col-md-2">
@@ -111,5 +113,6 @@
   <script type="text/javascript">
     <%= render "shared/date_picker.js" %>
     <%= render "shared/location_picker.js" %>
+    <%= render "other_volume.js" %>
   </script>
 <% end %>

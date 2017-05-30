@@ -70,7 +70,7 @@ class Admin::HistoriesController < Admin::BaseController
       admin_id: current_user.id, is_verified: true
     params.require(:user).permit :name, :email, :gender, :birthday, :id_number,
       :phone_number, :address, :blood_type, :password, :lat, :lon,
-      histories_attributes: [:volume, :date, :place_id]
+      histories_attributes: [:volume, :date, :place_id, :admin_id, :is_verified, :other_volume]
   end
 
   def load_empty_data build_histories: true
