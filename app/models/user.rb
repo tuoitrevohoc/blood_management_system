@@ -26,7 +26,6 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   validates :name, :gender, :blood_type, :id_number, :phone_number, presence: true, allow_nil: true
-  validates :phone_number, :id_number, uniqueness: true
   validates :email, presence: true, format: Settings.email_regex
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
 
