@@ -1,4 +1,7 @@
+$primary_color: rgba(151, 0, 1, 1);
+
 .wrapper {
+
   .main-panel {
     overflow: auto;
   }
@@ -406,4 +409,18 @@ a:hover {
 .dropdown-menu > li > a:focus,
 .dropdown-menu > li > a:hover {
   color: #ffffff !important;
+}
+
+#login-info a.active {
+  background-color: #9c27b0;
+  color: white;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+}
+
+.dropdown-menu-seperator {
+  margin: 0 5px;
+}
+
+table.table thead tr th {
+  white-space: nowrap;
 }

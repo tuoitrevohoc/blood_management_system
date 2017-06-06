@@ -16,14 +16,14 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="contact_form wow fadeInLeft">
-          <%= form_tag contact_path, class: "submitphoto_form contact-form" do %>
-            <%= text_field_tag "contact[name]", nil, class: "wp-form-control wpcf7-text",
+          <%= form_tag contact_path, class: "submitphoto_form contact-form wp-form" do %>
+            <%= text_field_tag "contact[name]", nil, class: "form-control wpcf7-text",
               placeholder: "Họ và tên", required: true %>
-            <%= email_field_tag "contact[email]", nil, class: "wp-form-control wpcf7-email",
+            <%= email_field_tag "contact[email]", nil, class: "form-control wpcf7-email",
               placeholder: "Địa chỉ email", required: true %>
-            <%= text_field_tag "contact[subject]", nil, class: "wp-form-control wpcf7-text",
+            <%= text_field_tag "contact[subject]", nil, class: "form-control wpcf7-text",
               placeholder: "Tiêu đề", required: true %>
-            <%= text_area_tag "contact[content]", nil, class: "wp-form-control wpcf7-textarea",
+            <%= text_area_tag "contact[content]", nil, class: "form-control wpcf7-textarea",
               placeholder: "Ý kiến của bạn...", required: true  %>
             <%= submit_tag "Gửi", class: "wpcf7-submit" %>
           <% end %>
@@ -31,15 +31,26 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="contact_address wow fadeInRight">
-          <h3>Address</h3>
+          <h3>Thông tin liên hệ</h3>
           <div class="address_group">
-            <p>200 Lincoln Ave, Salinas, CA 93901</p>
-            <p>Phone: 662-807-9585</p>
-            <p>Email:contact@wpfdegree.com</p>
+            <table class="table-contact">
+              <tr>
+                <td>Hùng:</td>
+                <td>0934 782 006</td>
+              </tr>
+              <tr>
+                <td>Dương:</td>
+                <td>01269 1150 96</td>
+              </tr>
+              <tr>
+                <td>Hồ:</td>
+                <td>0905 927 739</td>
+              </tr>
+            </table>
           </div>
           <div class="address_group">
             <ul class="footer_social">
-              <li><a href="#" class="soc_tooltip" title="" data-placement="top" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://www.facebook.com/groups/HieuVaThuongDaNang" class="soc_tooltip" title="" data-placement="top" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#" class="soc_tooltip" title="" data-placement="top" data-toggle="tooltip" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#" class="soc_tooltip" title="" data-placement="top" data-toggle="tooltip" data-original-title="Google+"><i class="fa fa-google-plus"></i></a></li>
               <li><a href="#" class="soc_tooltip" title="" data-placement="top" data-toggle="tooltip" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>

@@ -29,6 +29,12 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t ".account" %>&nbsp;<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
+                  <li id="login-info" class="text-center">
+                    <%= link_to "#", class: "normal-text" do %>
+                      Đang đăng nhập dưới tên:<br>
+                      <b><%= current_user.email %></b>
+                    <% end %>
+                  </li>
                   <% if current_user.admin? || current_user.limited? %>
                     <li><%= link_to t(".dashboard"), admin_root_path %></li>
                   <% end %>
@@ -39,7 +45,7 @@
               </li>
             <% else %>
               <li><%= link_to t(".login"), new_user_session_path, id: "login-link" %></li>
-              <li><%= link_to t(".sign_up"), new_user_session_path, id: "sign-up-link" %></li>
+              <li><%= link_to t(".sign_up"), new_user_registration_path, id: "sign-up-link" %></li>
             <% end %>
           </ul>
         </div>

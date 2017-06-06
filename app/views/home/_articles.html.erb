@@ -12,6 +12,11 @@
       <div class="col-md-12">
         <div class="courseArchive_content">
           <%= render partial: "article", collection: @articles %>
+          <div class="row">
+            <div class="col-md-12">
+              <%= link_to "Xem thêm", guest_articles_path, class: "see_all" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

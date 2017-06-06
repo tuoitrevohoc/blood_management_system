@@ -13,7 +13,7 @@
   </td>
   <td>
     <% if history.admin %>
-      <%= link_to history.admin_name, edit_admin_administrator_account_path(history.admin), target: :_blank %>
+      <%= link_to history.admin_name, [:admin, :histories, {q: {admin_id_eq: history.admin_id}}] %>
     <% end %>
   </td>
   <td class="btn-actions text-center">

@@ -5,11 +5,12 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-1">
         <h2 class="text-center">Lấy lại mật khẩu đăng nhập</h2>
-        <%= form_for resource, as: resource_name, url: password_path(resource_name), html: {method: :post} do |f| %>
+        <%= form_for resource, as: resource_name, url: password_path(resource_name),
+          html: {method: :post, class: "wp-form"} do |f| %>
           <div class="devise_error_messages">
             <%= devise_error_messages! %>
           </div>
-          <%= f.email_field :email, class: "wp-form-control", autofocus: true, placeholder: "Email" %>
+          <%= f.email_field :email, class: "form-control wpcf7-email", placeholder: "Email" %>
           <div class="col-md-12">
             <div class="row login-bottom">
               <%= f.submit "Xác nhận", class: "wpcf7-submit pull-right" %>

@@ -23,9 +23,16 @@
            <p class="hidden-lg hidden-md">Profile</p>
          <% end %>
          <ul class="dropdown-menu">
+           <li id="login-info" class="text-center">
+             <%= link_to "#", class: "active normal-text" do %>
+               Đang đăng nhập dưới tên:<br>
+               <b><%= current_user.email %></b>
+             <% end %>
+           </li>
            <li><%= link_to "Trang Chủ", root_path %></li>
            <li><%= link_to "Trang Cá Nhân", profile_path %></li>
            <li><%= link_to "Cài Đặt", edit_profile_path %></li>
+           <hr class="dropdown-menu-seperator">
            <li><%= link_to "Thoát", destroy_user_session_path, method: :delete %></li>
          </ul>
         </li>

@@ -34,4 +34,10 @@ module ApplicationHelper
       image_tag user.avatar.try(version)&.url, alt: user.name&.titleize, class: "img"
     end
   end
+
+  def format_phone_number phone_number
+    return if phone_number.blank?
+    phone_number = phone_number.gsub(/[" ", ".", "_"]/, "").gsub("-", "").to_i
+    number_to_phone phone_number, delimiter: " "
+  end
 end

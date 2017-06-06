@@ -6,7 +6,7 @@ class HistoryDecorator < Draper::Decorator
   end
 
   def timestamp
-    I18n.l created_at, format: :full
+    I18n.l date, format: :default_date
   end
 
   def volume_label

@@ -1,15 +1,17 @@
 $(function() {
   $(".date-picker").datetimepicker({
     useCurrent: false,
-    format: "YYYY/MM/DD"
+    format: "DD/MM/YYYY"
   });
 
   $(".dp-1").on("dp.change", function(e) {
     $(".dp-2").data("DateTimePicker").minDate(e.date);
+    showBtnReset();
   });
 
   $(".dp-2").on("dp.change", function(e) {
     $(".dp-1").data("DateTimePicker").maxDate(e.date);
+    showBtnReset();
   });
 
   $(".date-picker").on("dp.change", submit_via_ajax);
@@ -20,5 +22,21 @@ $(function() {
     submiting.error(function() {
       showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
     });
+    showBtnReset();
+  }
+  showBtnReset();
+
+  function search_blank() {
+    return $(".dp-1").val().trim().length < 1 &&
+      $(".dp-2").val().trim().length < 1 &&
+      $(".search-key").val().trim().length < 1
+  }
+
+  function showBtnReset() {
+    if (search_blank()) {
+      $(".btn-clear-search").addClass("hidden");
+    } else {
+      $(".btn-clear-search").removeClass("hidden");
+    }
   }
 });

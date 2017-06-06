@@ -27,7 +27,29 @@ vi:
       dashboard: Bảng Điều Khiển
     footer:
       about: Về chúng tôi
-      about_text: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      about_text: "<ul>
+        <li>
+          Hỗ trợ, trợ giúp nhu cầu về Máu, về Tiểu Cầu kịp thời để giúp bệnh nhân điều trị, duy trì chữa bệnh.
+        </li>
+        <li>
+          Hỗ trợ, trợ giúp nhu cầu về: Hiến Máu Nhân Đạo tập trung theo đợt để trữ và đáp ứng nhu cầu về Máu cao đột xuất theo thời điểm cần.
+        </li>
+        <li>
+          Hỗ trợ những hoàn cảnh khó khăn những phần quà yêu thương.
+        </li>
+        <li>
+          Đủ duyên thì xây nhà cho những hoàn cảnh đặt biệt khó khăn cần nhà để ở.
+        </li>
+        <li>
+          Ko nhận bất cứ dưới hình thức nào liên quan đến tiền tài và tài vật, vật phẩm từ người bệnh được nhận Máu và người nhà bệnh nhân được nhận Máu
+        </li>
+        <li>
+          Tập thể cũng như cá thể phải làm gì đó để mình sống sao thấy An Lạc - Thảnh Thơi - Lời Nói Phải Dễ Thương Từ TRÁI TIM.
+        </li>
+        <li>
+          Địa bàn hoạt động trong và ngoài địa lân cận Tp Đà Nẵng
+        </li>
+      </ul>"
       links:
       home: Trang Chủ
       event: Sự Kiện
