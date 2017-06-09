@@ -17,6 +17,5 @@ class AdminAbility
     else
       cannot :manage, :all
     end
-    cannot :update, History
   end
 end

@@ -4,14 +4,12 @@
       <%= link_to "Thêm mới", [:new, :admin, :history], class: "btn btn-primary no-margin" %>
       <%= search_form_for @q, url: [:admin, :histories], method: :get, id: "admin-search",
         class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
-        <% if params[:q] %>
-          <%= link_to [:admin, :histories], class: "btn-clear-search" do %>
-            <i class="fa fa-close"></i>
-          <% end %>
+        <%= link_to [:admin, :histories], class: "btn-clear-search hidden" do %>
+          <i class="fa fa-close"></i>
         <% end %>
         <%= f.text_field :date_gteq, class: "form-control date-picker dp-1", placeholder: "Từ ngày...", title: "Từ ngày..." %>
         <%= f.text_field :date_lteq, class: "form-control date-picker dp-2", placeholder: "Đến ngày...", title: "Đến ngày..." %>
-        <%= f.search_field :user_name_or_place_name_cont, class: "form-control",
+        <%= f.search_field :user_name_or_place_name_cont, class: "form-control search-key",
           placeholder: "Tìm kiếm...", title: "Tìm kiếm theo tên người dùng hoặc tên địa cơ sở tiếp nhận" %>
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
           <i class="material-icons">search</i><div class="ripple-container"></div>

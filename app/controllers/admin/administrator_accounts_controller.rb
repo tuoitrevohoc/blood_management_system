@@ -4,7 +4,7 @@ class Admin::AdministratorAccountsController < Admin::BaseController
 
   before_action :load_user, only: [:edit, :update, :destroy]
   before_action :set_form, only: [:edit, :update]
-  before_action :verify_password, only: [:update, :destroy]
+  before_action :verify_password, only: :update
 
   def index
     @q = User.all.ransack params[:q]

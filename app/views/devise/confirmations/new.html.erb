@@ -5,13 +5,13 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-1">
         <h2 class="text-center">Gửi lại mail xác nhận</h2>
-        <%= form_for resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post} do |f| %>
+        <%= form_for resource, as: resource_name, url: confirmation_path(resource_name),
+          html: {method: :post, class: "wp-form"} do |f| %>
           <div class="devise_error_messages">
             <%= devise_error_messages! %>
           </div>
-          <%= f.email_field :email, autofocus: true,
-            value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-            autocomplete: "off", placeholder: "Email", class: "wp-form-control" %>
+          <%= f.email_field :email, autocomplete: "off", placeholder: "Email", class: "form-control wpcf7-email",
+            value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
           <div class="col-md-12">
             <div class="row login-bottom">
               <%= f.submit "Gửi", class: "wpcf7-submit pull-right" %>

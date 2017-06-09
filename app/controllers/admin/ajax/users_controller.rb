@@ -18,6 +18,6 @@ class Admin::Ajax::UsersController < Admin::BaseController
 
   def set_form
     @user_form =  Support::UserForm.new
-    @history_form =  Support::HistoryForm.new
+    @history_form =  Support::HistoryForm.new places: current_user.available_places
   end
 end
