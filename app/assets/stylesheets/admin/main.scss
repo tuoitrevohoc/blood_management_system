@@ -424,3 +424,23 @@ a:hover {
 table.table thead tr th {
   white-space: nowrap;
 }
+
+.donation-type-wrapper {
+  padding-bottom: 0px;
+  height: 36px;
+  position: relative;
+  .donation-types {
+    position: absolute;
+    bottom: 0px;
+    label {
+      color: rgb(85, 85, 85);
+    }
+    label:first-child {
+      margin-right: 30px;
+    }
+  }
+}
+
+.clear-both {
+  clear: both;
+}

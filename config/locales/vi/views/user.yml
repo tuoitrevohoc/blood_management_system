@@ -13,7 +13,11 @@ vi:
       male: Nam
       female: Nữ
     blood_types:
-      type_a: Nhóm A
-      type_b: Nhóm B
-      type_ab: Nhóm AB
-      type_o: Nhóm O
+      a_pos: Nhóm A+
+      a_neg: Nhóm A-
+      b_pos: Nhóm B+
+      b_neg: Nhóm B-
+      ab_pos: Nhóm AB+
+      ab_neg: Nhóm AB-
+      o_pos: Nhóm O+
+      o_neg: Nhóm O-

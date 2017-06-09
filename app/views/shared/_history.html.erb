@@ -5,8 +5,9 @@
       <%= history.place_name %>
     </span>
   </td>
-  <td colspan="2"><%= history.display_volume %></td>
-  <td colspan="4"><%= l history.date, format: :default_date %></td>
+  <td colspan="4"><%= history.display_donation_type %></td>
+  <td colspan="3"><%= history.platelet_count %></td>
+  <td colspan="3"><%= l history.date, format: :default_date %></td>
   <td colspan="1" class="text-center">
     <span class="material-icons-sm icon-<%= history.is_verified? ? "verified" : "unverified" %>"
       title="<%= history.is_verified? ? "Đã xác thực" : "Chưa xác thực" %>">

@@ -25,17 +25,18 @@ class UserDecorator < Draper::Decorator
   end
 
   def display_blood_type
-    type = case blood_type
-    when "type_a"
-      "<span class='label label-success'>Nhóm A</span>"
-    when "type_b"
-      "<span class='label label-info'>Nhóm B</span>"
-    when "type_ab"
-      "<span class='label label-warning'>Nhóm AB</span>"
-    when "type_o"
-      "<span class='label label-danger'>Nhóm O</span>"
+    return unless blood_type
+    lb_class = case blood_type.match(Settings.common_blood_type_regex)[0]
+    when "a"
+      "success"
+    when "b"
+      "info"
+    when "ab"
+      "warning"
+    when "o"
+      "danger"
     end
-    type&.html_safe
+    "<span class='label label-#{lb_class}'>#{I18n.t("users.blood_types." + blood_type)}</span>".html_safe
   end
 
   def display_gender

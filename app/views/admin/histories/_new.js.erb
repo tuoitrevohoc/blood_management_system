@@ -4,4 +4,19 @@ $(document).ready(function() {
     $(".toggle-maps").toggleClass("show-maps");
     $(".location-picker").locationpicker("autosize");
   });
+
+  $(document).on("click", ".btn-show-form", function() {
+    $(this).remove();
+    $("#history-form-anchor").removeClass("hidden");
+  });
+
+  $(".donation-type-wrapper").on("click", ".donation-type-platelets", function() {
+    $(".platelet-count").addClass("hidden");
+    $(".history-platelet-count").attr("disabled", "disabled");
+  });
+
+  $(".donation-type-wrapper").on("click", ".donation-type-directed", function() {
+    $(".platelet-count").removeClass("hidden");
+    $(".history-platelet-count").removeAttr("disabled");
+  });
 });
