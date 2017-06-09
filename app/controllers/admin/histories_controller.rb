@@ -62,15 +62,16 @@ class Admin::HistoriesController < Admin::BaseController
   end
 
   def user_params
-    # TODO: Update current admin place id later.
     password = User.secure_random_password
     attribute_id = params[:user][:histories_attributes].keys.last
+    param_date = params[:user][:histories_attributes][attribute_id][:date].to_date
+    date = current_user.admin? ? param_date : Date.current
     params[:user].merge! password: password if password && !@user.encrypted_password?
-    params[:user][:histories_attributes][attribute_id].merge! date: Date.current,
+    params[:user][:histories_attributes][attribute_id].merge! date: date,
       admin_id: current_user.id, is_verified: true
     params.require(:user).permit :name, :email, :gender, :birthday, :id_number,
       :phone_number, :address, :blood_type, :password, :lat, :lon,
-      histories_attributes: [:volume, :date, :place_id, :admin_id, :is_verified]
+      histories_attributes: [:date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified]
   end
 
   def load_empty_data build_histories: true

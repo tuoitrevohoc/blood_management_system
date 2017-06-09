@@ -1,6 +1,5 @@
 vi:
   histories:
-    volumes:
-      ml_250: 250ml
-      ml_350: 350ml
-      ml_450: 450ml
+    donation_types:
+      platelets: Hiến tiểu cầu
+      directed: Hiến nóng

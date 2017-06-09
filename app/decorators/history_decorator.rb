@@ -1,25 +1,18 @@
 class HistoryDecorator < Draper::Decorator
   delegate_all
 
-  def display_volume
-    I18n.t "histories.volumes.#{volume}"
-  end
-
   def timestamp
     I18n.l date, format: :default_date
   end
 
-  def volume_label
-    lb_class = case volume.to_sym
-    when :ml_250
-      "info"
-    when :ml_350
+  def display_donation_type
+    return nil unless donation_type
+    type = case donation_type
+    when "platelets"
       "success"
-    when :ml_450
+    when "directed"
       "warning"
-    else
-      "danger"
     end
-    "<span class='label label-#{lb_class}'>#{display_volume}</span>".html_safe
+    "<span class='label label-#{type}'>#{I18n.t('histories.donation_types.' + donation_type)}<span>".html_safe
   end
 end

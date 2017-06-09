@@ -21,21 +21,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group label-floating">
         <%= f.label :gender, "Giới tính", class: "control-label" %>
         <%= f.select :gender, user_form.genders, {}, class: "form-control",
           disabled: is_disabled_field?(f.object, :gender) %>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group label-floating">
         <%# f.label :birthday, "", class: "control-label" %>
         <%= f.text_field :birthday, class: "form-control date-picker",
           disabled: is_disabled_field?(f.object, :birthday), placeholder: "Ngày sinh" %>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <div class="form-group label-floating">
         <%= f.label :id_number, "Số CMND", class: "control-label" %>
         <%= f.text_field :id_number, class: "form-control",
@@ -47,6 +47,13 @@
         <%= f.label :phone_number, "Số điện thoại", class: "control-label" %>
         <%= f.text_field :phone_number, class: "form-control",
           disabled: is_disabled_field?(f.object, :phone_number) %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group label-floating">
+        <%= f.label :phone_number_2, "Số điện thoại 2", class: "control-label" %>
+        <%= f.text_field :phone_number_2, class: "form-control",
+          disabled: is_disabled_field?(f.object, :phone_number_2) %>
       </div>
     </div>
   </div>
@@ -77,17 +84,30 @@
     </div>
     <%= f.fields_for :histories do |field| %>
       <% unless field.object.persisted? %>
-        <div class="col-md-2">
-          <div class="form-group label-floating">
-            <%= field.label :volume, "Số lượng", class: "control-label" %>
-            <%= field.select :volume, history_form.volumes, {}, class: "form-control" %>
+        <div class="col-md-3">
+          <div class="form-group label-floating donation-type-wrapper">
+            <%= field.label :donation_type, "Hình thức hiến", class: "control-label" %>
+            <div class="donation-types">
+              <% History.donation_types.each do |type, val| %>
+                <label class="donation-type-<%= type %>">
+                  <%= field.radio_button :donation_type, type, checked: val == 0 %>
+                  <%= t "histories.donation_types.#{type}" %>
+                </label>
+              <% end %>
+            </div>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 platelet-count hidden">
+          <div class="form-group label-floating donation-type-wrapper">
+            <%= field.label :platelet_count, "Chỉ số tiểu cầu", class: "control-label" %>
+            <%= field.text_field :platelet_count, class: "form-control history-platelet-count", disabled: true %>
+          </div>
+        </div>
+        <div class="col-md-2 clear-both">
           <div class="form-group label-floating">
             <%= field.label :date, "Ngày", class: "control-label" %>
-            <%= field.text_field :date, class: "form-control",
-              value: l(Date.current, format: :default_date), readonly: true %>
+            <%= field.text_field :date, class: "form-control #{current_user.admin? ? "date-picker" : nil}",
+              value: Date.current, readonly: current_user.admin? ? false : true %>
           </div>
         </div>
         <div class="col-md-6">

@@ -14,6 +14,7 @@ vi:
       after: " phải sau %{date}."
       after_or_equal_to: " phải sau hoặc bằng %{date}."
       not_a_limited_admin: "Tài khoản được cấp quyền phải là Admin có giới hạn."
+      not_a_number: " phải là chữ số."
   activerecord:
     attributes:
       user:
@@ -23,6 +24,7 @@ vi:
         blood_type: Nhóm máu
         id_number: Số CMND
         phone_number: SĐT
+        phone_number_2: SĐT 2
         address: Địa chỉ
         role: Quyền truy cập
         password: Mật khẩu
@@ -43,3 +45,6 @@ vi:
       place:
         name: Tên cơ sở
         address: Địa chỉ
+      history:
+        donation_type: "Hình thức hiến"
+        platelet_count: "Chỉ số tiểu cầu"

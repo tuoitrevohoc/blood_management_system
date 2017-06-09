@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507084147) do
+ActiveRecord::Schema.define(version: 20170609073409) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -78,12 +78,13 @@ ActiveRecord::Schema.define(version: 20170507084147) do
   create_table "histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "place_id"
-    t.integer  "volume",      default: 0
     t.date     "date"
     t.integer  "admin_id"
-    t.boolean  "is_verified", default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "is_verified",    default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "donation_type",  default: 0
+    t.integer  "platelet_count"
     t.index ["date"], name: "index_histories_on_date", using: :btree
     t.index ["place_id"], name: "index_histories_on_place_id", using: :btree
     t.index ["user_id", "place_id", "date"], name: "index_histories_on_user_id_and_place_id_and_date", unique: true, using: :btree
@@ -145,6 +146,7 @@ ActiveRecord::Schema.define(version: 20170507084147) do
     t.float    "lat",                    limit: 24
     t.float    "lon",                    limit: 24
     t.string   "formatted_address"
+    t.string   "phone_number_2"
     t.index ["address"], name: "index_users_on_address", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
