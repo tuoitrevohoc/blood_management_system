@@ -33,15 +33,14 @@ class User < ApplicationRecord
 
   def status
     return :unknown unless self.histories.any?
-    freq = Settings.minimum_frequency.try(self.gender)&.months || Settings.default_frequency
-    distance = (Date.current - self.histories.last&.date).days
+    next_donation_due_date = self.histories.last&.next_donation_due_date
     case true
-    when distance > freq
+    when Date.current >= next_donation_due_date
       :can_donate
-    when distance > freq - 1.month
-      :almost
-    else
+    when Date.current < next_donation_due_date - 7.days
       :cannot_donate
+    else
+      :almost
     end
   end
 

@@ -10,7 +10,7 @@ class HistoryDecorator < Draper::Decorator
     type = case donation_type
     when "platelets"
       "success"
-    when "directed"
+    when "whole_blood"
       "warning"
     end
     "<span class='label label-#{type}'>#{I18n.t('histories.donation_types.' + donation_type)}<span>".html_safe

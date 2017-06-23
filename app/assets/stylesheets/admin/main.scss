@@ -444,3 +444,13 @@ table.table thead tr th {
 .clear-both {
   clear: both;
 }
+
+table.stats {
+  margin-top: 20px;
+  td.key {
+    font-weight: bold;
+  }
+  td.value {
+    padding: 0 30px 0 5px;
+  }
+}

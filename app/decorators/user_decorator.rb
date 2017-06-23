@@ -7,8 +7,7 @@ class UserDecorator < Draper::Decorator
 
   def status_title
     return unless self.histories.any? && !can_donate?
-    freq = Settings.minimum_frequency.try(gender)&.months || Settings.default_frequency
-    histories.last&.date + freq
+    I18n.l histories.last.try(:next_donation_due_date), format: :default_date rescue nil
   end
 
   def status_class
