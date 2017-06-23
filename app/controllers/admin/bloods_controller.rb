@@ -42,8 +42,20 @@ class Admin::BloodsController < Admin::BaseController
   def load_data
     ransack_params = params[:q].except :non_attr if params[:q].present?
     @q = User.includes(:histories).ransack ransack_params
-    @users = @q.result.decorate
+    @users = @q.result
+    @stats = calc_statistics @users
+    @users = @users.decorate
     @users = User.sort_non_attribute @users, params[:q][:s] if params[:q] && params[:q][:s]
     @users = User.search_non_attribute @users, params[:q][:non_attr] if non_attr_query_present?
+  end
+
+  def calc_statistics users
+    total = @users.size
+    can_donate = @users.to_a.count {|user| user.can_donate?}
+    {
+      total: total,
+      can_donate: can_donate,
+      cannot_donate: total - can_donate
+    }
   end
 end

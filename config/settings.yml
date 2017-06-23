@@ -1,7 +1,7 @@
 email_regex: !ruby/regexp /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 minimum_frequency:
-  male: 3
-  female: 4
+  platelets: 2
+  whole_blood: 3
 default_frequency: 4
 statuses:
   can_donate: can_donate
