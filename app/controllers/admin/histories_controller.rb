@@ -15,7 +15,7 @@ class Admin::HistoriesController < Admin::BaseController
   def create
     @user = User.new
     @user.skip_confirmation_notification!
-    if @user.update user_params
+    if @user.update(user_params) && update_patient_info(@user)
       @user.signed_up_by_admin!
       token = @user.confirmation_token
       UsersMailer.confirmation_instructions(@user, token).deliver if @user.email.present?
@@ -28,7 +28,7 @@ class Admin::HistoriesController < Admin::BaseController
   end
 
   def update
-    if @user.update user_params
+    if @user.update(user_params) && update_patient_info(@user)
       # TODO: update add thank you letter later.
       sign_in @user, bypass: true if @user == current_user
       flash[:success] = "Đã thêm 1 lịch sử hiến máu cho #{@user.name&.titleize}."
@@ -70,8 +70,35 @@ class Admin::HistoriesController < Admin::BaseController
     params[:user][:histories_attributes][attribute_id].merge! date: date,
       admin_id: current_user.id, is_verified: true
     params.require(:user).permit :name, :email, :gender, :birthday, :id_number,
-      :phone_number, :address, :blood_type, :password, :lat, :lon,
-      histories_attributes: [:date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified]
+      :phone_number, :address, :blood_type, :password, :lat, :lon, :facebook_account,
+      histories_attributes: [
+        :user_id, :date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified, :referer
+      ]
+  end
+
+  def patient_params
+    attribute_id = params[:user][:histories_attributes].keys.last
+    params[:user][:histories_attributes][attribute_id].permit :patient_name, :patient_age,
+      :patient_pathological, :patient_phone_number, :patient_address, :patient_description
+  end
+
+  def has_patient?
+    patient_params[:patient_name].present? &&
+      (patient_params[:patient_phone_number].present? || patient_params[:patient_address].present?)
+  end
+
+  def update_patient_info user
+    if has_patient?
+      history = user.histories.last
+      if history.update patient_params
+        true
+      else
+        append_error history, user
+        false
+      end
+    else
+      true
+    end
   end
 
   def load_empty_data build_histories: true
@@ -82,5 +109,14 @@ class Admin::HistoriesController < Admin::BaseController
 
   def load_history
     render_404 unless (@history = History.find_by id: params[:id])
+  end
+
+  def append_error history, user
+    history.errors.details.each do |attribute, errors|
+      user.errors.details.merge! "histories.#{attribute}": errors
+    end
+    history.errors.messages.each do |attribute, msgs|
+      user.errors.messages.merge! "histories.#{attribute}": msgs
+    end
   end
 end

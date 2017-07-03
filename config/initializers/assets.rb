@@ -15,6 +15,6 @@ CSS_FILES
 assets_javascript = <<-JS_FILES
   material/material.min.js material/material-dashboard.js admin/main.js ckeditor/*
   admin/jquery.nanoscroller.min.js locationpicker/locationpicker.jquery.min.js
-  common_constants.js
+  common_constants.js autosize.min.js
 JS_FILES
 Rails.application.config.assets.precompile += assets_stylesheet.split(" ") + assets_javascript.split(" ")

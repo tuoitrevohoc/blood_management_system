@@ -13,7 +13,5 @@ $(".pick-user").click(function(e) {
       showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
     }
   });
-  $("#history-form-anchor").removeClass("hidden");
-  $(".btn-show-form").remove();
   $(".main-panel").animate({scrollTop: $("#history-form-anchor").offset().top}, "slow");
 });

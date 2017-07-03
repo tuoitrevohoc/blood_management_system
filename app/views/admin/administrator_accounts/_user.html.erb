@@ -3,7 +3,7 @@
   <td><%= link_to user.name, user %></td>
   <td><%= user.display_gender %></td>
   <td><%= user.display_role %></td>
-  <td><%= user.email %></td>
+  <td><%= user.try :email %></td>
   <td class="btn-actions text-center">
     <%= link_to edit_admin_administrator_account_path(user), class: "btn-edit" do %>
       <i class="material-icons">settings</i>

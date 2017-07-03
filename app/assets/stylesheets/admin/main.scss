@@ -262,7 +262,7 @@ a:hover {
 .maps {
   margin-bottom: 10px;
   .location-picker {
-    height: 500px;
+    height: 350px;
   }
 }
 
@@ -432,6 +432,7 @@ table.table thead tr th {
   .donation-types {
     position: absolute;
     bottom: 0px;
+    display: flex;
     label {
       color: rgb(85, 85, 85);
     }
@@ -452,5 +453,20 @@ table.stats {
   }
   td.value {
     padding: 0 30px 0 5px;
+  }
+}
+
+.gr-fields {
+  border: 1px solid #c0c0c0;
+  padding: inherit;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+
+  legend {
+    width: auto;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 10px;
   }
 }

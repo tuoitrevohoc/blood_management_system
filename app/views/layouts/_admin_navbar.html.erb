@@ -26,7 +26,7 @@
            <li id="login-info" class="text-center">
              <%= link_to "#", class: "active normal-text" do %>
                Đang đăng nhập dưới tên:<br>
-               <b><%= current_user.email %></b>
+               <b><%= current_user.try :email %></b>
              <% end %>
            </li>
            <li><%= link_to "Trang Chủ", root_path %></li>
