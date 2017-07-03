@@ -26,10 +26,10 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   validates :name, :gender, :blood_type, :id_number, :phone_number, presence: true, allow_nil: true
-  validates :email, presence: true, format: Settings.email_regex
+  validates :email, format: Settings.email_regex, if: -> {self.email.present?}
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
 
-  before_save downcase_email: -> {self.email.downcase!}
+  before_save downcase_email: -> {self.email.downcase! if self.email.present?}
 
   def status
     return :unknown unless self.histories.any?
@@ -100,5 +100,10 @@ class User < ApplicationRecord
     def secure_random_uuid
       SecureRandom.uuid
     end
+  end
+
+  protected
+  def email_required?
+    false
   end
 end

@@ -15,6 +15,7 @@ vi:
       after_or_equal_to: " phải sau hoặc bằng %{date}."
       not_a_limited_admin: "Tài khoản được cấp quyền phải là Admin có giới hạn."
       not_a_number: " phải là chữ số."
+      missing_phone_number_or_address: "Thông tin người nhận phải nhập số ĐT hoặc địa chỉ."
   activerecord:
     attributes:
       user:
@@ -29,6 +30,7 @@ vi:
         role: Quyền truy cập
         password: Mật khẩu
         password_confirmation: Mật khẩu
+        facebook_account: Tên đăng nhập Facebook
       admin_history:
         start_time: Thời gian bắt đầu
         end_time: Thời gian kết thúc
@@ -45,6 +47,16 @@ vi:
       place:
         name: Tên cơ sở
         address: Địa chỉ
-      history:
+      history: &history
         donation_type: "Hình thức hiến"
         platelet_count: "Chỉ số tiểu cầu"
+        referer: "Người gọi"
+        patient_name: "Họ và tên người nhận"
+        patient_age: "Tuổi của người nhận"
+        patient_pathological: "Bệnh lý của người nhận"
+        patient_phone_number: "Số điện thoại của người nhận"
+        patient_address: "Địa chỉ của người nhận"
+        patient_description: "Ghi chú"
+        base: ""
+      histories:
+        <<: *history

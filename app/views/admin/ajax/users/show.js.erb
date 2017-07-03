@@ -16,6 +16,11 @@ if (isEmptyAddress()) {
   });
 }
 
+$("#history-form-anchor").removeClass("hidden");
+$(".btn-show-form").remove();
+
 function isEmptyAddress() {
     return !$(".user-address").val();
 }
+
+<%= render "shared/new_history_common.js" %>

@@ -4,121 +4,187 @@
   <div class="error-messages">
     <%= render "shared/error_messages", object: f.object %>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group label-floating">
-        <%= f.label :name, "Họ và tên", class: "control-label" %>
-        <%= f.text_field :name, class: "form-control",
+
+  <div class="col-md-6 col-sm-12">
+    <fieldset class="gr-fields">
+      <legend class="gr-subscription">1. Thông tin người hiến</legend>
+      <div class="col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :name, "Họ và tên", class: "control-label" %>
+          <%= f.text_field :name, class: "form-control",
           disabled: is_disabled_field?(f.object, :name) %>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group label-floating">
-        <%= f.label :email, "Email", class: "control-label" %>
-        <%= f.email_field :email, class: "form-control",
+      <div class="col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :email, "Email", class: "control-label" %>
+          <%= f.email_field :email, class: "form-control",
           disabled: is_disabled_field?(f.object, :email) %>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <div class="form-group label-floating">
-        <%= f.label :gender, "Giới tính", class: "control-label" %>
-        <%= f.select :gender, user_form.genders, {}, class: "form-control",
+      <div class="col-md-6">
+        <div class="form-group label-floating">
+          <%= f.label :gender, "Giới tính", class: "control-label" %>
+          <%= f.select :gender, user_form.genders, {}, class: "form-control",
           disabled: is_disabled_field?(f.object, :gender) %>
+        </div>
       </div>
-    </div>
-    <div class="col-md-2">
-      <div class="form-group label-floating">
-        <%# f.label :birthday, "", class: "control-label" %>
-        <%= f.text_field :birthday, class: "form-control date-picker",
+      <div class="col-md-6">
+        <div class="form-group label-floating">
+          <%= f.label :blood_type, "Nhóm máu", class: "control-label" %>
+          <%= f.select :blood_type, user_form.blood_types, {}, class: "form-control",
+          disabled: is_disabled_field?(f.object, :blood_type) %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group label-floating">
+          <%# f.label :birthday, "", class: "control-label" %>
+          <%= f.text_field :birthday, class: "form-control date-picker",
           disabled: is_disabled_field?(f.object, :birthday), placeholder: "Ngày sinh" %>
+        </div>
       </div>
-    </div>
-    <div class="col-md-2">
-      <div class="form-group label-floating">
-        <%= f.label :id_number, "Số CMND", class: "control-label" %>
-        <%= f.text_field :id_number, class: "form-control",
+      <div class="col-md-6">
+        <div class="form-group label-floating">
+          <%= f.label :id_number, "Số CMND", class: "control-label" %>
+          <%= f.text_field :id_number, class: "form-control",
           disabled: is_disabled_field?(f.object, :id_number) %>
+        </div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group label-floating">
-        <%= f.label :phone_number, "Số điện thoại", class: "control-label" %>
-        <%= f.text_field :phone_number, class: "form-control",
+      <div class="col-md-6">
+        <div class="form-group label-floating">
+          <%= f.label :phone_number, "Số điện thoại", class: "control-label" %>
+          <%= f.text_field :phone_number, class: "form-control",
           disabled: is_disabled_field?(f.object, :phone_number) %>
+        </div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group label-floating">
-        <%= f.label :phone_number_2, "Số điện thoại 2", class: "control-label" %>
-        <%= f.text_field :phone_number_2, class: "form-control",
+      <div class="col-md-6">
+        <div class="form-group label-floating">
+          <%= f.label :phone_number_2, "Số điện thoại 2", class: "control-label" %>
+          <%= f.text_field :phone_number_2, class: "form-control",
           disabled: is_disabled_field?(f.object, :phone_number_2) %>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group label-floating">
-        <%= f.label :address, "Địa chỉ", class: "control-label" %>
-        <%= f.text_field :address, class: "form-control lp-input select-on-focus user-address",
+      <div class="col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :address, "Địa chỉ", class: "control-label" %>
+          <%= f.text_field :address, class: "form-control lp-input select-on-focus user-address",
           disabled: is_disabled_field?(f.object, :address) %>
           <span class="form-control-addon toggle-maps">
             <i class="material-icons">my_location</i>
           </span>
-        <%= f.hidden_field :lat, class: "lp-lat" %>
-        <%= f.hidden_field :lon, class: "lp-lon" %>
+          <%= f.hidden_field :lat, class: "lp-lat" %>
+          <%= f.hidden_field :lon, class: "lp-lon" %>
+        </div>
       </div>
-    </div>
-    <div class="col-md-12 maps hidden">
-      <div class="col-md-12 location-picker"></div>
-    </div>
+      <div class="col-md-12 maps hidden">
+        <div class="col-md-12 location-picker"></div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :facebook_account, "Tên đăng nhập Facebook", class: "control-label" %>
+          <%= f.text_field :facebook_account, class: "form-control",
+          disabled: is_disabled_field?(f.object, :facebook_account) %>
+        </div>
+      </div>
+    </fieldset>
   </div>
-  <div class="row">
-    <div class="col-md-2">
-      <div class="form-group label-floating">
-        <%= f.label :blood_type, "Nhóm máu", class: "control-label" %>
-        <%= f.select :blood_type, user_form.blood_types, {}, class: "form-control",
-          disabled: is_disabled_field?(f.object, :blood_type) %>
-      </div>
-    </div>
-    <%= f.fields_for :histories do |field| %>
-      <% unless field.object.persisted? %>
-        <div class="col-md-3">
-          <div class="form-group label-floating donation-type-wrapper">
-            <%= field.label :donation_type, "Hình thức hiến", class: "control-label" %>
-            <div class="donation-types">
-              <% History.donation_types.each do |type, val| %>
-                <label class="donation-type-<%= type %>">
-                  <%= field.radio_button :donation_type, type, checked: val == 0 %>
-                  <%= t "histories.donation_types.#{type}" %>
-                </label>
-              <% end %>
+  <%= f.fields_for :histories do |field| %>
+    <% unless field.object.persisted? %>
+      <div class="col-md-6 col-sm-12">
+        <fieldset class="gr-fields">
+          <legend class="gr-subscription">2. Thông tin người nhận</legend>
+          <div class="col-md-12">
+            <div class="form-group label-floating">
+              <%= field.label :patient_name, "Họ và tên", class: "control-label" %>
+              <%= field.text_field :patient_name, class: "form-control" %>
             </div>
           </div>
-        </div>
-        <div class="col-md-2 platelet-count hidden">
-          <div class="form-group label-floating donation-type-wrapper">
-            <%= field.label :platelet_count, "Chỉ số tiểu cầu", class: "control-label" %>
-            <%= field.text_field :platelet_count, class: "form-control history-platelet-count", disabled: true %>
+          <div class="col-md-4">
+            <div class="form-group label-floating">
+              <%= field.label :patient_age, "Tuổi", class: "control-label" %>
+              <%= field.text_field :patient_age, class: "form-control" %>
+            </div>
           </div>
-        </div>
-        <div class="col-md-2 clear-both">
-          <div class="form-group label-floating">
-            <%= field.label :date, "Ngày", class: "control-label" %>
-            <%= field.text_field :date, class: "form-control #{current_user.admin? ? "date-picker" : nil}",
+          <div class="col-md-8">
+            <div class="form-group label-floating">
+              <%= field.label :patient_phone_number, "Số điện thoại", class: "control-label" %>
+              <%= field.text_field :patient_phone_number, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group label-floating">
+              <%= field.label :patient_address, "Địa chỉ liên lạc", class: "control-label" %>
+              <%= field.text_field :patient_address, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group label-floating">
+              <%= field.label :patient_pathological, "Bệnh lý", class: "control-label" %>
+              <%= field.text_area :patient_pathological, class: "form-control autosize", rows: 5 %>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group label-floating">
+              <%= field.label :patient_description, "Ghi chú", class: "control-label" %>
+              <%= field.text_area :patient_description, class: "form-control autosize", rows: 4 %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <fieldset class="gr-fields">
+          <legend class="gr-subscription">3. Thông tin hiến máu</legend>
+          <div class="col-md-4">
+            <div class="form-group label-floating">
+              <%= label_tag :admin_name, "Người nhập thông tin", class: "control-label" %>
+              <%= text_field_tag :admin_name, current_user.try(:name), class: "form-control", readonly: true %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group label-floating">
+              <%= field.label :referer, "Người gọi", class: "control-label" %>
+              <%= field.text_field :referer, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group label-floating">
+              <%= field.label :date, "Ngày hiến", class: "control-label" %>
+              <%= field.text_field :date, class: "form-control #{current_user.admin? ? "date-picker" : nil}",
               value: Date.current, readonly: current_user.admin? ? false : true %>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group label-floating">
-            <%= field.label :place_id, "Địa điểm", class: "control-label" %>
-            <%= field.select :place_id, history_form.places, {}, class: "form-control" %>
+          <div class="col-md-6">
+            <div class="form-group label-floating">
+              <%= field.label :place_id, "Địa điểm", class: "control-label" %>
+              <%= field.select :place_id, history_form.places, {}, class: "form-control" %>
+            </div>
           </div>
-        </div>
-      <% end %>
+          <% unless field.object.persisted? %>
+            <div class="col-md-4">
+              <div class="form-group label-floating donation-type-wrapper">
+                <%= field.label :donation_type, "Hình thức hiến", class: "control-label" %>
+                <div class="donation-types">
+                  <% History.donation_types.each do |type, val| %>
+                  <label class="donation-type-<%= type %>">
+                    <%= field.radio_button :donation_type, type, checked: val == 0 %>
+                    <%= t "histories.donation_types.#{type}" %>
+                  </label>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 platelet-count hidden">
+              <div class="form-group label-floating donation-type-wrapper">
+                <%= field.label :platelet_count, "Chỉ số tiểu cầu", class: "control-label" %>
+                <%= field.text_field :platelet_count, class: "form-control history-platelet-count", disabled: true %>
+              </div>
+            </div>
+          <% end %>
+        </fieldset>
+      </div>
     <% end %>
-  </div>
+  <% end %>
+
   <div class="row">
     <div class="col-md-12">
       <%= f.button "Lưu", class: "btn btn-primary pull-right" %>
@@ -128,8 +194,10 @@
 
 <%= content_for :specific_page_js do %>
   <%= javascript_include_tag "locationpicker/locationpicker.jquery.min.js" %>
+  <%= javascript_include_tag "autosize.min.js" %>
   <script type="text/javascript">
     <%= render "shared/date_picker.js" %>
     <%= render "shared/location_picker.js" %>
+    <%= render "shared/auto_size.js" %>
   </script>
 <% end %>

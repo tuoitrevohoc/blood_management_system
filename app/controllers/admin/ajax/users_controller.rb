@@ -12,7 +12,7 @@ class Admin::Ajax::UsersController < Admin::BaseController
 
   private
   def load_user
-    @user = User.includes(:histories).find_by id: params[:id]
+    @user = User.find_by id: params[:id]
     @user.histories.build
   end
 

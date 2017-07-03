@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609073409) do
+ActiveRecord::Schema.define(version: 20170703141256) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -80,11 +80,19 @@ ActiveRecord::Schema.define(version: 20170609073409) do
     t.integer  "place_id"
     t.date     "date"
     t.integer  "admin_id"
-    t.boolean  "is_verified",    default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "donation_type",  default: 0
+    t.boolean  "is_verified",          default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "other_volume"
+    t.integer  "donation_type",        default: 0
     t.integer  "platelet_count"
+    t.string   "referer"
+    t.string   "patient_name"
+    t.integer  "patient_age"
+    t.string   "patient_pathological"
+    t.string   "patient_phone_number"
+    t.string   "patient_address"
+    t.string   "patient_description"
     t.index ["date"], name: "index_histories_on_date", using: :btree
     t.index ["place_id"], name: "index_histories_on_place_id", using: :btree
     t.index ["user_id", "place_id", "date"], name: "index_histories_on_user_id_and_place_id_and_date", unique: true, using: :btree
@@ -113,8 +121,8 @@ ActiveRecord::Schema.define(version: 20170609073409) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                             default: "",   null: false
-    t.string   "encrypted_password",                default: "",   null: false
+    t.string   "email",                             default: ""
+    t.string   "encrypted_password",                default: "",    null: false
     t.string   "name"
     t.string   "address"
     t.integer  "gender",                            default: 0
@@ -129,7 +137,7 @@ ActiveRecord::Schema.define(version: 20170609073409) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,    null: false
+    t.integer  "sign_in_count",                     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -138,15 +146,16 @@ ActiveRecord::Schema.define(version: 20170609073409) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.boolean  "is_public_profile",                 default: true
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "is_public_profile",                 default: false
     t.boolean  "is_volunteer",                      default: true
     t.date     "birthday"
     t.float    "lat",                    limit: 24
     t.float    "lon",                    limit: 24
     t.string   "formatted_address"
     t.string   "phone_number_2"
+    t.string   "facebook_account"
     t.index ["address"], name: "index_users_on_address", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
