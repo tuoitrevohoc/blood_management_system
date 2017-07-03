@@ -156,8 +156,9 @@
           <div class="col-md-6">
             <div class="form-group label-floating">
               <%= field.label :place_id, "Địa điểm", class: "control-label" %>
-              <%= field.select :place_id, history_form.places, {}, class: "form-control" %>
+              <%= field.select :place_id, history_form.places, {}, class: "form-control select2", id: "user-history-place-id" %>
             </div>
+            <p><small>Không tìm thấy địa điểm? <a href="#" class='register-place'>Thêm địa điểm mới</a></small></p>
           </div>
           <% unless field.object.persisted? %>
             <div class="col-md-4">
@@ -190,6 +191,10 @@
       <%= f.button "Lưu", class: "btn btn-primary pull-right" %>
     </div>
   </div>
+<% end %>
+
+<%= content_for :modal_bottom_page do %>
+  <div class="modal-wrapper"></div>
 <% end %>
 
 <%= content_for :specific_page_js do %>

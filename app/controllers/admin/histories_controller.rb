@@ -69,6 +69,7 @@ class Admin::HistoriesController < Admin::BaseController
     params[:user].merge! password: password if password && !@user.encrypted_password?
     params[:user][:histories_attributes][attribute_id].merge! date: date,
       admin_id: current_user.id, is_verified: true
+    params[:user].merge! email: nil if params[:user][:email].present?
     params.require(:user).permit :name, :email, :gender, :birthday, :id_number,
       :phone_number, :address, :blood_type, :password, :lat, :lon, :facebook_account,
       histories_attributes: [

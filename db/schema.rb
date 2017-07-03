@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703141256) do
+ActiveRecord::Schema.define(version: 20170707061456) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170703141256) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                             default: ""
+    t.string   "email"
     t.string   "encrypted_password",                default: "",    null: false
     t.string   "name"
     t.string   "address"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20170703141256) do
     t.string   "facebook_account"
     t.index ["address"], name: "index_users_on_address", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["lat", "lon"], name: "index_users_on_lat_and_lon", using: :btree
     t.index ["lat"], name: "index_users_on_lat", using: :btree
     t.index ["lon"], name: "index_users_on_lon", using: :btree

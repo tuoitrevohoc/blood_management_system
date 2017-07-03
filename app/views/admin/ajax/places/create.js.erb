@@ -5,7 +5,16 @@
   var opt_text = "<%= @place.name + ' - ' + @place.address %>";
   var opt_value = <%= @place.id %>;
   var option = new Option(opt_text, opt_value);
-  $("#event-place-id").append(option);
-  $("#event-place-id").val(opt_value).trigger("change");
+  var select2_id = "";
+  switch (true) {
+    case ($("form.new_event").length > 0) || ($("form.edit_event").length > 0):
+      select2_id = "#event-place-id";
+      break;
+    case ($("form.new_user").length > 0):
+      select2_id = "#user-history-place-id";
+      break;
+  }
+  $(select2_id).append(option);
+  $(select2_id).val(opt_value).trigger("change");
   $("#register-place-modal").modal("hide");
 <% end %>
