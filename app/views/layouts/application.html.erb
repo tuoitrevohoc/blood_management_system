@@ -19,6 +19,7 @@
     <%= render "layouts/header" %>
     <%= yield %>
     <%= render "layouts/footer" %>
+    <%= content_for :modal_bottom_page %>
 
     <%= javascript_include_tag "application" %>
     <script type="text/javascript">
