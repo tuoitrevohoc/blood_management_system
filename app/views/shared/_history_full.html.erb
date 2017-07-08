@@ -1,0 +1,81 @@
+<div id="modal-history-full" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Thông tin hiến máu của <%= history.user_name %></h4>
+      </div>
+      <div class="modal-body">
+        <table class="table history-table-detail">
+          <thead>
+            <tr>
+              <td colspan="2">Thông tin đợt hiến</td>
+              <% if history.has_patient? %>
+                <td colspan="2">Thông tin người nhận</td>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ngày hiến:</td>
+              <td><%= history.date %></td>
+              <% if history.has_patient? %>
+                <td>Họ và tên:</td>
+                <td><%= history.patient_name %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td>Cơ sở tiếp nhận:</td>
+              <td><%= history.place_name %></td>
+              <% if history.has_patient? %>
+                <td>Tuổi:</td>
+                <td><%= history.patient_age %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td>Hình thức hiến:</td>
+              <td><%= history.display_donation_type %></td>
+              <% if history.has_patient? %>
+                <td>Số điện thoại:</td>
+                <td><%= history.patient_phone_number %></td>
+              <% end %>
+            </tr>
+            <% if history.platelets? %>
+              <tr>
+                <td>Chỉ số tiểu cầu:</td>
+                <td><%= history.platelet_count %></td>
+                <% if history.has_patient? %>
+                  <td>Địa chỉ:</td>
+                  <td><%= history.patient_address %></td>
+                <% end %>
+              </tr>
+            <% end %>
+            <tr>
+              <td>Người nhập thông tin:</td>
+              <td><%= history.admin_name %></td>
+              <% if history.has_patient? %>
+                <td rowspan="2">Bệnh lý:</td>
+                <td rowspan="2"><%= simple_format history.patient_pathological %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td>Người giới thiệu:</td>
+              <td><%= history.referer %></td>
+            </tr>
+            <tr>
+              <td>Thời gian nhập thông tin:</td>
+              <td><%= l history.created_at, format: :full %></td>
+              <% if history.has_patient? %>
+                <td>Ghi chú:</td>
+                <td><%= history.patient_description %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

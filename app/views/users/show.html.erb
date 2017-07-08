@@ -21,3 +21,9 @@
     </div>
   </div>
 </section>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "show.js" %>
+  </script>
+<% end %>

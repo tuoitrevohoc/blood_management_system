@@ -1,0 +1,6 @@
+$(function() {
+  $("tr.simple-history").on("click", ".show-history", function(e) {
+    e.preventDefault();
+    $.get($(this).attr("href"), null, null, "script");
+  })
+});

@@ -40,4 +40,16 @@ module ApplicationHelper
     phone_number = phone_number.gsub(/[" ", ".", "_"]/, "").gsub("-", "").to_i
     number_to_phone phone_number, delimiter: " "
   end
+
+  def crawl_facebook_info username
+    web_contents = open("https://www.facebook.com/#{username}") {|f| f.read}
+    html_content = Nokogiri::HTML.parse(web_contents)
+    avatar_tag = html_content.css("img.profilePic.img").first
+    cover_name = html_content.css("span#fb-timeline-cover-name").first
+    {
+      cover_name: cover_name.children.text,
+      avatar_src: avatar_tag.attributes["src"].value
+    }
+  rescue
+  end
 end

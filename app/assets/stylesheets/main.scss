@@ -84,6 +84,45 @@ label.boolean.control-label.checkbox.toggle-button {
   td {
     padding: 10px 20px;
   }
+  span.fb-cover-name {
+    font-weight: bold;
+  }
+}
+
+.history-table-detail {
+  border: 1px solid #cacaca;
+  width: 100%;
+  thead {
+    font-weight: bold;
+    td {
+      text-align: center;
+      background-color: #aebec1;
+    }
+    td:nth-child(2n) {
+      border-left: 1px solid #ddd;
+    }
+  }
+  tbody {
+    tr {
+      border: 1px solid #cacaca;
+      td:first-child {
+        background-color: #d1e5e8;
+        text-align: right;
+        width: 25%;
+      }
+      td:nth-child(2n+3) {
+        background-color: #d1e5e8;
+        text-align: right;
+        width: 15%;
+      }
+    }
+    td {
+      padding: 10px 20px;
+    }
+    span.fb-cover-name {
+      font-weight: bold;
+    }
+  }
 }
 
 .normal-text,

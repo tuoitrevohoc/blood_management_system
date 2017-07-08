@@ -35,11 +35,22 @@
       </tr>
       <tr>
         <td>Số điện thoại:</td>
-        <td><%= user.phone_number %></td>
+        <td><%= user.phone_number %> <%= " - #{user.phone_number_2}" if user.phone_number_2.present? %></td>
       </tr>
       <tr>
         <td>Địa chỉ:</td>
         <td><%= user.address %></td>
+      </tr>
+      <tr>
+        <td>Địa chỉ Facebook:</td>
+        <td>
+          <% if user.facebook_account.present? %>
+            <%= link_to "https://www.facebook.com/#{user.facebook_account}" do %>
+              <%= user.fb_avatar %>
+              <span class="fb-cover-name"><%= user.fb_cover_name %></span>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
       <tr>
         <td>Tham gia từ ngày:</td>
