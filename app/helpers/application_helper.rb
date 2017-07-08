@@ -52,4 +52,8 @@ module ApplicationHelper
     }
   rescue
   end
+
+  def is_searching_patient?
+    params[:search_by] == Settings.histories.search_items.patient
+  end
 end

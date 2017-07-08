@@ -16,6 +16,18 @@ $(function() {
 
   $(".date-picker").on("dp.change", submit_via_ajax);
 
+  $(".rd-search-by").on("change", function() {
+    var name = "q[" + $(this).val() + "]";
+    var id = "q_" + $(this).val();
+    $(".search-key").attr("name", name);
+    $(".search-key").attr("id", id);
+    $("#admin-search").submit();
+  });
+
+  <% if is_searching_patient? %>
+    $("a[rel='tooltip']").tooltip("show");
+  <% end %>
+
   function submit_via_ajax() {
     var form = $("#admin-search");
     var submiting = $.get(form.attr("action"), form.serialize(), null, "script");

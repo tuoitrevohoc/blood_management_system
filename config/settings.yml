@@ -25,3 +25,7 @@ image_cloudinary:
   file: "default_article.png"
   version: "v1494760421"
 common_blood_type_regex: !ruby/regexp /\A(ab|a|b|o)/
+histories:
+  search_items:
+    donator: user_name_or_place_name_cont
+    patient: patient_name_cont
