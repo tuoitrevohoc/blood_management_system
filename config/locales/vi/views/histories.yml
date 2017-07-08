@@ -3,3 +3,9 @@ vi:
     donation_types:
       platelets: Hiến tiểu cầu
       whole_blood: Hiến toàn phần
+  admin:
+    histories:
+      index:
+        search_by:
+          donator: Người hiến
+          patient: Người nhận

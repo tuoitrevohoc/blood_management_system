@@ -9,11 +9,17 @@
         <% end %>
         <%= f.text_field :date_gteq, class: "form-control date-picker dp-1", placeholder: "Từ ngày...", title: "Từ ngày..." %>
         <%= f.text_field :date_lteq, class: "form-control date-picker dp-2", placeholder: "Đến ngày...", title: "Đến ngày..." %>
-        <%= f.search_field :user_name_or_place_name_cont, class: "form-control search-key",
+        <%= f.search_field @default_search_by, class: "form-control search-key",
           placeholder: "Tìm kiếm...", title: "Tìm kiếm theo tên người dùng hoặc tên địa cơ sở tiếp nhận" %>
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
           <i class="material-icons">search</i><div class="ripple-container"></div>
         </button>
+        <% Settings.histories.search_items.each_with_index do |item, i| %>
+          <label class="search-criteria">
+            <%= radio_button_tag :search_by, item[1], item[1].to_s == @default_search_by, class: "rd-search-by" %>
+            <%= t ".search_by.#{item[0]}" %>
+          </label>
+        <% end %>
       <% end %>
     </div>
   </div>

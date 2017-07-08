@@ -470,3 +470,15 @@ table.stats {
     padding-right: 10px;
   }
 }
+
+.search-criteria {
+  margin-left: 10px;
+}
+
+.yellow-tooltip + .tooltip > .tooltip-inner {
+  background-color: rgba(255, 247, 0, 0.8);
+}
+
+.yellow-tooltip + .tooltip > .tooltip-arrow {
+  border-bottom-color: rgba(255, 247, 0, 0.8);
+}

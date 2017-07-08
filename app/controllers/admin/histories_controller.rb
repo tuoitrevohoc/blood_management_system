@@ -5,6 +5,7 @@ class Admin::HistoriesController < Admin::BaseController
   def index
     @q = History.includes(:user, :place, :admin).newest.ransack params[:q]
     @histories = @q.result.page(params[:page]).per 10
+    @default_search_by = params[:search_by] || Settings.histories.search_items.donator
   end
 
   def new

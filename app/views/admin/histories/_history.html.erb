@@ -1,6 +1,13 @@
 <tr>
   <td><%= history.id %></td>
-  <td><%= link_to history.user_name, history.user, target: :_blank %></td>
+  <td>
+    <% if is_searching_patient? && history.patient_name.present? %>
+      <%= link_to history.user_name, history.user, target: :_blank, rel: "tooltip", class: "yellow-tooltip",
+        title: "Bệnh nhân: #{history.patient_name}", data: {toggle: "tooltip", placement: "bottom"} %>
+    <% else %>
+      <%= link_to history.user_name, history.user, target: :_blank %>
+    <% end %>
+    </td>
   <td>
     <%= link_to [:admin, :histories, {q: {place_id_eq: history.place_id}}],
       title: history.place_address do %>
