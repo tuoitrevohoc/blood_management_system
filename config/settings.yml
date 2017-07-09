@@ -29,3 +29,6 @@ histories:
   search_items:
     donator: user_name_or_place_name_cont
     patient: patient_name_cont
+fb_search_path:
+  people: "https://www.facebook.com/search/people/?q="
+  home: "https://www.facebook.com"

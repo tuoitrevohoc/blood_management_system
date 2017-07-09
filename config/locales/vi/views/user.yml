@@ -21,3 +21,15 @@ vi:
       ab_neg: Nhóm AB-
       o_pos: Nhóm O+
       o_neg: Nhóm O-
+    profile_form: &profile_form
+      name: "Họ và tên"
+      address: "Địa chỉ"
+      gender: "Giới tính"
+      id_number: "CMND"
+      phone_number: "Số ĐT 1"
+      blood_type: "Nhóm máu"
+      btn_cancel: "Trở lại"
+      btn_submit: "Lưu"
+      btn_avatar: "Đổi avatar"
+      facebook_account: "Tên đăng nhập Facebook"
+      phone_number_2: "Số ĐT 2"

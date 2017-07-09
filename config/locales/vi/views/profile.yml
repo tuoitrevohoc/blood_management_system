@@ -10,15 +10,17 @@ vi:
       address: "Địa chỉ"
       gender: "Giới tính"
       id_number: "CMND"
-      phone_number: "SĐT"
+      phone_number: "Số ĐT 1"
       blood_type: "Nhóm máu"
       btn_cancel: "Trở lại"
       btn_submit: "Lưu"
       btn_avatar: "Đổi avatar"
+      facebook_account: "Tên đăng nhập Facebook"
+      phone_number_2: "Số ĐT 2"
     account_form:
       email: "Email"
       password: "Mật khẩu"
-      password_confirmation: "Nhập lại mật khẩu"
+      password_confirmation: "Xác nhận lại mật khẩu"
       current_password: Mật khẩu hiện tại
       btn_submit: Lưu
     settings_form:

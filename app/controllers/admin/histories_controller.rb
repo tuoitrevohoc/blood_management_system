@@ -71,8 +71,8 @@ class Admin::HistoriesController < Admin::BaseController
     params[:user][:histories_attributes][attribute_id].merge! date: date,
       admin_id: current_user.id, is_verified: true
     params[:user].merge! email: nil if params[:user][:email].present?
-    params.require(:user).permit :name, :email, :gender, :birthday, :id_number,
-      :phone_number, :address, :blood_type, :password, :lat, :lon, :facebook_account,
+    params.require(:user).permit :name, :email, :gender, :birthday, :id_number, :phone_number,
+      :phone_number_2, :address, :blood_type, :password, :lat, :lon, :facebook_account,
       histories_attributes: [
         :user_id, :date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified, :referer
       ]

@@ -6,6 +6,7 @@ class ProfilesController < BaseController
   def show
     @user = current_user.decorate
     @histories = current_user.histories.includes(:place).newest
+    @fb_info = crawl_facebook_info @user.facebook_account
   end
 
   def edit
@@ -28,7 +29,7 @@ class ProfilesController < BaseController
     current_prams = params.require(:user).permit :name, :gender, :blood_type, :id_number,
       :phone_number, :address, :avatar, :email, :password, :password_confirmation,
       :is_suscribed_email, :is_public_profile, :is_volunteer, :formatted_address,
-      :lat, :lon
+      :lat, :lon, :phone_number_2, :facebook_account
     geo_data = [:formatted_address, :lat, :lon]
     geo_data.each do |attribute|
       current_prams.reject! {|key, value| value.blank?}

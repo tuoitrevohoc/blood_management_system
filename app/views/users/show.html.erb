@@ -8,7 +8,8 @@
           <div class="col-md-8">
             <div class="courseArchive_sidebar right_sidebar">
               <div class="single_sidebar">
-                <%= render "shared/single_profile", user: @user.decorate, histories: @histories %>
+                <%= render "shared/single_profile", user: @user.decorate,
+                  histories: @histories, fb_info: @fb_info %>
               </div>
               <div class="single_sidebar">
                 <%= render "shared/user_histories", user: @user, histories: @histories %>
