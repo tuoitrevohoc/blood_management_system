@@ -1,0 +1,32 @@
+<section class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="courseArchive_content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="error-messages-container">
+                <%= render "shared/error_messages", object: @user %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12 col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <%= t ".header.basic_info" %>
+                </div>
+                <div class="row">
+                  <div class="panel-body">
+                    <%= render "profile_form", user: @user, form: @form %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= render "shared/right_bar" %>
+    </div>
+  </div>
+</section>

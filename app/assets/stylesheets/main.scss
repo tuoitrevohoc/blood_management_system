@@ -29,9 +29,10 @@ $primary_color: rgba(151, 0, 1, 1);
 
 .avatar {
   text-align: center;
+  margin-bottom: 15px;
   img {
     max-width: 100%;
-    border: 1px solid #eee;
+    border: 1px solid #c2c2c2;
   }
   label {
     margin: 15px auto 0 auto;
@@ -43,7 +44,11 @@ $primary_color: rgba(151, 0, 1, 1);
 }
 
 .form-horizontal-group {
-  display: -webkit-box;
+  display: block;
+  min-height: 34px;
+  textarea {
+    margin-bottom: 15px;
+  }
 }
 
 .group-btns {
@@ -513,4 +518,8 @@ body {
 
 .table-contact tr td:nth-child(2) {
   padding-left: 10px;
+}
+
+.text-small {
+  font-size: 16px !important;
 }

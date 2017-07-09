@@ -42,15 +42,23 @@ module ApplicationHelper
   end
 
   def crawl_facebook_info username
-    web_contents = open("https://www.facebook.com/#{username}") {|f| f.read}
+    return unless username
+    profile_url = "#{Settings.fb_search_path.home}/#{username}"
+    web_contents = open(profile_url) {|f| f.read}
     html_content = Nokogiri::HTML.parse(web_contents)
     avatar_tag = html_content.css("img.profilePic.img").first
     cover_name = html_content.css("span#fb-timeline-cover-name").first
     {
       cover_name: cover_name.children.text,
-      avatar_src: avatar_tag.attributes["src"].value
+      avatar_src: avatar_tag.attributes["src"].value,
+      profile_url: "#{Settings.fb_search_path.home}/#{username}"
     }
   rescue
+    {
+      cover_name: username.titleize,
+      avatar_src: "",
+      profile_url: "#{Settings.fb_search_path.people}#{username}"
+    }
   end
 
   def is_searching_patient?

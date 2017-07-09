@@ -2,6 +2,13 @@
   <%= link_to user, class: "normal-text" do %>
     <%= user.name&.titleize %>&nbsp;<span class="fa fa-angle-double-right"></span>
   <% end %>
+  <% if can? :edit, user %>
+    <span class="pull-right text-small">
+      <%= link_to edit_user_path(user), class: "normal-text" do %>
+        <i class="fa fa-edit"></i>&nbsp;Sửa
+      <% end %>
+    </span>
+  <% end %>
 </h2>
 <div class="row">
   <div class="col-md-3">
@@ -45,9 +52,9 @@
         <td>Địa chỉ Facebook:</td>
         <td>
           <% if user.facebook_account.present? %>
-            <%= link_to "https://www.facebook.com/#{user.facebook_account}" do %>
-              <%= user.fb_avatar %>
-              <span class="fb-cover-name"><%= user.fb_cover_name %></span>
+            <%= link_to fb_info[:profile_url], target: :_blank do %>
+              <%= image_tag fb_info[:avatar_src], height: 48, width: 48, class: "sm-fb-pic" %>
+              <span class="fb-cover-name"><%= fb_info[:cover_name] %></span>
             <% end %>
           <% end %>
         </td>

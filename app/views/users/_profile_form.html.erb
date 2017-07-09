@@ -1,11 +1,6 @@
-<%= form_for user, url: profile_path, html: {multipart: true, class: "user-profile-form"},
-  remote: true, authenticity_token: true do |f| %>
+<%= form_for user, html: {class: "user-profile-form"} do |f| %>
   <div class="col-md-3 avatar">
     <%= image_tag @user.avatar.url, class: "image-responsive", alt: @user.name %>
-    <label class="btn btn-primary btn-sm btn-file">
-      <%= t ".btn_avatar" %> <%= f.file_field :avatar,
-        class: "btn btn-file hidden btn-change-ava" %>
-    </label>
   </div>
   <div class="col-md-9 profile-info">
     <div class="row">
@@ -74,7 +69,6 @@
 <%= content_for :specific_page_js do %>
   <%= javascript_include_tag "autosize.min.js" %>
   <script type="text/javascript">
-    <%= render "profiles/change_avatar.js" %>
     <%= render "profiles/get_location.js" %>
     <%= render "shared/auto_size.js" %>
   </script>

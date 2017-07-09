@@ -63,16 +63,4 @@ class UserDecorator < Draper::Decorator
     end
     type&.html_safe
   end
-
-  def fb_avatar
-    return if object.facebook_account.blank?
-    fb_info = crawl_facebook_info(object.facebook_account)
-    return unless fb_info
-    image_tag fb_info[:avatar_src], height: 48, width: 48, class: "sm-fb-pic"
-  end
-
-  def fb_cover_name
-    return if object.facebook_account.blank?
-    crawl_facebook_info(object.facebook_account)[:cover_name] rescue nil
-  end
 end
