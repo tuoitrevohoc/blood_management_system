@@ -1,0 +1,13 @@
+$(function() {
+  $("#btn-edit-patient-info").on("click", function(e) {
+    e.preventDefault();
+    $(".hideable").addClass("hidden");
+    $(".hidden-control").removeClass("hidden");
+  });
+
+  $(".control-cancel").on("click", function(e) {
+    e.preventDefault();
+    $(".hidden-control").addClass("hidden");
+    $(".hideable").removeClass("hidden");
+  });
+});

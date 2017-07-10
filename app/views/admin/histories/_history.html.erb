@@ -3,7 +3,7 @@
   <td>
     <% if is_searching_patient? && history.patient_name.present? %>
       <%= link_to history.user_name, history.user, target: :_blank, rel: "tooltip", class: "yellow-tooltip",
-        title: "Bệnh nhân: #{history.patient_name}", data: {toggle: "tooltip", placement: "bottom"} %>
+        title: "Bệnh nhân: #{history.patient_name}", data: {toggle: "tooltip", placement: "right"} %>
     <% else %>
       <%= link_to history.user_name, history.user, target: :_blank %>
     <% end %>
