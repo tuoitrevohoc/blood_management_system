@@ -1,2 +1,4 @@
 $(".modal-wrapper").html("<%= j render("shared/history_full", history: @history) %>");
-$("#modal-history-full").modal("show");
+$("#modal-history-full").modal({backdrop: "static", keyboard: false}).modal("show");
+
+<%= render "shared/edit_history_patient.js" %>

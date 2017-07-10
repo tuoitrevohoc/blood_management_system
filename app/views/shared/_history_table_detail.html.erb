@@ -1,0 +1,102 @@
+<div class="error-messages-container"></div>
+<%= form_for [:ajax, history], remote: true do |f| %>
+  <table class="table history-table-detail">
+    <thead>
+      <tr>
+        <td colspan="2">Thông tin đợt hiến</td>
+        <% if history.has_patient? %>
+          <td colspan="2">
+            Thông tin người nhận
+            <span class="pull-right hideable">
+              <%= link_to "#", id: "btn-edit-patient-info" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+            </span>
+            <span class="pull-right hidden hidden-control hd-ctl-btn">
+              <%= f.button class: "btn btn-xs btn-danger" do %>
+                <i class="fa fa-save"></i> Lưu
+              <% end %>
+            </span>
+            <span class="pull-right hidden hidden-control hd-ctl-btn control-cancel">
+              <%= f.button class: "btn btn-xs", type: :button do %>
+                <i class="fa fa-close"></i> Hủy
+              <% end %>
+            </span>
+          </td>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ngày hiến:</td>
+        <td><%= history.date %></td>
+        <% if history.has_patient? %>
+          <td>Họ và tên:</td>
+          <td>
+            <span class="hideable"><%= history.patient_name %></span>
+            <%= f.text_field :patient_name, class: "form-control hidden hidden-control" %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Cơ sở tiếp nhận:</td>
+        <td><%= history.place_name %></td>
+        <% if history.has_patient? %>
+          <td>Tuổi:</td>
+          <td>
+            <span class="hideable"><%= history.patient_age %></span>
+            <%= f.text_field :patient_age, class: "form-control hidden hidden-control" %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Hình thức hiến:</td>
+        <td><%= history.display_donation_type %></td>
+        <% if history.has_patient? %>
+          <td>Số điện thoại:</td>
+          <td>
+            <span class="hideable"><%= history.patient_phone_number %></span>
+            <%= f.text_field :patient_phone_number, class: "form-control hidden hidden-control" %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Chỉ số tiểu cầu:</td>
+        <td><%= history.platelet_count || "-" %></td>
+        <% if history.has_patient? %>
+          <td>Địa chỉ:</td>
+          <td>
+            <span class="hideable"><%= history.patient_address %></span>
+            <%= f.text_field :patient_address, class: "form-control hidden hidden-control" %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Người nhập thông tin:</td>
+        <td><%= history.admin_name %></td>
+        <% if history.has_patient? %>
+          <td rowspan="2">Bệnh lý:</td>
+          <td rowspan="2">
+            <span class="hideable"><%= simple_format history.patient_pathological %></span>
+            <%= f.text_area :patient_pathological, class: "form-control hidden hidden-control" %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Người giới thiệu:</td>
+        <td><%= history.referer %></td>
+      </tr>
+      <tr>
+        <td>Thời gian nhập thông tin:</td>
+        <td><%= l history.created_at, format: :full %></td>
+        <% if history.has_patient? %>
+          <td>Ghi chú:</td>
+          <td>
+            <span class="hideable"><%= history.patient_description %></span>
+            <%= f.text_field :patient_description, class: "form-control hidden hidden-control" %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

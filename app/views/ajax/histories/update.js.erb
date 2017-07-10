@@ -1,0 +1,6 @@
+<% if @history.errors.any? %>
+  $(".error-messages-container").html("<%= j render 'shared/error_messages', object: @history %>");
+<% else %>
+  $(".modal-body").html("<%= j render 'shared/history_table_detail', history: @history %>");
+<% end %>
+<%= render "shared/edit_history_patient.js" %>

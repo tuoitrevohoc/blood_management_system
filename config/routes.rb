@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :ajax do
     get "right_sidebar/events"
     get "right_sidebar/articles"
-    resources :histories, only: :show
+    resources :histories, only: [:show, :update]
   end
 
   mount Ckeditor::Engine => "/ckeditor"
