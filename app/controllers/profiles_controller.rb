@@ -29,7 +29,7 @@ class ProfilesController < BaseController
     current_prams = params.require(:user).permit :name, :gender, :blood_type, :id_number,
       :phone_number, :address, :avatar, :email, :password, :password_confirmation,
       :is_suscribed_email, :is_public_profile, :is_volunteer, :formatted_address,
-      :lat, :lon, :phone_number_2, :facebook_account
+      :lat, :lon, :phone_number_2, :facebook_account, :place_of_birth
     geo_data = [:formatted_address, :lat, :lon]
     geo_data.each do |attribute|
       current_prams.reject! {|key, value| value.blank?}
