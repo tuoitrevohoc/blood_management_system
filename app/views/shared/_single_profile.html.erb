@@ -29,6 +29,10 @@
         <td><%= l user.birthday, format: :default_date if user.birthday? %></td>
       </tr>
       <tr>
+        <td>Số CMND:</td>
+        <td><%= user.id_number %></td>
+      </tr>
+      <tr>
         <td>Giới tính:</td>
         <td><%= user.display_gender %></td>
       </tr>
@@ -47,6 +51,10 @@
       <tr>
         <td>Địa chỉ:</td>
         <td><%= user.address %></td>
+      </tr>
+      <tr>
+        <td>Nguyên quán:</td>
+        <td><%= user.place_of_birth %></td>
       </tr>
       <tr>
         <td>Địa chỉ Facebook:</td>

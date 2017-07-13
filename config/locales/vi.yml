@@ -10,7 +10,7 @@ vi:
       article_timestamp: "%I:%M %p, %d/%m/%Y"
       default_date: *default_date
       full: "%d/%m/%Y %H:%M:%S"
-  base_title: Hệ thống quản lý hiến máu TP Đà Nẵng
+  base_title: "CLB Máu Nóng Hiểu Và Thương - Chung một tấm lòng HIỂU VÀ THƯƠNG"
   layouts:
     header:
       home: Trang Chủ

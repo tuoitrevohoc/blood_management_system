@@ -3,7 +3,10 @@
 <section id="courseArchive">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-md-offset-2">
+      <div class="col-md-4">
+        <%= image_tag "logo_600.png", class: "img-responsive page-logo" %>
+      </div>
+      <div class="col-md-4">
         <h2 class="text-center">Đăng Nhập</h2>
         <%= form_for resource, as: resource_name, url: session_path(resource_name),
           html: {class: "wp-form"} do |f| %>
