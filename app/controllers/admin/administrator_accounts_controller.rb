@@ -10,6 +10,10 @@ class Admin::AdministratorAccountsController < Admin::BaseController
     @q = User.all.ransack params[:q]
     @users = @q.result.page(params[:page]).per 10
     @form = Support::UserForm.new
+    @stats = {
+      total: @q.result.size,
+      per_page: @users.size < 10 ? @users.size : 10
+    }
   end
 
   def edit

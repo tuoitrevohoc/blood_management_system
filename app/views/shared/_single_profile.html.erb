@@ -71,6 +71,12 @@
         <td>Tham gia từ ngày:</td>
         <td><%= l user.created_at.to_date, format: :default_date %></td>
       </tr>
+      <% if current_user.admin? %>
+        <tr>
+          <td>Ghi chú:</td>
+          <td><%= user.description %></td>
+        </tr>
+      <% end %>
     </table>
   </div>
 </div>

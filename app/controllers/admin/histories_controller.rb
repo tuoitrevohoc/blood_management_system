@@ -6,6 +6,10 @@ class Admin::HistoriesController < Admin::BaseController
     @q = History.includes(:user, :place, :admin).newest.ransack params[:q]
     @histories = @q.result.page(params[:page]).per 10
     @default_search_by = params[:search_by] || Settings.histories.search_items.donator
+    @stats = {
+      histories: @q.result.size,
+      users: @q.result.pluck(:user_id).uniq.length
+    }
   end
 
   def new
@@ -18,8 +22,12 @@ class Admin::HistoriesController < Admin::BaseController
     @user.skip_confirmation_notification!
     if @user.update(user_params) && update_patient_info(@user)
       @user.signed_up_by_admin!
-      token = @user.confirmation_token
-      UsersMailer.confirmation_instructions(@user, token).deliver if @user.email.present?
+      if @user.email.present?
+        token = @user.confirmation_token
+        UsersMailer.confirmation_instructions(@user, token).deliver
+      else
+        @user.skip_confirmation!
+      end
       flash[:success] = "Đã tạo tài khoản và thêm 1 lịch sử hiến máu cho #{@user.name&.titleize}."
       redirect_to new_admin_history_path
     else
@@ -71,7 +79,7 @@ class Admin::HistoriesController < Admin::BaseController
     params[:user][:histories_attributes][attribute_id].merge! date: date,
       admin_id: current_user.id, is_verified: true
     params[:user].merge! email: nil if params[:user][:email].present?
-    params.require(:user).permit :name, :email, :gender, :birthday, :id_number, :phone_number,
+    params.require(:user).permit :name, :email, :gender, :birthday, :id_number, :phone_number, :description,
       :phone_number_2, :address, :blood_type, :password, :lat, :lon, :facebook_account, :place_of_birth,
       histories_attributes: [
         :user_id, :date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified, :referer

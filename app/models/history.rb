@@ -17,7 +17,7 @@ class History < ApplicationRecord
 
   ransacker :donation_type, formater: proc {|type| donation_types[type]}
 
-  scope :newest, -> {order date: :desc}
+  scope :newest, -> {reorder date: :desc, created_at: :desc}
 
   def next_donation_due_date
     self.date + Settings.minimum_frequency.try(self.donation_type).months

@@ -24,6 +24,11 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-md-12 stats-row">
+      <%= render "stats", stats: @stats %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <div class="card" id="search-results">
         <%= render "table_result", q: @q, histories: @histories %>
