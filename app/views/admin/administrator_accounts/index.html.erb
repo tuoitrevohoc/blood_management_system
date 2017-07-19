@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row filter-row">
     <div class="col-md-12">
+      <div class="user-stats stats-row">
+        <%= render "stats", stats: @stats %>
+      </div>
       <%= search_form_for @q, url: admin_administrator_accounts_path, method: :get, id: "admin-search",
         class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
         <% if params[:q] %>

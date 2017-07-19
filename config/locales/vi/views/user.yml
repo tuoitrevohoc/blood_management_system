@@ -34,3 +34,7 @@ vi:
       facebook_account: "Tên đăng nhập Facebook"
       phone_number_2: "Số ĐT 2"
       place_of_birth: "Nguyên quán"
+      description: "Ghi chú"
+    edit:
+      header:
+        basic_info: "Chỉnh sửa thông tin của %{user}"

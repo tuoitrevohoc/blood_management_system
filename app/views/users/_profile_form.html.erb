@@ -53,6 +53,14 @@
           <%= f.text_field :place_of_birth, class: "form-control" %>
         </div>
       </div>
+      <% if current_user.admin? %>
+        <div class="form-group form-horizontal-group">
+          <%= f.label :description, t(".description"), class: "col-md-3 label-control" %>
+          <div class="col-md-9">
+            <%= f.text_field :description, class: "form-control" %>
+          </div>
+        </div>
+      <% end %>
       <div class="form-group form-horizontal-group">
         <%= f.label :address, t(".address"), class: "col-md-3 label-control" %>
         <div class="col-md-9">

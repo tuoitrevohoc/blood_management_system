@@ -482,3 +482,17 @@ table.stats {
 .yellow-tooltip + .tooltip > .tooltip-arrow {
   border-bottom-color: rgba(255, 247, 0, 0.7);
 }
+
+.user-stats {
+  display: inline-block;
+  p {
+    height: 41px;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+    span {
+      font-weight: bold;
+      margin: 0 5px;
+    }
+  }
+}
