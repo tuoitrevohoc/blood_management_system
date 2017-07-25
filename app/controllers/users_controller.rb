@@ -32,6 +32,6 @@ class UsersController < BaseController
 
   def user_params
     params.require(:user).permit :name, :gender, :blood_type, :id_number, :phone_number, :description,
-      :address, :formatted_address, :lat, :lon,  :phone_number_2, :facebook_account, :place_of_birth
+      :address, :formatted_address, :lat, :lon,  :phone_number_2, :facebook_account, :place_of_birth, :birthday
   end
 end
