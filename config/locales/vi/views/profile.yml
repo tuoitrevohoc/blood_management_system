@@ -25,6 +25,7 @@ vi:
       password_confirmation: "Xác nhận lại mật khẩu"
       current_password: Mật khẩu hiện tại
       btn_submit: Lưu
+      birthday: "Ngày sinh"
     settings_form:
       is_suscribed_email: "Nhận thông báo qua email"
       is_public_profile: "Cho phép tìm kiếm thông tin"

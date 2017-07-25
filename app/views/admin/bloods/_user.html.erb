@@ -8,5 +8,10 @@
       <%= user.status_display %>
     </span>
   </td>
-  <td><%= format_phone_number user.phone_number %></td>
+  <td class="address-truncate" title="<%= "Địa chỉ: #{user.address}\r\nNguyên quán: #{user.place_of_birth}" %>">
+    <%= user.address || user.place_of_birth %>
+  </td>
+  <td title="<%= user.phone_number %> <%= " - #{user.phone_number_2}" if user.phone_number_2.present? %>">
+    <%= format_phone_number user.phone_number %>
+  </td>
 </tr>

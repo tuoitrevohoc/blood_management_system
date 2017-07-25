@@ -38,7 +38,7 @@ module ApplicationHelper
   def format_phone_number phone_number
     return if phone_number.blank?
     phone_number = phone_number.gsub(/[" ", ".", "_"]/, "").gsub("-", "").to_i
-    number_to_phone phone_number, delimiter: " "
+    "0#{number_to_phone phone_number, delimiter: " "}"
   end
 
   def crawl_facebook_info username

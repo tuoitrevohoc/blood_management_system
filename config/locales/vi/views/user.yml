@@ -35,6 +35,7 @@ vi:
       phone_number_2: "Số ĐT 2"
       place_of_birth: "Nguyên quán"
       description: "Ghi chú"
+      birthday: "Ngày sinh"
     edit:
       header:
         basic_info: "Chỉnh sửa thông tin của %{user}"
