@@ -1,0 +1,10 @@
+$(function() {
+  var is_viewed = false;
+  $(window).on("scroll", function() {
+    if (document.body.scrollTop > 700 && !is_viewed) {
+      var url = "<%= updating_views_path %>";
+      $.post(url, {}, null, "script");
+      is_viewed = true;
+    }
+  });
+});

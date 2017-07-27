@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   namespace :ajax do
     get "right_sidebar/events"
     get "right_sidebar/articles"
+    post "updating_views/article/:id", to: "updating_views#article", as: :updating_views_article
+    post "updating_views/event/:id", to: "updating_views#event", as: :updating_views_event
     resources :histories, only: [:show, :update]
   end
 

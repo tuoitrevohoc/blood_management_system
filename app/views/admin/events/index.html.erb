@@ -53,6 +53,7 @@
                     </span>
                   <% end %>
                 </th>
+                <th>Lượt xem</th>
                 <th colspan="1"></th>
               </tr>
             </thead>
@@ -61,7 +62,7 @@
                 <%= render partial: "admin/events/event", collection: @events.decorate %>
               <% else %>
                 <tr>
-                  <th colspan="12">Không có dữ liệu.</th>
+                  <th colspan="13">Không có dữ liệu.</th>
                 </tr>
               <% end %>
             </tbody>

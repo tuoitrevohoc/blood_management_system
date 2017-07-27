@@ -53,6 +53,7 @@
                     </span>
                   <% end %>
                 </th>
+                <th>Lượt xem</th>
                 <th></th>
               </tr>
             </thead>
@@ -61,7 +62,7 @@
                 <%= render @articles.decorate %>
               <% else %>
                 <tr>
-                  <th colspan="6">Không có dữ liệu.</th>
+                  <th colspan="7">Không có dữ liệu.</th>
                 </tr>
               <% end %>
             </tbody>
