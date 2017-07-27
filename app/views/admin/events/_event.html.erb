@@ -11,6 +11,7 @@
       <%= l event.date_time.to_datetime, format: :article_timestamp %>
     </span>
   </td>
+  <td class="text-center"><%= event.views %></td>
   <td colspan="1" class="btn-actions text-center">
     <div class="no-wrap">
       <%= link_to edit_admin_event_path(event), class: "btn-edit" do %>

@@ -10,6 +10,7 @@
       <%= l article.created_at, format: :article_timestamp %>
     </span>
   </td>
+  <td class="text-center"><%= article.views %></td>
   <td class="btn-actions text-center">
     <div class="no-wrap">
       <%= link_to [:edit, :admin, article], class: "btn-edit", title: "Chỉnh sửa" do %>

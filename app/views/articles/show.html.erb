@@ -53,3 +53,9 @@
     <%= render "shared/facebook_social_plugins.js" %>
   </script>
 <% end %>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    <%= render "shared/update_views.js", updating_views_path: ajax_updating_views_article_path(@article) %>
+  </script>
+<% end %>

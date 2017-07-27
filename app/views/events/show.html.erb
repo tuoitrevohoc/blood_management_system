@@ -64,5 +64,6 @@
   <%= javascript_include_tag "locationpicker/locationpicker.jquery.min.js" %>
   <script type="text/javascript">
     <%= render "location_picker.js", event: @event %>
+    <%= render "shared/update_views.js", updating_views_path: ajax_updating_views_event_path(@event) %>
   </script>
 <% end %>
