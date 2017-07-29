@@ -7,15 +7,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :large do
-    process resize_to_fit: [800, 600]
+    process resize_to_fit: [1024, 1024]
   end
 
   version :medium do
-    process resize_to_fit: [320, 240]
+    process resize_to_fit: [512, 512]
   end
 
   version :small do
-    process resize_to_fit: [80, 60]
+    process resize_to_fit: [128, 128]
   end
 
   def extension_whitelist
@@ -35,14 +35,14 @@ class ImageUploader < CarrierWave::Uploader::Base
     h, w = nil
     case version_name
     when :large
-      w = 800
-      h = 600
+      w = 1024
+      h = 1024
     when :medium
-      w = 320
-      h = 240
+      w = 512
+      h = 512
     when :small
-      w = 80
-      h = 60
+      w = 128
+      h = 128
     else
       return Settings.avatar_cloudinary.version
     end

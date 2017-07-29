@@ -10,7 +10,7 @@
                 <% unless @article.is_pinned? %>
                   <div class="events_slider_area">
                     <div class="events_slider">
-                      <div><%= image_tag @article.image.url, alt: @article.title %></div>
+                      <div><%= image_tag @article.image.large.url, alt: @article.title %></div>
                     </div>
                   </div>
                 <% end %>

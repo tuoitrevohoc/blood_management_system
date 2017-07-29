@@ -254,6 +254,9 @@ a:hover {
 
 .right_sidebar {
   padding: 0px 15px;
+  .media-object {
+    object-fit: cover;
+  }
 }
 
 .no-data {
@@ -407,6 +410,8 @@ a:hover {
     width: 100%;
     img {
       width: 100%;
+      height: 256px;
+      object-fit: cover;
     }
   }
   h3 a {
@@ -531,4 +536,9 @@ body {
 .page-logo {
   max-width: 65%;
   margin: 50px auto;
+}
+
+.events_slider .slick-slide img {
+  max-height: 400px;
+  object-fit: cover;
 }
