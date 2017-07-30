@@ -46,7 +46,10 @@
       </tr>
       <tr>
         <td>Số điện thoại:</td>
-        <td><%= user.phone_number %> <%= " - #{user.phone_number_2}" if user.phone_number_2.present? %></td>
+        <td>
+          <%= format_phone_number user.phone_number %>
+          <%= " - #{format_phone_number user.phone_number_2}" if user.phone_number_2.present? %>
+        </td>
       </tr>
       <tr>
         <td>Địa chỉ:</td>

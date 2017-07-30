@@ -1,0 +1,18 @@
+<%= content_for :specific_page_js do %>
+  <%= javascript_include_tag "jquery-ui/widgets/datepicker" %>
+  <%= javascript_include_tag "jquery-ui/i18n/datepicker-vi" %>
+  <script type="text/javascript">
+    $(function() {
+      $(".date-picker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:-16",
+        format: "dd/mm/yyyy",
+        defaultDate: "<%= l object.try(:birthday), format: :default_date %>"
+      });
+    });
+  </script>
+<% end %>
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_link_tag "libs/jquery-ui.css" %>
+<% end %>

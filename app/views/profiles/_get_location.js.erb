@@ -1,22 +1,26 @@
 $(document).ready(function() {
   $("#btn-submit").click(function(e) {
     var address = $("#user-address").val().trim();
-    var data = {address: address, key: GM_KEY};
-    var geocode = $.get(GM_API_GEOCODE_URL, data, null, "json");
-    geocode.success(function(data) {
-      if (data.status == "ZERO_RESULTS") {
+    if (address) {
+      var data = {address: address, key: GM_KEY};
+      var geocode = $.get(GM_API_GEOCODE_URL, data, null, "json");
+      geocode.success(function(data) {
+        if (data.status == "ZERO_RESULTS") {
+          cleanGeoData();
+        } else {
+          var geodata = data.results[0];
+          $("#user-formatted-address").val(geodata.formatted_address);
+          $("#user-lat").val(geodata.geometry.location.lat);
+          $("#user-lon").val(geodata.geometry.location.lng);
+          $("form.user-profile-form").submit();
+        }
+      });
+      geocode.error(function(e) {
         cleanGeoData();
-      } else {
-        var geodata = data.results[0];
-        $("#user-formatted-address").val(geodata.formatted_address);
-        $("#user-lat").val(geodata.geometry.location.lat);
-        $("#user-lon").val(geodata.geometry.location.lng);
-        $("form.user-profile-form").submit();
-      }
-    });
-    geocode.error(function(e) {
-      cleanGeoData();
-    });
+      });
+    } else {
+      $("form.user-profile-form").submit();
+    }
   });
 
   function cleanGeoData() {
