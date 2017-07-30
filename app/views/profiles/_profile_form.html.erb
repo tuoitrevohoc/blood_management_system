@@ -89,17 +89,6 @@
     <%= render "profiles/change_avatar.js" %>
     <%= render "profiles/get_location.js" %>
     <%= render "shared/auto_size.js" %>
-
-    $(function() {
-      $(".date-picker").datetimepicker({
-        useCurrent: false,
-        format: "YYYY/MM/DD",
-        showClose: true,
-        showClear: true,
-        icons: {
-          close: "fa fa-check"
-        }
-      });
-    });
   </script>
 <% end %>
+<%= render "shared/birthday_datepicker", object: user %>

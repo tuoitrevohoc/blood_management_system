@@ -10,11 +10,11 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 assets_stylesheet = <<-CSS_FILES
   customize_alert.css customize_checkboxes.css material/material-dashboard.css
-  admin/main.css libs/nanoscroller.css template/header.css
+  admin/main.css libs/nanoscroller.css template/header.css libs/jquery-ui.css
 CSS_FILES
 assets_javascript = <<-JS_FILES
   material/material.min.js material/material-dashboard.js admin/main.js ckeditor/*
   admin/jquery.nanoscroller.min.js locationpicker/locationpicker.jquery.min.js
-  common_constants.js autosize.min.js
+  common_constants.js autosize.min.js jquery-ui/widgets/datepicker jquery-ui/i18n/datepicker-vi
 JS_FILES
 Rails.application.config.assets.precompile += assets_stylesheet.split(" ") + assets_javascript.split(" ")
