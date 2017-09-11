@@ -9,3 +9,14 @@ vi:
         search_by:
           donator: Người hiến
           patient: Người nhận
+        excel:
+          headings:
+            - "STT."
+            - "Họ và Tên"
+            - "Ngày Sinh"
+            - "Giới Tính"
+            - "Nhóm Máu"
+            - "Hình Thức Hiến"
+            - "Nơi Hiến"
+            - "Địa Chỉ Facebook"
+            - "Ghi Chú"

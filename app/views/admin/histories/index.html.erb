@@ -26,6 +26,11 @@
   <div class="row">
     <div class="col-md-12 stats-row">
       <%= render "stats", stats: @stats %>
+      <%= link_to admin_histories_path(format: :xls), id: "download-links", target: :_blank,
+        rel: :nofollow, class: "pull-right btn btn-success btn-sm #{:disabled if @histories.empty?}",
+        title: "Tải về file excel: #{@file_name}", disabled: @histories.empty? do %>
+        <i class="fa fa-file-excel-o"></i>&nbsp;Xuất thành file Excel
+      <% end %>
     </div>
   </div>
   <div class="row">

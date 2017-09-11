@@ -21,6 +21,15 @@ vi:
       ab_neg: Nhóm AB-
       o_pos: Nhóm O+
       o_neg: Nhóm O-
+    blood_types_excel:
+      a_pos: "A Rh+"
+      a_neg: "A Rh-"
+      b_pos: "B Rh+"
+      b_neg: "B Rh-"
+      ab_pos: "AB Rh+"
+      ab_neg: "AB Rh-"
+      o_pos: "O Rh+"
+      o_neg: "O Rh-"
     profile_form: &profile_form
       name: "Họ và tên"
       address: "Địa chỉ"

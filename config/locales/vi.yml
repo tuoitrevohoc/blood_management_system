@@ -2,6 +2,7 @@ vi:
   date:
     formats:
       default_date: &default_date "%d/%m/%Y"
+      exp_date: "%d-%m-%Y"
   time:
     am: "AM"
     pm: "PM"
