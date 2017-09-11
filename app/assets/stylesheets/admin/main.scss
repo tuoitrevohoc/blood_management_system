@@ -448,6 +448,7 @@ table.table thead tr th {
 
 table.stats {
   margin-top: 20px;
+  float: left;
   td.key {
     font-weight: bold;
   }
@@ -508,4 +509,15 @@ table.stats {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#download-links {
+  margin: 0;
+  margin-top: 20px;
+  padding: 5px 10px;
+  color: #1f7244;
+}
+
+#download-links:hover {
+  color: #0a2b19;
 }

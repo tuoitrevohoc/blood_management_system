@@ -10,6 +10,15 @@ class Admin::HistoriesController < Admin::BaseController
       histories: @q.result.size,
       users: @q.result.pluck(:user_id).uniq.length
     }
+    @file_name = export_file_name[:name]
+    respond_to do |format|
+      format.html
+      format.xls do
+        headers["Content-Disposition"] = "attachment; filename=\"#{@file_name}\""
+        @histories = @q.result.decorate
+        @worksheet = export_file_name[:timestamp]
+      end
+    end
   end
 
   def new
@@ -128,5 +137,21 @@ class Admin::HistoriesController < Admin::BaseController
     history.errors.messages.each do |attribute, msgs|
       user.errors.messages.merge! "histories.#{attribute}": msgs
     end
+  end
+
+  def export_file_name
+    lastest_date = History.eldest.first.try :date
+    newest_date = Date.current
+    from_date = params[:q][:date_gteq].present? ? params[:q][:date_gteq] : lastest_date rescue lastest_date
+    to_date = params[:q][:date_lteq].present? ? params[:q][:date_gteq] : newest_date rescue newest_date
+    from_date = l from_date.to_date, format: :exp_date if from_date
+    to_date = l to_date.to_date, format: :exp_date if to_date
+    file_name = "danh_sach_hien_mau"
+    slogan = "clb_hieu_va_thuong"
+    {
+      name: [file_name, from_date, to_date, slogan].compact.join("_") + ".xlsx",
+      timestamp: [from_date, to_date].compact.join("_")
+    }
+
   end
 end

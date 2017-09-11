@@ -29,6 +29,14 @@ histories:
   search_items:
     donator: user_name_or_place_name_cont
     patient: patient_name_cont
+  excel_attrs:
+    - "display_user_name"
+    - "display_user_birthday"
+    - "display_user_gender"
+    - "display_user_blood_type"
+    - "display_donation_type_excel"
+    - "place_name"
+    - "user_facebook_account"
 fb_search_path:
   people: "https://www.facebook.com/search/people/?q="
   home: "https://www.facebook.com"

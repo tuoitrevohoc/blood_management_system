@@ -6,7 +6,8 @@ class History < ApplicationRecord
   enum donation_type: [:whole_blood, :platelets]
 
   delegate :name, :address, to: :place, prefix: :place, allow_nil: true
-  delegate :id, :name, to: :user, prefix: :user, allow_nil: true
+  delegate :id, :name, :birthday, :gender, :blood_type, :facebook_account,to: :user,
+    prefix: :user, allow_nil: true
   delegate :id, :name, to: :admin, prefix: :admin, allow_nil: true
 
   validates :date, :donation_type, presence: true
