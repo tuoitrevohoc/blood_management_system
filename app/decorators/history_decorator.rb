@@ -45,25 +45,4 @@ class HistoryDecorator < Draper::Decorator
       user_name.titleize
     end
   end
-
-  def cell_data_type attribute
-    case attribute
-    when :display_user_name, :display_user_gender, :display_user_blood_type,
-         :display_donation_type_excel, :place_name, :user_facebook_account
-      :String
-    when :display_user_birthday
-      :DateTime
-    else
-      :String
-    end
-  end
-
-  def cell_style_id attribute
-    case attribute
-    when :display_user_birthday
-      :s62
-    else
-      nil
-    end
-  end
 end
