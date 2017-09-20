@@ -31,7 +31,7 @@ $(function() {
   function submit_via_ajax() {
     var form = $("#admin-search");
     var submiting = $.get(form.attr("action"), form.serialize(), null, "script");
-    submiting.error(function() {
+    submiting.error(function(e) {
       showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
     });
     showBtnReset();

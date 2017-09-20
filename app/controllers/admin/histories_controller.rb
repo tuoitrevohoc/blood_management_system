@@ -1,21 +1,16 @@
+require "addressable/uri"
 class Admin::HistoriesController < Admin::BaseController
   before_action :load_user, only: :update
   before_action :load_history, only: :destroy
 
   def index
-    @q = History.includes(:user, :place, :admin).newest.ransack params[:q]
-    @histories = @q.result.page(params[:page]).per 10
-    @default_search_by = params[:search_by] || Settings.histories.search_items.donator
-    @stats = {
-      histories: @q.result.size,
-      users: @q.result.pluck(:user_id).uniq.length
-    }
     @file_name = export_file_name[:name]
     respond_to do |format|
-      format.html
+      format.html {load_data}
+      format.js {load_data}
       format.xls do
         headers["Content-Disposition"] = "attachment; filename=\"#{@file_name}\""
-        @histories = @q.result.decorate
+        @histories = History.includes(:user, :place).newest.ransack(ransack_params).result.decorate
         @worksheet = export_file_name[:timestamp]
       end
     end
@@ -142,16 +137,31 @@ class Admin::HistoriesController < Admin::BaseController
   def export_file_name
     lastest_date = History.eldest.first.try :date
     newest_date = Date.current
-    from_date = params[:q][:date_gteq].present? ? params[:q][:date_gteq] : lastest_date rescue lastest_date
-    to_date = params[:q][:date_lteq].present? ? params[:q][:date_gteq] : newest_date rescue newest_date
+    from_date = params[:q][:date_gteq].presence || lastest_date rescue lastest_date
+    to_date = params[:q][:date_lteq].presence || newest_date rescue newest_date
     from_date = l from_date.to_date, format: :exp_date if from_date
     to_date = l to_date.to_date, format: :exp_date if to_date
     file_name = "danh_sach_hien_mau"
     slogan = "clb_hieu_va_thuong"
     {
-      name: [file_name, from_date, to_date, slogan].compact.join("_") + ".xlsx",
+      name: [file_name, from_date, to_date, slogan].compact.join("_") + ".xls",
       timestamp: [from_date, to_date].compact.join("_")
     }
+  end
 
+  def ransack_params
+    uri = Addressable::URI.new
+    uri.query = params[:q]
+    uri.query_values
+  end
+
+  def load_data
+    @q = History.includes(:user, :place, :admin).newest.ransack params[:q]
+    @histories = @q.result.page(params[:page]).per 10
+    @default_search_by = params[:search_by] || Settings.histories.search_items.donator
+    @stats = {
+      histories: @q.result.size,
+      users: @q.result.pluck(:user_id).uniq.length
+    }
   end
 end

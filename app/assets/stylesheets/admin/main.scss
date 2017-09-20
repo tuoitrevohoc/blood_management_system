@@ -78,6 +78,9 @@ form.header-form {
   .form-control {
     margin-left: 20px;
   }
+  .date-picker {
+    width: 100px;
+  }
 }
 
 .table-responsive {
@@ -511,13 +514,33 @@ table.stats {
   text-overflow: ellipsis;
 }
 
-#download-links {
-  margin: 0;
-  margin-top: 20px;
-  padding: 5px 10px;
-  color: #1f7244;
+.thin-row {
+  .btn {
+    padding: 12px;
+  }
+
+  #download-links {
+    margin: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    .excel-icon {
+      height: 24px;
+      max-width: 24px;
+    }
+  }
 }
 
-#download-links:hover {
-  color: #0a2b19;
+.navbar.navbar-transparent.navbar-absolute {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.main-panel {
+  .content {
+    margin-top: 50px;
+  }
+}
+
+.card-2 {
+  margin-top: 5px;
 }
