@@ -1,7 +1,13 @@
 <div class="container-fluid">
   <div class="row filter-row-2">
     <div class="col-md-12 thin-row">
-      <%= link_to "Thêm mới", [:new, :admin, :history], class: "btn btn-primary no-margin" %>
+      <%= link_to "Thêm mới", [:new, :admin, :history], class: "btn btn-sm btn-primary no-margin" %>
+      <%= link_to admin_histories_path(format: :xls, q: params[:q]), id: "download-links", target: :_blank,
+        rel: :nofollow, class: "btn btn-sm btn-success #{:disabled if @histories.empty?}",
+        title: "Tải về file excel: #{@file_name}", disabled: @histories.empty? do %>
+        <%= image_tag asset_url("excel_2013_file_icon.png"), alt: "", class: "excel-icon" %>
+        <span class="inner-btn">Tải Xuống Excel</span>
+      <% end %>
       <%= search_form_for @q, url: [:admin, :histories], method: :get, id: "admin-search",
         class: "navbar-form header-form navbar-right filter-form-customize" do |f| %>
         <%= link_to [:admin, :histories], class: "btn-clear-search hidden" do %>
@@ -26,16 +32,11 @@
   <div class="row">
     <div class="col-md-12 stats-row">
       <%= render "stats", stats: @stats %>
-      <%= link_to admin_histories_path(format: :xls), id: "download-links", target: :_blank,
-        rel: :nofollow, class: "pull-right btn btn-success btn-sm #{:disabled if @histories.empty?}",
-        title: "Tải về file excel: #{@file_name}", disabled: @histories.empty? do %>
-        <i class="fa fa-file-excel-o"></i>&nbsp;Xuất thành file Excel
-      <% end %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="card" id="search-results">
+      <div class="card card-2" id="search-results">
         <%= render "table_result", q: @q, histories: @histories %>
       </div>
     </div>

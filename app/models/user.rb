@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   def status
     return :unknown unless self.histories.any?
-    next_donation_due_date = self.histories.last&.next_donation_due_date
+    next_donation_due_date = self.histories.eldest.last.next_donation_due_date
     case true
     when Date.current >= next_donation_due_date
       :can_donate

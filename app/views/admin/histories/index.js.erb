@@ -1,2 +1,3 @@
 $("#search-results").html("<%= j render 'table_result', q: @q, histories: @histories %>");
 $(".stats-row").html("<%= j render 'stats', stats: @stats %>");
+$("#download-links").attr("href", "<%= admin_histories_path(format: :xls, q: params[:q]) %>");

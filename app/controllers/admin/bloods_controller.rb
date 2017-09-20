@@ -43,10 +43,10 @@ class Admin::BloodsController < Admin::BaseController
     ransack_params = params[:q].except :non_attr if params[:q].present?
     @q = User.includes(:histories).ransack ransack_params
     @users = @q.result
-    @stats = calc_statistics @users
     @users = @users.decorate
     @users = User.sort_non_attribute @users, params[:q][:s] if params[:q] && params[:q][:s]
     @users = User.search_non_attribute @users, params[:q][:non_attr] if non_attr_query_present?
+    @stats = calc_statistics @users
   end
 
   def calc_statistics users
