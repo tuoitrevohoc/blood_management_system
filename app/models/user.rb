@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :admin_histories, dependent: :destroy
   has_many :admin_histories_created, class_name: AdminHistory.name, foreign_key: :admin_id, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :patients, through: :histories, class_name: History.name, foreign_key: :patient_id
 
   accepts_nested_attributes_for :histories, allow_destroy: true
 

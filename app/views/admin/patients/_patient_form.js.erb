@@ -1,0 +1,6 @@
+$(function() {
+  $("#patient-department-id").on("change", function() {
+    $("#head-doctor").val($(this).find("option:selected").data("doctor"));
+    $("#head-doctor").closest(".label-floating").removeClass("is-empty");
+  });
+});

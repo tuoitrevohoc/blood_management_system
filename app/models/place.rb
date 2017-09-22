@@ -2,6 +2,7 @@ class Place < ApplicationRecord
   has_many :events
   has_many :histories
   has_many :users, through: :history_id
+  has_many :departments
 
   validates :name, :address, presence: true
 

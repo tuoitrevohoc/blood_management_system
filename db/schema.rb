@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727085705) do
+ActiveRecord::Schema.define(version: 20170922083209) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 20170727085705) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
+  end
+
+  create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "place_id"
+    t.string   "name"
+    t.string   "head_doctor"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["place_id"], name: "index_departments_on_place_id", using: :btree
   end
 
   create_table "event_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -94,10 +103,32 @@ ActiveRecord::Schema.define(version: 20170727085705) do
     t.string   "patient_phone_number"
     t.string   "patient_address"
     t.string   "patient_description"
+    t.integer  "patient_id"
     t.index ["date"], name: "index_histories_on_date", using: :btree
+    t.index ["patient_id"], name: "index_histories_on_patient_id", using: :btree
     t.index ["place_id"], name: "index_histories_on_place_id", using: :btree
     t.index ["user_id", "place_id", "date"], name: "index_histories_on_user_id_and_place_id_and_date", unique: true, using: :btree
     t.index ["user_id"], name: "index_histories_on_user_id", using: :btree
+  end
+
+  create_table "patients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.date     "birthday"
+    t.integer  "gender"
+    t.integer  "blood_type"
+    t.string   "pathological"
+    t.string   "room_number",          limit: 45
+    t.string   "phone_number"
+    t.string   "phone_number_2"
+    t.string   "address"
+    t.text     "history_of_pathology", limit: 65535
+    t.string   "description"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "department_id"
+    t.string   "place_of_birth"
+    t.string   "id_number"
+    t.index ["department_id"], name: "index_patients_on_department_id", using: :btree
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,9 +136,10 @@ ActiveRecord::Schema.define(version: 20170727085705) do
     t.string   "address"
     t.float    "longitude",         limit: 24
     t.float    "latitude",          limit: 24
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "formatted_address"
+    t.boolean  "is_hospital",                  default: true
     t.index ["address"], name: "index_places_on_address", using: :btree
     t.index ["name", "address"], name: "index_places_on_name_and_address", unique: true, using: :btree
     t.index ["name"], name: "index_places_on_name", using: :btree
@@ -173,9 +205,12 @@ ActiveRecord::Schema.define(version: 20170727085705) do
   add_foreign_key "admin_histories", "places"
   add_foreign_key "admin_histories", "users"
   add_foreign_key "articles", "users"
+  add_foreign_key "departments", "places"
   add_foreign_key "event_images", "events"
   add_foreign_key "events", "places"
+  add_foreign_key "histories", "patients"
   add_foreign_key "histories", "places"
   add_foreign_key "histories", "users"
+  add_foreign_key "patients", "departments"
   add_foreign_key "posts", "users"
 end

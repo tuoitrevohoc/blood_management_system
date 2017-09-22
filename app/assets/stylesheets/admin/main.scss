@@ -544,3 +544,19 @@ table.stats {
 .card-2 {
   margin-top: 5px;
 }
+
+#table-long-width {
+  .min-wid-200 {
+    min-width: 200px;
+  }
+}
+
+#new-patient {
+  .no-padding-left {
+    padding-left: 0;
+  }
+
+  .no-padding-right {
+    padding-right: 0;
+  }
+}

@@ -2,6 +2,7 @@ class History < ApplicationRecord
   belongs_to :user
   belongs_to :place
   belongs_to :admin, class_name: User.name, foreign_key: :admin_id, optional: true
+  belongs_to :patient
 
   enum donation_type: [:whole_blood, :platelets]
 

@@ -1,0 +1,29 @@
+<div class="card-content table-responsive">
+  <table class="table table-hover" id="table-long-width">
+    <thead>
+      <tr>
+        <th></th>
+        <th>ID</th>
+        <th class="min-wid-200">Họ và Tên</th>
+        <th>Giới Tính</th>
+        <th class="non-break-line">Ngày Sinh</th>
+        <th>Nhóm Máu</th>
+        <th class="min-wid-200">Bệnh Lý</th>
+        <th class="min-wid-200">Khoa Điều trị</th>
+        <th>Phòng Bệnh</th>
+        <th class="min-wid-200">BS Trưởng Khoa</th>
+        <th class="non-break-line">SĐT 1</th>
+        <th class="non-break-line">SĐT 2</th>
+        <th class="min-wid-200">Địa Chỉ</th>
+        <th class="min-wid-200">Nguyên Quán</th>
+        <th class="min-wid-200">Lịch Sử Bệnh Lý</th>
+        <th>Ghi Chú</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render patients.decorate %>
+    </tbody>
+  </table>
+  <%= paginate patients %>
+</div>
