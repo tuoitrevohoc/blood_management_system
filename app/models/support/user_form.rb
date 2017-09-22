@@ -14,4 +14,8 @@ class Support::UserForm
   def roles
     User.roles.keys.map {|role| [I18n.t("users.roles.#{role}"), role]}
   end
+
+  def departments
+    Department.all.map {|d| [d.name, d.id, {data: {doctor: d.head_doctor}}]}
+  end
 end
