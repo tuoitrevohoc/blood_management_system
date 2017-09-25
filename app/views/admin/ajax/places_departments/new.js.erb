@@ -1,0 +1,3 @@
+$("#department-section").html(null);
+$("#place-selectbox").val(null).trigger("change");
+$("#place-department-section").html("<%= j render 'admin/shared/place_department_form', department: @department, place: @place %>");

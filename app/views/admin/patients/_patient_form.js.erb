@@ -3,4 +3,9 @@ $(function() {
     $("#head-doctor").val($(this).find("option:selected").data("doctor"));
     $("#head-doctor").closest(".label-floating").removeClass("is-empty");
   });
+
+  $("#register-department").on("click", function() {
+    var url = "<%= admin_ajax_departments_path %>";
+    $.get(url, null, null, "script");
+  });
 });

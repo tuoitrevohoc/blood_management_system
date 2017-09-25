@@ -1,0 +1,13 @@
+<%= form_for [:admin, :ajax, place, department], html: {remote: true} do |f| %>
+  <div class="form-group label-floating">
+    <%= f.label :name, "Tên Khoa", class: "control-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group label-floating">
+    <%= f.label :head_doctor, "BS. Trưởng Khoa", class: "control-label" %>
+    <%= f.text_field :head_doctor, class: "form-control" %>
+  </div>
+  <div class="form-group label-floating text-center">
+    <%= f.submit "Lưu", class: "btn btn-primary" %>
+  </div>
+<% end %>
