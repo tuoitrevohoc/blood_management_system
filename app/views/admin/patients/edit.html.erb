@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">Cập nhật thông tin bệnh nhân: <%= @patient.name %></h4>
+          <p class="category"></p>
+        </div>
+        <div class="card-content">
+          <%= render "patient_form", patient: @patient, form: @form %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
