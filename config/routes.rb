@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     namespace :ajax do
       resources :users, only: [:index, :show]
       resources :places, only: [:new, :create]
+      resources :places, only: :show do
+        resources :departments, only: [:new, :create]
+      end
+      resources :departments, only: :index
+      resources :places_departments, only: [:new, :create]
     end
     root "events#index"
     resources :dashboard, only: :index
