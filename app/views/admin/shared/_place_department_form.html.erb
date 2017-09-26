@@ -1,1 +1,37 @@
-<h1>OK</h1>
+<%= form_for place, url: admin_ajax_places_departments_path, html: {remote: true} do |f| %>
+  <div class="col-md-12" id="error-place-department-wrapper">
+    <%= render "shared/error_messages", object: f.object %>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group label-floating">
+      <%= f.label :name, "Tên Bệnh Viện", class: "control-label" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group label-floating">
+      <%= f.label :address, "Địa chỉ", class: "control-label" %>
+      <%= f.text_field :address, class: "form-control lp-input", id: "place-address" %>
+      <%= f.hidden_field :latitude, class: "lp-lat", id: "place-lat" %>
+      <%= f.hidden_field :longitude, class: "lp-lon", id: "place-lon" %>
+      <%= f.hidden_field :formatted_address, id: "place-formatted-address" %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <%= f.fields_for :departments do |field| %>
+      <% unless field.object.persisted? %>
+        <div class="form-group label-floating">
+          <%= field.label :name, "Tên Khoa", class: "control-label" %>
+          <%= field.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group label-floating">
+          <%= field.label :head_doctor, "BS. Trưởng Khoa", class: "control-label" %>
+          <%= field.text_field :head_doctor, class: "form-control" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-12">
+    <div class="form-group label-floating text-center">
+      <%= f.submit "Lưu", class: "btn btn-primary", id: "btn-submit-place-form" %>
+    </div>
+  </div>
+<% end %>

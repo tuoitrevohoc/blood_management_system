@@ -1,4 +1,7 @@
 <%= form_for [:admin, :ajax, place, department], html: {remote: true} do |f| %>
+  <div class="error-messages" id="error-department-wrapper">
+    <%= render "shared/error_messages", object: f.object %>
+  </div>
   <div class="form-group label-floating">
     <%= f.label :name, "Tên Khoa", class: "control-label" %>
     <%= f.text_field :name, class: "form-control" %>
