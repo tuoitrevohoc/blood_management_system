@@ -1,0 +1,13 @@
+<% if @department.errors.any? %>
+  $("#error-department-wrapper").html("<%= j render 'shared/error_messages', object: @department %>");
+<% else %>
+  var optionText = "<%= @department.name + ' - ' + @department.place.name.truncate(35, separator: ' ') %>".trim();
+  var optionVal = <%= @department.id %>;
+  var optionDoctor = "<%= @department.head_doctor %>";
+  var optionTag = new Option(optionText, optionVal);
+  $(optionTag).attr("data-doctor", optionDoctor);
+  $("#patient-department-id").append(optionTag)
+    .val(optionVal)
+    .change();
+  $("#register-department-modal").modal("hide");
+<% end %>
