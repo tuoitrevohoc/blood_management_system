@@ -11,7 +11,7 @@
     </div>
   </td>
   <td><%= patient.id %></td>
-  <td><%= patient.name %></td>
+  <td><%= link_to patient.name, [:admin, patient] %></td>
   <td><%= patient.display_gender %></td>
   <td class="non-break-line"><%= patient.birthday %></td>
   <td><%= patient.display_blood_type %></td>

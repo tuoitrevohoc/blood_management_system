@@ -1,0 +1,68 @@
+<table class="patient-profile">
+  <thead>
+    <tr>
+      <th colspan="2">Thông tin chung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Họ và Tên:</td>
+      <td><%= patient.name %></td>
+    </tr>
+    <tr>
+      <th>Giới tính:</td>
+      <td><%= patient.display_gender %></td>
+    </tr>
+    <tr>
+      <th>Ngày sinh:</td>
+      <td><%= l patient.birthday, format: :default_date if patient.birthday? %></td>
+    </tr>
+    <tr>
+      <th>Số CMND:</td>
+      <td><%= patient.id_number %></td>
+    </tr>
+
+    <tr>
+      <th>Nhóm máu:</td>
+      <td><%= patient.display_blood_type %></td>
+    </tr>
+    <tr>
+      <th>Số điện thoại:</td>
+      <td>
+        <%= format_phone_number patient.phone_number %>
+        <%= " - #{format_phone_number patient.phone_number_2}" if patient.phone_number_2.present? %>
+      </td>
+    </tr>
+    <tr>
+      <th>Địa chỉ:</td>
+      <td><%= patient.address %></td>
+    </tr>
+    <tr>
+      <th>Nguyên quán:</td>
+      <td><%= patient.place_of_birth %></td>
+    </tr>
+    <tr>
+      <th>Bệnh lý:</td>
+      <td><%= patient.pathological %></td>
+    </tr>
+    <tr>
+      <th>Khoa điều trị:</td>
+      <td>
+        <%= patient.department_name %>
+        <%= "<br>BS. Trưởng khoa: #{patient.department_head_doctor}".html_safe if patient.department %>
+      </td>
+    </tr>
+    <tr>
+      <th>Phòng bệnh</td>
+      <td><%= patient.room_number %></td>
+    </tr>
+    <tr>
+      <th>Lịch sử bệnh lý:</td>
+      <td><%= patient.history_of_pathology %></td>
+    </tr>
+    <tr>
+      <th>Ghi chú:</td>
+      <td><%= patient.description %></td>
+    </tr>
+  </tbody>
+</table>

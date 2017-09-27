@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       end
       resources :departments, only: :index
       resources :places_departments, only: [:new, :create]
+      resources :donators, only: :index
     end
     root "events#index"
     resources :dashboard, only: :index

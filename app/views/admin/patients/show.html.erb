@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">
+            Thông tin chi tiết bệnh nhân:
+            <strong><%= @patient.name %></strong>
+          </h4>
+          <p class="category"></p>
+        </div>
+        <div class="card-content">
+          <div class="row">
+            <div class="col-md-6">
+              <%= render "patient_profile", patient: @patient %>
+            </div>
+            <div class="col-md-6">
+              <%= render "donators", patient: @patient, q: @q %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -575,3 +575,48 @@ table.stats {
   font-weight: 400;
   margin: 16px 0 0 0;
 }
+
+.patient-profile {
+  border: 1px solid #cacaca;
+  width: 100%;
+  tr {
+    border: 1px solid #cacaca;
+    th {
+      background-color: #eee;
+      text-align: right;
+      width: 30%;
+    }
+  }
+  td, th {
+    padding: 10px 20px;
+  }
+  span.fb-cover-name {
+    font-weight: bold;
+  }
+}
+
+.patient-profile {
+  thead {
+    th {
+      text-transform: uppercase;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+.donators-table {
+  .no-result-subt {
+    margin: 10px 0;
+  }
+}
+
+.filter-donators {
+  padding-right: 0;
+  .form-group {
+    width: calc(100% - 50px);
+  }
+  .form-control {
+    width: 100%;
+  }
+}

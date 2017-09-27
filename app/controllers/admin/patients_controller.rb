@@ -5,6 +5,11 @@ class Admin::PatientsController < Admin::BaseController
     @patients = Patient.includes(:department).all.page(params[:page]).per 10
   end
 
+  def show
+    @patient = Patient.includes(users: :histories).find_by(id: params[:id]).decorate
+    @q = @patient.users.ransack params[:q]
+  end
+
   def new
     @patient = Patient.new
   end
