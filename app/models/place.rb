@@ -4,6 +4,8 @@ class Place < ApplicationRecord
   has_many :users, through: :history_id
   has_many :departments
 
+  accepts_nested_attributes_for :departments, allow_destroy: true
+
   validates :name, :address, presence: true
 
   class << self
