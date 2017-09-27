@@ -1,0 +1,11 @@
+<%= search_form_for q, url: :admin_ajax_donators, method: :get, remote: true,
+  class: "navbar-form filter-donators" do |f| %>
+  <div class="form-group is-empty">
+    <%= f.search_field :name_or_id_number_or_phone_number_cont, class: "form-control",
+      placeholder: "Tìm kiếm...", title: "Tìm kiếm tên, số CMND hoặc điện thoại." %>
+      <span class="material-input"></span>
+  </div>
+  <button type="submit" class="btn btn-primary btn-round btn-just-icon">
+    <i class="material-icons">search</i><div class="ripple-container"></div>
+  </button>
+<% end %>
