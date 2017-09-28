@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20170922083209) do
     t.integer  "gender"
     t.integer  "blood_type"
     t.string   "pathological"
-    t.string   "room_number",          limit: 45
+    t.string   "room_number"
     t.string   "phone_number"
     t.string   "phone_number_2"
     t.string   "address"

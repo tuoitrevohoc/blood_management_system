@@ -1,5 +1,6 @@
+<input type="hidden" id="patient-id" value="<%= patient.id %>">
 <table class="patient-profile">
-  <thead>
+  <thead class="t-head">
     <tr>
       <th colspan="2">Thông tin chung</th>
     </tr>
@@ -7,7 +8,7 @@
   <tbody>
     <tr>
       <th>Họ và Tên:</td>
-      <td><%= patient.name %></td>
+      <td id="patient-name"><%= patient.name %></td>
     </tr>
     <tr>
       <th>Giới tính:</td>
@@ -21,7 +22,6 @@
       <th>Số CMND:</td>
       <td><%= patient.id_number %></td>
     </tr>
-
     <tr>
       <th>Nhóm máu:</td>
       <td><%= patient.display_blood_type %></td>

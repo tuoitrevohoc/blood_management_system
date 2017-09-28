@@ -1,0 +1,116 @@
+$("#results").html("<%= j render 'admin/patients/donators_table', donators: @donators %>");
+var datatableDom = "<'row'<'col-sm-12'tr>>" + "<'row'<'col-md-12'p>>";
+var table = $("#dt-table").DataTable({
+  bInfo: false,
+  bLengthChange: false,
+  pageLength: 5,
+  bFilter: false,
+  oLanguage: {
+    oPaginate: {
+      sPrevious: "<< Trang trước",
+      sNext: "Trang sau >>",
+      sFirst: "Đầu",
+      sLast: "Cuối"
+    }
+  },
+  dom: datatableDom,
+});
+
+$("#dt-table").on("click", ".show-detail", function(e) {
+  e.preventDefault();
+  $(this).find(".fa")
+    .toggleClass("fa-chevron-circle-up")
+    .toggleClass("fa-chevron-circle-down")
+    .toggleClass("text-success")
+    .toggleClass("text-danger");
+  var tr = $(this).closest('tr');
+  var row = table.row(tr);
+  if (row.child.isShown()) {
+    row.child.hide();
+  } else {
+    var url = $(this).data("href");
+    var donatorName = $(this).data("name").trim();
+    var patientName = $("#patient-name").text().trim();
+    var patientID = $("#patient-id").text();
+    var subTableString = null;
+    $.when(getHistories(url)).done(function(response) {
+      subTableString = format(response.data, patientName, patientID, donatorName);
+      row.child(subTableString).show();
+    });
+  }
+});
+
+$("#dt-table").on("click", ".btn-show-history", function(e) {
+  var url = "/users/" + $(this).data("uid");
+  return window.open(url, "_blank");
+});
+
+$("#dt-table").on("click", ".btn-choose", function(e) {
+  var confirmed = confirm($(this).data("confirm"));
+  if (confirmed) {
+    var url = $(this).data("href");
+    var patientID = $("#patient-id").val();
+    var data = {patient_id: patientID, _method: "PATCH"};
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: data,
+      success: function() {
+        $("#results").html(null);
+        $(".filter-donators form-control").val(null).focus();
+        showNotification("Đã thêm thành công!", "success");
+      },
+      error: function(e) {
+        showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
+      }
+    });
+  } else {
+    e.preventDefault();
+  }
+});
+
+function getHistories(url) {
+  return $.ajax({
+      url: url,
+      dataType: "json",
+  });
+}
+
+/**
+ * Generate table of histories.
+ * @param {Array} histories the list of history.
+ * @param {String} patientName name of patient.
+ * @param {Number} patientID id of patient.
+ * @param {Number} donatorName name of donator.
+ * @return {string} html string
+ */
+function format(histories, patientName, patientID, donatorName) {
+  var tbody = "";
+  for (var i = 0; i < histories.length; i++) {
+    var history = histories[i];
+    var href = "/admin/ajax/patients/" + history.id;
+    tbody += '<tr> \
+      <td title="' + history.place.address + '">' + history.place.name + '</td> \
+      <td>' + history.donation_type + '</td> \
+      <td>' + history.date + '</td> \
+      <td class="non-break-line text-center"> \
+        <i class="fa fa-2x fa-paste text-danger btn-show-history" title="Xem chi tiết..." data-hid="' + history.id + '" data-uid="' + history.user_id + '"></i> \
+        <i class="fa fa-2x fa-check-square-o text-success btn-choose" title="Chọn!" data-href="' + href + '"data-patientID="' + patientID + '" data-confirm="Bạn có chắc &quot;' + donatorName + '&quot; đã hiến máu cho &quot;' + patientName + '&quot; vào ngày ' + history.date + '?"></i> \
+      </td> \
+    </tr>';
+  }
+  return '<table class="table table-bordered sub-table"> \
+    <thead> \
+      <tr> \
+        <th colspan="4">Tất cả lịch sử hiến máu của XXX</th> \
+      </tr> \
+      <tr> \
+        <th class="sub-th">Nơi hiến</th> \
+        <th class="sub-th">Hình thức</th> \
+        <th class="sub-th">Ngày hiến</th> \
+        <th class="sub-th">Chọn</th> \
+      </tr> \
+    </thead> \
+    <tbody>' + tbody + '</tbody> \
+  </table>';
+}

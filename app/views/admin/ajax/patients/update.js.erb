@@ -1,0 +1,11 @@
+<% if @history %>
+  <% if @history.errors.any? %>
+    var error_msg = "<%= @history.errors.full_messages.first %>";
+    showNotification("Đã xảy ra lỗi! " + error_msg, "danger");
+  <% else %>
+    $("#donator-count").html("[<%= @patient.users.size %>]");
+    $("#donator-histories").html("<%= j render 'admin/patients/donator_histories', patient: @patient %>");
+  <% end %>
+<% else %>
+  showNotification("Error 404: không tìm thấy!", "warning");
+<% end %>

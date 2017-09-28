@@ -1,0 +1,18 @@
+<% if donators.any? %>
+  <div class="col-md-12 no-padding">
+    <table class="table table-bordered" id="dt-table" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Họ và Tên</th>
+          <th class="max-width-80">Nhóm Máu</th>
+          <th>Địa Chỉ</th>
+          <th class="max-width-75">CMND</th>
+          <th class="max-width-100">SĐT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "admin/patients/donator", collection: donators %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
