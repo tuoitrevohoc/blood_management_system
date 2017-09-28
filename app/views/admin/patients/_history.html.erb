@@ -1,0 +1,13 @@
+<tr>
+  <td><%= history.user_id %></td>
+  <td><%= link_to history.user_name, user_path(history.user_id), target: :_blank %></td>
+  <td class="max-width-80"><%= history.user.decorate.try :display_blood_type || history.user_blood_type %></td>
+  <td class="max-width-80"><%= l history.date, format: :default_date %></td>
+  <td title="<%= history.place_address %>"><%= history.place_name %></td>
+  <td class="max-width-50 text-center">
+    <%= link_to admin_ajax_patient_path(history), class: "btn-destroy",
+      data: {confirm: "Xác nhận huỷ liên kết này?", method: :delete} do %>
+      <i class="fa fa-trash-o text-danger fa-2x"></i>
+    <% end %>
+  </td>
+</tr>

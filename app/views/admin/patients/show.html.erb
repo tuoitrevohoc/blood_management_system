@@ -11,11 +11,11 @@
         </div>
         <div class="card-content">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <%= render "patient_profile", patient: @patient %>
             </div>
-            <div class="col-md-6">
-              <%= render "donators", patient: @patient, q: @q %>
+            <div class="col-md-7">
+              <%= render "donators", patient: @patient, q: @q, donators: [] %>
             </div>
           </div>
         </div>
@@ -23,3 +23,7 @@
     </div>
   </div>
 </div>
+
+<%= content_for :modal_bottom_page do %>
+  <div class="modal-wrapper"></div>
+<% end %>
