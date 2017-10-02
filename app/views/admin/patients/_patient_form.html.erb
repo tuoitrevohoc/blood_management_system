@@ -54,8 +54,7 @@
       </div>
       <div class="form-group label-floating">
         <%= f.label :department_id, "Khoa Điều Trị #{required_mark}".html_safe, class: "control-label" %>
-        <p class="flabel-subtitle">Không tìm khoa điều trị? <a href="javascript:void(0);" id="register-department">Bấm để thêm mới</a></p>
-        <%= f.select :department_id, form.departments, {prompt: "--- Chọn khoa đang điều trị ---"}, class: "form-control select2", id: "patient-department-id" %>
+        <%= f.select :department_id, form.departments, {prompt: ""}, class: "form-control", id: "patient-department-id" %>
       </div>
       <div class="form-group label-floating">
         <%= label_tag :head_doctor, "BS Trưởng Khoa", class: "control-label" %>
@@ -87,18 +86,11 @@
   </div>
 <% end %>
 
-<%= content_for :modal_bottom_page do %>
-  <div class="modal-wrapper"></div>
-  <div class="modal-wrapper-2"></div>
-<% end %>
-
 <%= content_for :specific_page_js do %>
   <%= javascript_include_tag "autosize.min.js" %>
   <script type="text/javascript">
     <%= render "date_picker.js" %>
     <%= render "shared/auto_size.js" %>
     <%= render "patient_form.js" %>
-    <%= render "admin/shared/department_modal.js" %>
-    <%= render "shared/select2.js" %>
   </script>
 <% end %>

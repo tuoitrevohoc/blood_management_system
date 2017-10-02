@@ -9,6 +9,6 @@ class Admin::Ajax::PlacesController < Admin::BaseController
 
   private
   def place_params
-    params.require(:place).permit :name, :address, :latitude, :longitude, :formatted_address, :is_hospital
+    params.require(:place).permit :name, :address, :latitude, :longitude, :formatted_address
   end
 end

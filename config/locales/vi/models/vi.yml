@@ -45,7 +45,7 @@ vi:
         place: Địa điểm
         content: Nội dung
       place:
-        name: Tên bệnh viện
+        name: Tên cơ sở
         address: Địa chỉ
       history: &history
         donation_type: "Hình thức hiến"
@@ -75,8 +75,3 @@ vi:
         department: "Khoa điều trị"
         place_of_birth: "Nguyên quán"
         id_number: "Số CMND"
-      department: &department
-        name: "Tên khoa"
-        head_doctor: "BS. Trưởng khoa"
-      departments:
-        <<: *department

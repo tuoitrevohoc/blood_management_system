@@ -3,7 +3,7 @@
     <div class="modal-content">
       <%= form_for [:admin, :ajax, place], class: "place-form", remote: true do |f| %>
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><i class="material-icons">clear</i></button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Đăng ký điểm hiến máu</h4>
         </div>
         <div class="modal-body">
@@ -14,11 +14,11 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group label-floating">
+              <div class="form-group">
                 <%= f.label :name, "Tên cơ sở", class: "control-label" %>
                 <%= f.text_field :name, class: "form-control" %>
               </div>
-              <div class="form-group label-floating">
+              <div class="form-group">
                 <%= f.label :address, "Địa chỉ", class: "control-label" %>
                 <%= f.text_field :address, class: "form-control lp-input", id: "place-address" %>
                 <%= f.hidden_field :latitude, class: "lp-lat", id: "place-lat" %>
@@ -29,12 +29,6 @@
           </div>
         </div>
         <div class="modal-footer">
-          <div class="checkbox float-left">
-            <%= f.label :is_hospital do %>
-              <%= f.check_box :is_hospital %><span class="checkbox-material"><span class="check"></span></span>
-              Địa chỉ này là một bệnh viện?
-            <% end %>
-          </div>
           <%= f.button "Đóng", class: "btn btn-default", data: {dismiss: "modal"}, type: :button %>
           <%= f.button "Đăng Ký", class: "btn btn-primary", id: "btn-submit-place-form", type: :button %>
         </div>
