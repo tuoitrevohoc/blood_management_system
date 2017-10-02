@@ -85,10 +85,4 @@ module ApplicationHelper
       nil
     end
   end
-
-  def required_mark font_size: 7
-    %Q|<sup class="text-danger">
-        <i class="fa fa-asterisk text-danger" style="font-size: #{font_size}px;"></i>
-      </sup>|
-  end
 end

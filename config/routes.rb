@@ -39,6 +39,5 @@ Rails.application.routes.draw do
     end
     resources :articles, except: :show
     resources :events, except: :show
-    resources :patients
   end
 end
