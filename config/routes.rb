@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       resources :departments, only: :index
       resources :places_departments, only: [:new, :create]
       resources :donators, only: [:index, :show]
-      resources :patients, only: [:destroy, :update]
+      resources :patients, only: [:index, :destroy, :update]
     end
     root "events#index"
     resources :dashboard, only: :index

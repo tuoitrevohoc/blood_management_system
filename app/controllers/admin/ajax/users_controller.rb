@@ -19,5 +19,11 @@ class Admin::Ajax::UsersController < Admin::BaseController
   def set_form
     @user_form =  Support::UserForm.new
     @history_form =  Support::HistoryForm.new places: current_user.available_places
+    @patients = Patient.select(:name, :id, :blood_type, :address)
+      .map do |patient|
+        blood_type = t "users.blood_types.#{patient.blood_type}"
+        text = "#{patient.name} (#{blood_type}) - #{patient.address}"
+        [text, patient.id]
+      end
   end
 end

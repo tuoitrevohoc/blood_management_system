@@ -24,14 +24,14 @@ $(document).ready(function() {
     width: "100%",
     language: {
       noResults: function() {
-        var link_to_modal = "<a href='#' class='register-place'>Thêm mới?</a>";
+        var link_to_modal = "<a href='#'>Thêm mới?</a>";
         return "Địa điểm này không có sẵn. " + link_to_modal;
       }
     },
     escapeMarkup: function(markup) {return markup;}
   });
 
-  $(document).on("click", ".register-place", function() {
+  $(".register-place").on("click", function() {
     var url = "<%= new_admin_ajax_place_path %>";
     var search_query = $("select.select2").data("select2").$dropdown.find("input").val();
     var request_new_place = $.get(url, {place: {name: search_query}}, null, "script");

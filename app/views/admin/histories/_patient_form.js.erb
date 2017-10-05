@@ -1,0 +1,67 @@
+function showPatientForm(showForm) {
+  if (showForm) {
+    $(".patient-form-wrapper").find(".form-control").removeAttr("disabled");
+    $(".patient-form-wrapper").show();
+  } else {
+    $(".patient-form-wrapper").find(".form-control").attr("disabled", "disabled");
+    $(".patient-form-wrapper").hide();
+  }
+}
+
+function initSelect2() {
+  $(".select2-2").select2({
+    theme: "bootstrap",
+    width: "100%",
+    language: {
+      noResults: function() {
+        var hyperlink = "<a href='<%= new_admin_patient_path %>' class='register-patient-link' target='_blank'>Thêm mới?</a>";
+        return "Không tìm thấy kết quả. " + hyperlink;
+      }
+    },
+    escapeMarkup: function(markup) {return markup;}
+  });
+}
+
+function updatePatientOptions() {
+  var donorBloodType = $("#user_blood_type").val();
+  var url = "<%= admin_ajax_patients_path %>";
+  $.ajax({
+    url: url,
+    data: {donor_blood_type: donorBloodType},
+    success: function(response) {
+      var patients = response.data;
+      patients.unshift({text: "--- Chọn bệnh nhân ---", id: null});
+      $(".select2-2").empty().select2({
+        data: patients
+      }).trigger("change");
+    },
+    error: function(e) {
+      showNotification("Error " + e.status + ": " + e.statusText + ".", "danger");
+    }
+  });
+  $("#warning-text").remove();
+}
+
+$(function() {
+  initSelect2();
+
+  $(document).on("change", 'input[name="has_patient"]', function() {
+    var hasPatient = $(this).val() == "true";
+    showPatientForm(hasPatient);
+  });
+
+  $(document).ajaxComplete(initSelect2);
+
+  $(document).on("click", ".register-patient-link", function() {
+    var warningText = '<p class="text-danger" id="warning-text" style="margin-top: 80px;">\
+      <b><a id="reload-options">Bấm vào đây</a></b> để cập nhật lại danh sách.</p>';
+    $(".patient-form-wrapper .col-md-12").append(warningText);
+  });
+
+  $(document).on("click", "#reload-options", function() {
+    updatePatientOptions();
+    showNotification("Danh sách bệnh nhân đã được cập nhật!", "info");
+  });
+
+  $(document).on("change", "#user_blood_type", updatePatientOptions);
+});

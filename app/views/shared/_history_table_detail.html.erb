@@ -8,7 +8,7 @@
           <td colspan="2">
             Thông tin người nhận
             <span class="pull-right hideable">
-              <%= link_to "#", id: "btn-edit-patient-info" do %>
+              <%= link_to [:edit, :admin, history.patient] do %>
                 <i class="fa fa-edit"></i>
               <% end %>
             </span>
@@ -33,8 +33,9 @@
         <% if history.has_patient? %>
           <td>Họ và tên:</td>
           <td>
-            <span class="hideable"><%= history.patient_name %></span>
-            <%= f.text_field :patient_name, class: "form-control hidden hidden-control" %>
+            <span class="hideable">
+              <%= link_to history.patient.try(:name), [:admin, history.patient], class: "links" %>
+            </span>
           </td>
         <% end %>
       </tr>
@@ -42,10 +43,9 @@
         <td>Cơ sở tiếp nhận:</td>
         <td><%= history.place_name %></td>
         <% if history.has_patient? %>
-          <td>Tuổi:</td>
+          <td>Ngày sinh:</td>
           <td>
-            <span class="hideable"><%= history.patient_age %></span>
-            <%= f.text_field :patient_age, class: "form-control hidden hidden-control" %>
+            <span class="hideable"><%= history.patient.try :birthday %></span>
           </td>
         <% end %>
       </tr>
@@ -55,8 +55,7 @@
         <% if history.has_patient? %>
           <td>Số điện thoại:</td>
           <td>
-            <span class="hideable"><%= history.patient_phone_number %></span>
-            <%= f.text_field :patient_phone_number, class: "form-control hidden hidden-control" %>
+            <span class="hideable"><%= history.patient.try :phone_number %></span>
           </td>
         <% end %>
       </tr>
@@ -66,8 +65,7 @@
         <% if history.has_patient? %>
           <td>Địa chỉ:</td>
           <td>
-            <span class="hideable"><%= history.patient_address %></span>
-            <%= f.text_field :patient_address, class: "form-control hidden hidden-control" %>
+            <span class="hideable"><%= history.patient.try :address %></span>
           </td>
         <% end %>
       </tr>
@@ -77,8 +75,7 @@
         <% if history.has_patient? %>
           <td rowspan="2">Bệnh lý:</td>
           <td rowspan="2">
-            <span class="hideable"><%= simple_format history.patient_pathological %></span>
-            <%= f.text_area :patient_pathological, class: "form-control hidden hidden-control" %>
+            <span class="hideable"><%= simple_format history.patient.try :pathological %></span>
           </td>
         <% end %>
       </tr>
@@ -92,8 +89,7 @@
         <% if history.has_patient? %>
           <td>Ghi chú:</td>
           <td>
-            <span class="hideable"><%= history.patient_description %></span>
-            <%= f.text_field :patient_description, class: "form-control hidden hidden-control" %>
+            <span class="hideable"><%= history.patient.try :description %></span>
           </td>
         <% end %>
       </tr>

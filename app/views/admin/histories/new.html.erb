@@ -26,7 +26,7 @@
           <p class="category"></p>
         </div>
         <div class="card-content" id="user-history-form">
-          <%= render "user_history_form", user: @user, user_form: @user_form, history_form: @history_form %>
+          <%= render "user_history_form", user: @user, user_form: @user_form, history_form: @history_form, patients: @patients %>
         </div>
         <div class="pull-right btn-capcha">
           <%= render "shared/confirmation_checkbox", confirm_for: ".new_user" %>
@@ -40,6 +40,7 @@
   <%= javascript_include_tag "admin/jquery.nanoscroller.min.js" %>
   <script type="text/javascript">
     <%= render "admin/histories/new.js" %>
+    <%= render "admin/histories/patient_form.js" %>
   </script>
 <% end %>
 
