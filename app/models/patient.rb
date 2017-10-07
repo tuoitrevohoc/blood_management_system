@@ -9,4 +9,6 @@ class Patient < ApplicationRecord
   delegate :name, :head_doctor, to: :department, allow_nil: true, prefix: :department
 
   validates :name, :gender, :blood_type, :phone_number, :address, :pathological, :department, presence: true
+
+  scope :blood_type_compatible_with, -> blood_type {where blood_type: blood_type}
 end

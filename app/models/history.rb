@@ -10,12 +10,11 @@ class History < ApplicationRecord
   delegate :id, :name, :birthday, :gender, :blood_type, :facebook_account,to: :user,
     prefix: :user, allow_nil: true
   delegate :id, :name, to: :admin, prefix: :admin, allow_nil: true
+  delegate :name, :birthday, :phone_number, :address, :pathological, :description, to: :patient, allow_nil: true
 
   validates :date, :donation_type, presence: true
   validates :platelet_count, numericality: {only_integer: true, greater_than: 0},
     if: -> {self.platelets? && self.platelet_count.present?}
-  validates :patient_name, :patient_pathological, presence: true, if: -> {self.has_patient?}
-  validate :phone_number_or_address, if: :has_patient?
 
   ransacker :donation_type, formater: proc {|type| donation_types[type]}
 
@@ -27,7 +26,7 @@ class History < ApplicationRecord
   end
 
   def has_patient?
-    self.patient_name?
+    self.patient_id?
   end
 
   private

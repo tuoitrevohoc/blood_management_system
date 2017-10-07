@@ -9,6 +9,7 @@ function appendDepartmentForm(e) {
     var url = "/admin/ajax/places/" + place_id + "/departments/new";
     $.get(url, null, null, 'script');
   } else {
+    $("#department-section").html(null);
     return false;
   }
 }

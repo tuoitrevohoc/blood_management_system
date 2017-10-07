@@ -1,4 +1,4 @@
-$("#user-history-form").html("<%= j render "admin/histories/user_history_form", user: @user, user_form: @user_form, history_form: @history_form %>");
+$("#user-history-form").html("<%= j render "admin/histories/user_history_form", user: @user, user_form: @user_form, history_form: @history_form, patients: @patients %>");
 var min_age = 18;
 var max_age = 50;
 var birthday_picker = initialize_date_picker(".date-picker");
@@ -24,3 +24,5 @@ function isEmptyAddress() {
 }
 
 <%= render "shared/new_history_common.js" %>
+
+updatePatientOptions();

@@ -33,6 +33,12 @@ namespace :patient do
     logger.error "#{errors}" if errors.any?
     invalid_history_logger.error "#{invalid_records}" if invalid_records.any?
     puts "\nFinished, got #{errors.count} errors. \nSee more detail at '#{Rails.root}/log/patient_move_data.log'"
+    Rake::Task["patient:drop_columns"].invoke
+  end
+
+  task drop_columns: :environment do
+    cols = drop_old_patient_columns
+    puts "#{cols.size} columns has been removed from `histories`: #{cols.join(", ")}."
   end
 
   def patient_params history
@@ -46,5 +52,12 @@ namespace :patient do
       address: history.patient_address || "CAP NHAT SAU",
       description: desc,
     }
+  end
+
+  def drop_old_patient_columns
+    columns = %i|patient_name patient_age patient_pathological patient_phone_number
+      patient_address patient_description|
+    columns.each {|column| ActiveRecord::Migration.remove_column :histories, column}
+    columns
   end
 end

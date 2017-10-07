@@ -76,3 +76,39 @@ blood_recipient_scheme:
     - o_neg
   o_neg:
     - o_neg
+blood_donor_scheme:
+  a_pos:
+    - a_pos
+    - ab_pos
+  a_neg:
+    - a_pos
+    - a_neg
+    - ab_pos
+    - ab_neg
+  b_pos:
+    - b_pos
+    - ab_pos
+  b_neg:
+    - b_pos
+    - b_neg
+    - ab_pos
+    - ab_neg
+  ab_pos:
+    - ab_pos
+  ab_neg:
+    - ab_pos
+    - ab_neg
+  o_pos:
+    - a_pos
+    - b_pos
+    - ab_pos
+    - o_pos
+  o_neg:
+    - a_pos
+    - a_neg
+    - b_pos
+    - b_neg
+    - ab_pos
+    - ab_neg
+    - o_pos
+    - o_neg
