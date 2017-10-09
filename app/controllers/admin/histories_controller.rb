@@ -24,7 +24,7 @@ class Admin::HistoriesController < Admin::BaseController
   def create
     @user = User.new
     @user.skip_confirmation_notification!
-    if @user.update(user_params) && update_patient_info(@user)
+    if @user.update(user_params) # && update_patient_info(@user)
       @user.signed_up_by_admin!
       if @user.email.present?
         token = @user.confirmation_token
@@ -32,7 +32,7 @@ class Admin::HistoriesController < Admin::BaseController
       else
         @user.skip_confirmation!
       end
-      flash[:success] = "Đã tạo tài khoản và thêm 1 lịch sử hiến máu cho #{@user.name&.titleize}."
+      flash[:success] = "Đã tạo tài khoản và thêm 1 lịch sử hiến máu cho #{@user.name.try :titleize}."
       redirect_to new_admin_history_path
     else
       load_empty_data build_histories: false
@@ -41,10 +41,10 @@ class Admin::HistoriesController < Admin::BaseController
   end
 
   def update
-    if @user.update(user_params) && update_patient_info(@user)
+    if @user.update(user_params) # && update_patient_info(@user)
       # TODO: update add thank you letter later.
       sign_in @user, bypass: true if @user == current_user
-      flash[:success] = "Đã thêm 1 lịch sử hiến máu cho #{@user.name&.titleize}."
+      flash[:success] = "Đã thêm 1 lịch sử hiến máu cho #{@user.name.try :titleize}."
       redirect_to new_admin_history_path
     else
       load_empty_data build_histories: false
@@ -86,7 +86,7 @@ class Admin::HistoriesController < Admin::BaseController
     params.require(:user).permit :name, :email, :gender, :birthday, :id_number, :phone_number, :description,
       :phone_number_2, :address, :blood_type, :password, :lat, :lon, :facebook_account, :place_of_birth,
       histories_attributes: [
-        :user_id, :date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified, :referer
+        :user_id, :date, :place_id, :donation_type, :platelet_count, :admin_id, :is_verified, :referer, :patient_id
       ]
   end
 
@@ -119,6 +119,12 @@ class Admin::HistoriesController < Admin::BaseController
     @users = []
     @user.histories.new if build_histories
     set_forms
+    @patients = Patient.select(:name, :id, :blood_type, :address)
+      .map do |patient|
+        blood_type = t "users.blood_types.#{patient.blood_type}"
+        text = "#{patient.name} (#{blood_type}) - #{patient.address}"
+        [text, patient.id]
+      end
   end
 
   def load_history

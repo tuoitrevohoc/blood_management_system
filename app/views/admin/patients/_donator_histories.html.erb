@@ -1,0 +1,22 @@
+<% if patient.users.blank? %>
+  <p class="no-result-subt">Chưa có thông tin về những người đã hiến máu cho bệnh nhân này.</p>
+<% else %>
+  <table class="table table-striped table-bordered table-donator-histories">
+    <thead>
+      <tr>
+        <th colspan="6">Những người đã hiến máu cho <%= patient.name %></th>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <th>Họ và Tên</th>
+        <th class="max-width-80">Nhóm máu</th>
+        <th class="max-width-80">Ngày hiến</th>
+        <th>Nơi hiến</th>
+        <th class="max-width-50">Xoá</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "admin/patients/history", collection: patient.histories.includes(:user, :place).decorate %>
+    </tbody>
+  </table>
+<% end %>

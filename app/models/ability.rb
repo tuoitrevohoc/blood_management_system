@@ -2,13 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize user
-    case user&.role
+    case user.try :role
     when "normal"
       can :read, :all
       can :read, [History, Place]
       can :manage, History, user_id: user.id
       can :manage, User, id: user.id
       can :manage, [:profile, :contract]
+      cannot :manage, Patient
       cannot :manage, User, is_public_profile: false
       cannot :manage, [Event, Article], is_public: false
       cannot :manage, AdminHistory

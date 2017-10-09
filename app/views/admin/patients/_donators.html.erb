@@ -1,0 +1,22 @@
+<table class="patient-profile donators-table">
+  <thead class="t-head">
+    <tr>
+      <th colspan="2">Những người đã hiến máu cho <%= (patient.name + " <span id='donator-count'>[#{patient.users.size}]</span>").html_safe %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">
+        <div class="search-donators">
+          <%= render "search_bar", patient: patient, q: q %>
+        </div>
+        <div id="results">
+          <%= render "donators_table", donators: [] %>
+        </div>
+        <div id="donator-histories">
+          <%= render "admin/patients/donator_histories", patient: patient %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

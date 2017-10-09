@@ -1,0 +1,103 @@
+<%= form_for [:admin, patient], html: {id: "new-patient"} do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="error-messages-container">
+        <%= render "shared/error_messages", object: f.object %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= f.label :name, "Họ và Tên #{required_mark}".html_safe, class: "control-label" %>
+        <%= f.text_field :name, class: "form-control", autocomplete: "off", maxlength: 200 %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :gender, "Giới Tính #{required_mark}".html_safe, class: "control-label" %>
+        <%= f.select :gender, form.genders, {prompt: ""}, class: "form-control" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :birthday, "Ngày Sinh", class: "control-label" %>
+        <%= f.text_field :birthday, class: "form-control date-picker" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :id_number, "Số CMND", class: "control-label" %>
+        <%= f.text_field :id_number, class: "form-control" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :blood_type, "Nhóm máu #{required_mark}".html_safe, class: "control-label" %>
+        <%= f.select :blood_type, form.blood_types, {prompt: ""}, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= f.label :phone_number, "Số điện thoại 1 #{required_mark}".html_safe, class: "control-label" %>
+        <%= f.text_field :phone_number, class: "form-control" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :phone_number_2, "Số điện thoại 2", class: "control-label" %>
+        <%= f.text_field :phone_number_2, class: "form-control" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :place_of_birth, "Nguyên Quán", class: "control-label" %>
+        <%= f.text_field :place_of_birth, class: "form-control" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :address, "Địa Chỉ #{required_mark}".html_safe, class: "control-label" %>
+        <%= f.text_area :address, class: "form-control autosize", rows: 5 %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group label-floating">
+        <%= f.label :pathological, "Bệnh Lý #{required_mark}".html_safe, class: "control-label" %>
+        <%= f.text_field :pathological, class: "form-control" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :department_id, "Khoa Điều Trị #{required_mark}".html_safe, class: "control-label" %>
+        <p class="flabel-subtitle">Không tìm khoa điều trị? <a href="javascript:void(0);" id="register-department">Bấm để thêm mới</a></p>
+        <%= f.select :department_id, form.departments, {prompt: "--- Chọn khoa đang điều trị ---"}, class: "form-control select2", id: "patient-department-id" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= label_tag :head_doctor, "BS Trưởng Khoa", class: "control-label" %>
+        <%= text_field_tag :head_doctor, f.object.persisted? ? f.object.department_head_doctor : nil, class: "form-control", readonly: true, id: "head-doctor" %>
+      </div>
+      <div class="form-group label-floating">
+        <%= f.label :history_of_pathology, "Lịch Sử Bệnh Lý", class: "control-label" %>
+        <%= f.text_area :history_of_pathology, class: "form-control autosize", rows: 1 %>
+      </div>
+      <div class="col-md-4 no-padding-left">
+        <div class="form-group label-floating">
+          <%= f.label :room_number, "Phòng bệnh", class: "control-label" %>
+          <%= f.text_field :room_number, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-8 no-padding-right">
+        <div class="form-group label-floating">
+          <%= f.label :description, "Ghi Chú", class: "control-label" %>
+          <%= f.text_area :description, class: "form-control autosize", rows: 1 %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.button "Lưu", class: "btn btn-primary pull-right" %>
+      <%= link_to "Huỷ", request.referer || [:admin, :patients], class: "btn btn-default pull-right" %>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :modal_bottom_page do %>
+  <div class="modal-wrapper"></div>
+  <div class="modal-wrapper-2"></div>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_include_tag "autosize.min.js" %>
+  <script type="text/javascript">
+    <%= render "date_picker.js" %>
+    <%= render "shared/auto_size.js" %>
+    <%= render "patient_form.js" %>
+    <%= render "shared/select2.js" %>
+  </script>
+<% end %>

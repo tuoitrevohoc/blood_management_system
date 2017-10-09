@@ -109,38 +109,23 @@
           <legend class="gr-subscription">2. Thông tin người nhận</legend>
           <div class="col-md-12">
             <div class="form-group label-floating">
-              <%= field.label :patient_name, "Họ và tên", class: "control-label" %>
-              <%= field.text_field :patient_name, class: "form-control" %>
+              <%= label_tag :has_patient_false do %>
+                <%= radio_button_tag :has_patient, false, true, class: "control-label" %>
+                Hiến tập trung, chưa có bệnh nhân.
+              <% end %>
+              <br>
+              <%= label_tag :has_patient_true do %>
+                <%= radio_button_tag :has_patient, true, false, class: "control-label" %>
+                Hiến trực tiếp, có bệnh nhân.
+              <% end %>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group label-floating">
-              <%= field.label :patient_age, "Tuổi", class: "control-label" %>
-              <%= field.text_field :patient_age, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="form-group label-floating">
-              <%= field.label :patient_phone_number, "Số điện thoại", class: "control-label" %>
-              <%= field.text_field :patient_phone_number, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group label-floating">
-              <%= field.label :patient_address, "Địa chỉ liên lạc", class: "control-label" %>
-              <%= field.text_field :patient_address, class: "form-control" %>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group label-floating">
-              <%= field.label :patient_pathological, "Bệnh lý", class: "control-label" %>
-              <%= field.text_area :patient_pathological, class: "form-control autosize", rows: 8 %>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group label-floating">
-              <%= field.label :patient_description, "Ghi chú", class: "control-label" %>
-              <%= field.text_area :patient_description, class: "form-control autosize", rows: 8 %>
+          <div class="patient-form-wrapper" style="display:none;">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= field.label :patient_id, "Chọn bệnh nhân", class: "control-label" %>
+                <%= field.select :patient_id, patients, {prompt: "--- Chọn bệnh nhân ---"}, class: "select2-2 form-control" %>
+              </div>
             </div>
           </div>
         </fieldset>

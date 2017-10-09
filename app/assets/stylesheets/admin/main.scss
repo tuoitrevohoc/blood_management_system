@@ -544,3 +544,192 @@ table.stats {
 .card-2 {
   margin-top: 5px;
 }
+
+#table-long-width {
+  .min-wid-200 {
+    min-width: 200px;
+  }
+}
+
+#new-patient {
+  .no-padding-left {
+    padding-left: 0;
+  }
+
+  .no-padding-right {
+    padding-right: 0;
+  }
+}
+
+.float-left {
+  float: left;
+}
+
+.flabel-subtitle {
+  position: absolute;
+  top: -28px;
+  right: 0;
+  font-size: 12px;
+  line-height: 1.07143;
+  color: #555;
+  font-weight: 400;
+  margin: 16px 0 0 0;
+}
+
+.patient-profile {
+  border: 1px solid #cacaca;
+  width: 100%;
+  tr {
+    border: 1px solid #cacaca;
+    th {
+      background-color: #eee;
+      text-align: right;
+      width: 40%;
+    }
+  }
+  td, th {
+    padding: 10px 20px;
+  }
+  span.fb-cover-name {
+    font-weight: bold;
+  }
+}
+
+.patient-profile {
+  .t-head {
+    th {
+      text-transform: uppercase;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+.donators-table {
+  .no-result-subt {
+    margin: 10px 0;
+  }
+}
+
+.filter-donators {
+  padding-right: 0;
+  .form-group {
+    width: calc(100% - 50px);
+  }
+  .form-control {
+    width: 100%;
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.donators-table {
+  .dataTables_wrapper {
+    display: inline;
+  }
+
+  #dt-table {
+    thead tr th {
+      font-size: 15px;
+      font-weight: normal;
+      text-align: left;
+    }
+    tbody tr td {
+      font-size: 14px;
+      font-weight: normal;
+    }
+    .show-detail:hover {
+      cursor: pointer;
+      .fa {
+        text-shadow: 1px 1px 2px #efefef, 0 0 25px #9b27b0, 0 0 5px #9b27b0;
+      }
+    }
+    .show-detail {
+      .fa {
+        text-shadow: 1px 1px 2px #efefef, 0 0 25px #9c9c9c, 0 0 5px #808080;
+        margin-right: 5px;
+      }
+    }
+
+    .sub-table {
+      th {
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      td {
+        font-size: 13px;
+        font-weight: normal;
+      }
+      th, td {
+        padding: 5px 8px;
+      }
+      .sub-th {
+        background-color: #f7f7f7;
+      }
+    }
+  }
+
+  .pagination li a:hover,
+  .pagination li a:focus {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #9c27b0;
+  }
+
+  .pagination > li > a,
+  .pagination > li > span {
+    font-weight: normal;
+    text-transform: capitalize;
+  }
+
+  table.dataTable thead .sorting_desc_disabled:after {
+    bottom: 10px;
+  }
+
+  table.dataTable thead .sorting:after,
+  table.dataTable thead .sorting_asc:after,
+  table.dataTable thead .sorting_desc:after,
+  table.dataTable thead .sorting_asc_disabled:after {
+    margin-top: 6px;
+  }
+  #donator-histories {
+    .table-striped {
+      thead th {
+        font-weight: bold;
+        text-align: center;
+      }
+      th, td {
+        font-size: 14px;
+      }
+      th:first-child,
+      td:first-child {
+        width: 100px;
+      }
+    }
+  }
+  .max-width-80 {
+    width: 80px !important;
+  }
+  .max-width-75 {
+    width: 75px !important;
+  }
+  .max-width-100 {
+    width: 100px !important;
+  }
+  .max-width-50 {
+    width: 50px;
+  }
+  .fa-2x {
+    font-size: 1.3em;
+  }
+  .fa-2x:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  #donator-histories {
+    margin-top: 15px;
+  }
+}

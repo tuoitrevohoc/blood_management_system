@@ -14,4 +14,8 @@ class Support::UserForm
   def roles
     User.roles.keys.map {|role| [I18n.t("users.roles.#{role}"), role]}
   end
+
+  def departments
+    Department.joins(:place).select("departments.*, places.name as place_name").map {|d| ["#{d.name} - #{d.place_name}", d.id, {data: {doctor: d.head_doctor}}]}
+  end
 end

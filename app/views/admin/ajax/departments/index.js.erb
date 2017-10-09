@@ -1,0 +1,35 @@
+function showPlaceForm(e) {
+  var url = "<%= new_admin_ajax_places_department_path %>";
+  $.get(url, null, null, 'script');
+}
+
+function appendDepartmentForm(e) {
+  var place_id = $(e.target).val();
+  if (place_id) {
+    var url = "/admin/ajax/places/" + place_id + "/departments/new";
+    $.get(url, null, null, 'script');
+  } else {
+    $("#department-section").html(null);
+    return false;
+  }
+}
+
+$(".modal-wrapper-2").html("<%= j render 'admin/shared/register_department_modal', places: @places %>");
+$("#register-department-modal").modal({backdrop: "static", keyboard: false});
+$("#register-department-modal").modal("show");
+
+$("#register-department-modal").on("shown.bs.modal", function() {
+  $(".select2").select2({
+    theme: "bootstrap",
+    language: {
+      noResults: function() {
+        var link_to_modal = "<a href='javascript:void(0);' class='register-place'>Thêm mới?</a>";
+        return "Địa điểm này không có sẵn. " + link_to_modal;
+      }
+    },
+    escapeMarkup: function(markup) {return markup;}
+  });
+
+  $("#register-department-modal").on('click', ".register-place", showPlaceForm);
+  $("#register-department-modal").on('change', "#place-selectbox", appendDepartmentForm);
+});

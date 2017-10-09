@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :admin_histories, dependent: :destroy
   has_many :admin_histories_created, class_name: AdminHistory.name, foreign_key: :admin_id, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :patients, through: :histories, class_name: History.name, foreign_key: :patient_id
 
   accepts_nested_attributes_for :histories, allow_destroy: true
 
@@ -30,6 +31,8 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
 
   before_save downcase_email: -> {self.email.downcase! if self.email.present?}
+
+  scope :blood_type_compatible_with, -> blood_type {where blood_type: blood_type}
 
   def status
     return :unknown unless self.histories.any?
