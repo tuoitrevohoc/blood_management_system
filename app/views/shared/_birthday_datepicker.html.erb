@@ -8,7 +8,7 @@
         changeYear: true,
         yearRange: "-100:-16",
         format: "dd/mm/yyyy",
-        defaultDate: "<%= l object.try(:birthday), format: :default_date %>"
+        defaultDate: "<%= l(object.try(:birthday) || '01/01/2000'.to_date, format: :default_date) %>"
       });
     });
   </script>
