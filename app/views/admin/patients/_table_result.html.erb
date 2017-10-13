@@ -3,21 +3,28 @@
     <thead>
       <tr>
         <th></th>
-        <th>ID</th>
-        <th class="min-wid-200">Họ và Tên</th>
+        <th>
+          <%= sort_link @q, :id do %>
+            ID
+            <span class="<%= visible_unsorted_icon :id %>">&nbsp;
+              <i class="fa fa-unsorted"></i>
+            </span>
+          <% end %>
+        </th>
+        <th class="min-wid-200">
+          <%= sort_link @q, :name do %>
+            Họ và Tên
+            <span class="<%= visible_unsorted_icon :name %>">&nbsp;
+              <i class="fa fa-unsorted"></i>
+            </span>
+          <% end %>
+        </th>
         <th>Giới Tính</th>
-        <th class="non-break-line">Ngày Sinh</th>
         <th>Nhóm Máu</th>
         <th class="min-wid-200">Bệnh Lý</th>
-        <th class="min-wid-200">Khoa Điều trị</th>
-        <th>Phòng Bệnh</th>
-        <th class="min-wid-200">BS Trưởng Khoa</th>
-        <th class="non-break-line">SĐT 1</th>
-        <th class="non-break-line">SĐT 2</th>
+        <th class="non-break-line">SĐT</th>
         <th class="min-wid-200">Địa Chỉ</th>
-        <th class="min-wid-200">Nguyên Quán</th>
-        <th class="min-wid-200">Lịch Sử Bệnh Lý</th>
-        <th>Ghi Chú</th>
+        <th class="min-wid-200">Ghi Chú</th>
         <th></th>
       </tr>
     </thead>

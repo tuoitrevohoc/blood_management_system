@@ -1,0 +1,18 @@
+function showBtnReset(arg) {
+  arg = arg === undefined ? true : arg;
+  if (arg) {
+    $(".btn-clear-search").removeClass("hidden");
+  } else {
+    $(".btn-clear-search").addClass("hidden");
+  }
+}
+
+function checkSearchForm() {
+  if ($(".search-key").val().trim()) {
+    showBtnReset();
+  } else {
+    showBtnReset(false);
+  }
+}
+
+$(checkSearchForm);

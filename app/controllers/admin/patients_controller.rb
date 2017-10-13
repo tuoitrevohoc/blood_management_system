@@ -2,7 +2,12 @@ class Admin::PatientsController < Admin::BaseController
   before_action :load_form, only: [:new, :edit]
 
   def index
-    @patients = Patient.includes(:department).all.page(params[:page]).per 10
+    @q = Patient.includes(:department).newest.ransack params[:q]
+    @patients = @q.result.page(params[:page]).per 10
+    @stats = {
+      total: @q.result.size,
+      per_page: @patients.size < 10 ? @patients.size : 10
+    }
   end
 
   def show

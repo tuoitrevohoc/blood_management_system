@@ -2,7 +2,14 @@
 <table class="patient-profile">
   <thead class="t-head">
     <tr>
-      <th colspan="2">Thông tin chung</th>
+      <th colspan="2">
+        Thông tin chung
+        <%= link_to [:edit, :admin, patient] do %>
+          <span class="pull-right" title="Chỉnh sửa thông tin">
+            <i class="fa fa-edit"></i>
+          </span>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>

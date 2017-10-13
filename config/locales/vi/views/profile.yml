@@ -19,6 +19,7 @@ vi:
       phone_number_2: "Số ĐT 2"
       place_of_birth: "Nguyên quán"
       description: "Ghi chú"
+      birthday: "Ngày sinh"
     account_form:
       email: "Email"
       password: "Mật khẩu"
