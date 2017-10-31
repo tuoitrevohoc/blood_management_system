@@ -4,6 +4,16 @@ module ApplicationHelper
     page_title.present? ? "#{page_title} | #{base_title}" : base_title
   end
 
+  def full_keywords page_keywords = ""
+    base_keywords = t "base_keywords"
+    page_keywords.present? ? "#{page_keywords}, #{base_keywords}" : base_keywords
+  end
+
+  def full_description page_description = ""
+    base_description = t "base_description"
+    page_description.present? ? "#{page_description}. #{base_description}" : base_description
+  end
+
   def active_class url
     url.slice! ".html"
     "active" if request.original_fullpath.include? url

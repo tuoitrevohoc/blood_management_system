@@ -1,3 +1,7 @@
+<% provide :title, @event.title.try(:titleize) %>
+<% provide :keywords, "Su kien, Su kien hien mau, #{@event.title}" %>
+<% provide :description, @event.first_paragraph(inline: true) %>
+
 <%= render "layouts/banner", banner_text: nil %>
 <section id="courseArchive">
   <div class="container">

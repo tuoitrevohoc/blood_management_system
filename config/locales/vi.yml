@@ -11,7 +11,9 @@ vi:
       article_timestamp: "%I:%M %p, %d/%m/%Y"
       default_date: *default_date
       full: "%d/%m/%Y %H:%M:%S"
-  base_title: "CLB Máu Nóng Hiểu Và Thương - Chung một tấm lòng HIỂU VÀ THƯƠNG"
+  base_title: &base_title "CLB Máu Nóng Hiểu Và Thương - Chung một tấm lòng HIỂU VÀ THƯƠNG"
+  base_description: *base_title
+  base_keywords: "Hien mau, Hieu va thuong, CLB hieu va thuong, Mau nong, Mau nong hieu va thuong"
   layouts:
     header:
       home: Trang Chủ

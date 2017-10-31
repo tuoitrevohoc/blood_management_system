@@ -305,8 +305,12 @@ a:hover {
 #map {
   position: relative;
   width: 100%;
-  height: calc(100% - 70px);
-  margin-top: 70px;
+  height: calc(100% - 50px);
+  margin-top: 50px;
+}
+
+#nav-bar-map {
+  margin-top: 3px;
 }
 
 #nav-filter-form .form-control {

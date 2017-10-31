@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= full_title yield :title %></title>
+    <meta name="keywords" content="<%= full_keywords yield :keywords %>">
+    <meta name="description" content="<%= full_description yield :description %>">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", media: "all" %>

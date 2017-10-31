@@ -10,7 +10,8 @@ class History < ApplicationRecord
   delegate :id, :name, :birthday, :gender, :blood_type, :facebook_account,to: :user,
     prefix: :user, allow_nil: true
   delegate :id, :name, to: :admin, prefix: :admin, allow_nil: true
-  delegate :name, :birthday, :phone_number, :address, :pathological, :description, to: :patient, allow_nil: true
+  delegate :name, :birthday, :phone_number, :address, :pathological, :description,
+    to: :patient, allow_nil: true, prefix: :patient
 
   validates :date, :donation_type, presence: true
   validates :platelet_count, numericality: {only_integer: true, greater_than: 0},
