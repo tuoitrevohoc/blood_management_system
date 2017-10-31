@@ -1,9 +1,11 @@
+<% provide :title, @event.title %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header" data-background-color="purple">
-          <h4 class="title">Edit Sự Kiện</h4>
+          <h4 class="title">Chỉnh Sửa Sự Kiện</h4>
         </div>
         <div class="card-content">
           <%= render "event_form", event: @event, form: @form %>

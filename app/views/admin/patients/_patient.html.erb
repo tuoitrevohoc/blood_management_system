@@ -17,7 +17,7 @@
   <td><%= patient.pathological %></td>
   <td class="non-break-line">
     <%= format_phone_number patient.phone_number %>
-    <%= "<br>#{format_phone_number patient.phone_number_2}" if patient.phone_number_2? %>
+    <%= "<br>#{format_phone_number patient.phone_number_2}".html_safe if patient.phone_number_2? %>
   </td>
   <td><%= patient.address %></td>
   <td><%= simple_format patient.description %></td>
