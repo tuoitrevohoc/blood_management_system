@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resources :donators, only: [:index, :show]
       resources :patients, only: [:index, :destroy, :update]
     end
-    root "events#index"
+    root "dashboard#index"
     resources :dashboard, only: :index
     resources :bloods, only: :index do
       collection do
