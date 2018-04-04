@@ -35,6 +35,7 @@ gem "social-share-button"
 gem "jquery-ui-rails"
 gem "addressable"
 gem 'active_model_serializers', require: true
+gem 'webpacker', '~> 3.4'
 
 group :development, :test do
   gem "pry-rails"
