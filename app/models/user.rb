@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :admin_histories_created, class_name: AdminHistory.name, foreign_key: :admin_id, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :patients, through: :histories, class_name: History.name, foreign_key: :patient_id
+  has_many :reverse_histories, -> {reorder date: :asc}, class_name: History.name
 
   accepts_nested_attributes_for :histories, allow_destroy: true
 
@@ -34,9 +35,13 @@ class User < ApplicationRecord
 
   scope :blood_type_compatible_with, -> blood_type {where blood_type: blood_type}
 
+  def lastest_history
+    self.histories.eldest.last
+  end
+
   def status
-    return :unknown unless self.histories.any?
-    next_donation_due_date = self.histories.eldest.last.next_donation_due_date
+    return :unknown unless self.reverse_histories.any?
+    next_donation_due_date = self.reverse_histories.first.next_donation_due_date
     case true
     when Date.current >= next_donation_due_date
       :can_donate
