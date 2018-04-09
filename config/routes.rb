@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     scope :dashboard do
       get '/statistics', to: 'dashboard#statistics'
       get '/genders', to: 'dashboard#genders'
+      get '/blood_types', to: 'dashboard#blood_types'
     end
   end
 end

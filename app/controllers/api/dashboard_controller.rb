@@ -12,4 +12,8 @@ class Api::DashboardController < ApplicationController
     female_size = User.female.size
     @male = male_size * 100 / (male_size + female_size)
   end
+
+  def blood_types
+    @data = User.count_blood_types
+  end
 end

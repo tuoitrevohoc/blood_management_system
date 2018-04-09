@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div>
     <div class="row">
       <statistics/>
@@ -7,11 +7,13 @@
       <div class="col-md-6 col-sm-12">
         Donation chart
       </div>
-      <div class="col-md-3 col-sm-12">
-        Blood Group pie chart
+      <div class="col-md-3 col-sm-6 pie-chart">
+        <p>Sơ đồ Tỷ lệ nhóm máu</p>
+        <blood-types-chart :chart-data="bloodTypeData" :options="pieOptions" class="pie-chart-wrapper"/>
       </div>
-      <div class="col-md-3 col-sm-12">
-        <gender-pie-chart :chart-data="datacollection" :options="pieOptions"/>
+      <div class="col-md-3 col-sm-6 pie-chart">
+        <p>Sơ đồ tỷ lệ giới tính</p>
+        <gender-pie-chart :chart-data="datacollection" :options="pieOptions" class="pie-chart-wrapper"/>
       </div>
     </div>
     <div class="row">
@@ -36,6 +38,7 @@ import WeeklyList from './dashboards/WeeklyList.vue'
 import TopTen from './dashboards/TopTen.vue'
 import Statistics from './dashboards/Statistics.vue'
 import GenderPie from './dashboards/GenderPie.js'
+import BloodTypesPie from './dashboards/BloodTypesPie.js'
 
 export default {
   components: {
@@ -44,18 +47,21 @@ export default {
     "top-ten": TopTen,
     "statistics": Statistics,
     "gender-pie-chart": GenderPie,
+    "blood-types-chart": BloodTypesPie,
   },
   data() {
     return {
-      pieOptions: {responsive: true, maintainAspectRatio: false},
-      datacollection: null
+      pieOptions: {responsive: true, maintainAspectRatio: false, legend: false, height:250},
+      datacollection: null,
+      bloodTypeData: null
     }
   },
   mounted () {
-    this.fillData()
+    this.fillGenderData()
+    this.fillBloodTypeData()
   },
   methods: {
-    fillData () {
+    fillGenderData () {
       axios.get('/api/dashboard/genders')
         .then(
           response => {
@@ -71,10 +77,32 @@ export default {
           },
           error => console.log(error)
         )
+    },
+    fillBloodTypeData () {
+      axios.get('/api/dashboard/blood_types')
+        .then(
+          response => {
+            this.bloodTypeData = {
+              labels: response.data.blood_types.map(group => group.name),
+              datasets: [
+                {
+                  backgroundColor: ['#e63935', '#711b1a', '#00d8ff', '#006577', '#41b882', '#026538', '#fdcd55', '#906700'],
+                  data: response.data.blood_types.map(group => group.percentage)
+                }
+              ]
+            }
+          },
+          error => console.log(error)
+        )
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+  .pie-chart {
+    .pie-chart-wrapper {
+      height: 250px;
+    }
+  }
 </style>

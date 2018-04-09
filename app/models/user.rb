@@ -108,6 +108,30 @@ class User < ApplicationRecord
     def secure_random_uuid
       SecureRandom.uuid
     end
+
+    def count_blood_types
+      query = <<-SQL
+        SELECT
+            blood_type,
+            COUNT(blood_type) AS q,
+            COUNT(blood_type) / (SELECT COUNT(blood_type) FROM users) * 100 AS per
+        FROM
+            users
+        GROUP BY blood_type
+      SQL
+      User.find_by_sql(query).map do |record|
+        blood_type = record.try :blood_type
+        quantity = record.try(:q)
+        if (quantity > 0)
+          {
+            blood_type: blood_type,
+            name: blood_type ? I18n.t("users.blood_types.#{blood_type}") : I18n.t("users.undefined_blood_type"),
+            quantity: quantity,
+            percentage: record.try(:per).to_f
+          }
+        end
+      end.compact
+    end
   end
 
   protected
