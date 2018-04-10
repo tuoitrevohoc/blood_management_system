@@ -17,7 +17,16 @@ export const fetchGenders = (context) => {
     )
 }
 
+export const fetchTopUsers = (context) => {
+  axios.get('/api/dashboard/users')
+    .then(
+      response => context.commit(mutations.TOP_USERS_FETCHED, response.data.data),
+      error => console.log(error)
+    )
+}
+
 export default {
   fetchStatistics,
-  fetchGenders
+  fetchGenders,
+  fetchTopUsers
 }

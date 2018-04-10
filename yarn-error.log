@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js check --integrity
+  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js remove vue-scrollbar
 
 PATH: 
-  /Users/framgia/.rbenv/versions/2.3.6/lib/ruby/gems/2.3.0/bin:/Users/framgia/.rbenv/versions/2.3.6/bin:/usr/local/Cellar/rbenv/1.1.1/libexec:/Users/framgia/.rbenv/shims:/Users/framgia/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /Users/framgia/.rbenv/shims:/Users/framgia/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.5.1
@@ -23,6 +23,7 @@ npm manifest:
       "vue-animate-number": "^0.4.2",
       "vue-chartjs": "^3.3.1",
       "vue-loader": "^14.2.2",
+      "vue-moment": "^3.2.0",
       "vue-template-compiler": "^2.5.16",
       "vuex": "^3.0.1"
     },
@@ -3984,7 +3985,7 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
-  moment@^2.10.2:
+  moment@^2.10.2, moment@^2.11.1:
     version "2.22.0"
     resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.0.tgz#7921ade01017dd45186e7fee5f424f0b8663a730"
   
@@ -6499,6 +6500,12 @@ Lockfile:
       vue-style-loader "^4.0.1"
       vue-template-es2015-compiler "^1.6.0"
   
+  vue-moment@^3.2.0:
+    version "3.2.0"
+    resolved "https://registry.yarnpkg.com/vue-moment/-/vue-moment-3.2.0.tgz#28cd2b313831ae83953f646ac4785a2cc724e412"
+    dependencies:
+      moment "^2.11.1"
+  
   vue-style-loader@^4.0.1:
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.0.tgz#7588bd778e2c9f8d87bfc3c5a4a039638da7a863"
@@ -6790,9 +6797,9 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: Found 1 errors.
+  Error: This module isn't specified in a manifest.
       at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:59470:13
+      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:60445:15)
       at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
       at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13

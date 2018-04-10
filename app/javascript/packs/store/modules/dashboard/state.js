@@ -1,3 +1,7 @@
 export default {
-  statistics: {}
+  statistics: {},
+  newUsers: [],
+  recentDonors: [],
+  topDonors: [],
+  top_value: null
 }

@@ -34,6 +34,22 @@ class User < ApplicationRecord
   before_save downcase_email: -> {self.email.downcase! if self.email.present?}
 
   scope :blood_type_compatible_with, -> blood_type {where blood_type: blood_type}
+  scope :latest, -> time = Time.current do
+    ransack(created_at_gteq: time).result
+      .order(created_at: :desc)
+  end
+  scope :recent, -> do
+    select("histories.user_id, MAX(histories.date) as was_donating_at, users.*")
+      .joins(:histories)
+      .group(:id)
+      .order "was_donating_at desc"
+  end
+  scope :count_histories, -> do
+    select("COUNT(users.id) AS quantity, users.*")
+      .joins(:histories)
+      .group(:id)
+      .order "quantity DESC"
+  end
 
   def lastest_history
     self.histories.eldest.last

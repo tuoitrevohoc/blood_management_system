@@ -16,4 +16,13 @@ class Api::DashboardController < ApplicationController
   def blood_types
     @data = User.count_blood_types
   end
+
+  def users
+    @new_users = User.latest 30.days.ago
+    @recent_donors = User.recent.page(params[:page]).per 10
+    top_histories = User.count_histories.load
+    # top 3 by value -> element's index = 2
+    @top_value = top_histories.map {|u| u.quantity}.uniq[2]
+    @top_donors = top_histories.select {|u| u.quantity >= @top_value}
+  end
 end

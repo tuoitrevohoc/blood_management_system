@@ -5,27 +5,19 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-12">
-        Donation chart
+        <h4>Biểu đồ lượt hiến máu trong tuần</h4>
       </div>
       <div class="col-md-3 col-sm-6 pie-chart">
-        <p>Sơ đồ Tỷ lệ nhóm máu</p>
+        <h4>Sơ đồ Tỷ lệ nhóm máu</h4>
         <blood-types-chart :chart-data="bloodTypeData" :options="pieOptions" class="pie-chart-wrapper"/>
       </div>
       <div class="col-md-3 col-sm-6 pie-chart">
-        <p>Sơ đồ tỷ lệ giới tính</p>
+        <h4>Sơ đồ tỷ lệ giới tính</h4>
         <gender-pie-chart :chart-data="datacollection" :options="pieOptions" class="pie-chart-wrapper"/>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 col-sm-12">
-        <new-users/>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <weekly-list/>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <top-ten/>
-      </div>
+      <top-users/>
     </div>
   </div>
 </template>
@@ -33,21 +25,17 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
-import NewUsers from './dashboards/NewUsers.vue'
-import WeeklyList from './dashboards/WeeklyList.vue'
-import TopTen from './dashboards/TopTen.vue'
 import Statistics from './dashboards/Statistics.vue'
 import GenderPie from './dashboards/GenderPie.js'
 import BloodTypesPie from './dashboards/BloodTypesPie.js'
+import TopUsers from './dashboards/TopUsers.vue'
 
 export default {
   components: {
-    "new-users": NewUsers,
-    "weekly-list": WeeklyList,
-    "top-ten": TopTen,
     "statistics": Statistics,
     "gender-pie-chart": GenderPie,
     "blood-types-chart": BloodTypesPie,
+    "top-users": TopUsers
   },
   data() {
     return {
