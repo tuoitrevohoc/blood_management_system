@@ -4,8 +4,3 @@ json.set! :genders do
     @male, 100 - @male
   ]
 end
-
-# json.set! :genders, [
-#   [t("users.genders.male"), @male],
-#   [t("users.genders.female"), 100 - @male],
-# ]

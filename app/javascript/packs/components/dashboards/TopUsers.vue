@@ -85,7 +85,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .badge-danger {
     color: #fff;
     background-color: #dc3545;
@@ -103,5 +103,64 @@ export default {
 
   .vuebar-element {
     height: 250px;
+  }
+
+  .vb > .vb-dragger {
+      z-index: 5;
+      width: 12px;
+      right: 0;
+  }
+
+  .vb > .vb-dragger > .vb-dragger-styler {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: rotate3d(0,0,0,0);
+      transform: rotate3d(0,0,0,0);
+      -webkit-transition:
+          background-color 100ms ease-out,
+          margin 100ms ease-out,
+          height 100ms ease-out;
+      transition:
+          background-color 100ms ease-out,
+          margin 100ms ease-out,
+          height 100ms ease-out;
+      background-color: rgba(156, 39, 176, .0);
+      margin: 5px 5px 5px 0;
+      border-radius: 20px;
+      height: calc(100% - 10px);
+      display: block;
+  }
+
+  .vb.vb-scrolling-phantom > .vb-dragger > .vb-dragger-styler {
+      background-color: rgba(156, 39, 176, .3);
+  }
+
+  .vb > .vb-dragger:hover > .vb-dragger-styler {
+      background-color: rgba(156, 39, 176, .5);
+      margin: 0px;
+      height: 100%;
+  }
+
+  .vb.vb-dragging > .vb-dragger > .vb-dragger-styler {
+      background-color: rgba(156, 39, 176, .5);
+      margin: 0px;
+      height: 100%;
+  }
+
+  .vb.vb-dragging-phantom > .vb-dragger > .vb-dragger-styler {
+      background-color: rgba(156, 39, 176, .5);
+  }
+
+  .new-users,
+  .recent-users,
+  .top-users {
+    background-color: rgba(255, 255, 255, .5);
+    padding: 5px;
+  }
+
+  .vuebar-element:hover {
+    .vb-dragger-styler {
+        background-color: rgba(156, 39, 176, .3);
+    }
   }
 </style>

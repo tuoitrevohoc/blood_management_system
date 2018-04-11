@@ -1,7 +1,10 @@
 <template lang="html">
-  <li>
-    {{user.name}}
-    <span class="pull-right">{{user.quantity}} lần</span>
+  <li class="user-list-grid">
+    <img :src="user.avatar.small.url" :alt="user.name" class="small-avatar float-left pdr-small">
+    <div class="list-text">
+      <a :href="`/users/${user.id}`">{{user.name}}</a>
+      <span class="pull-right counting">{{user.quantity}} lần</span>
+    </div>
   </li>
 </template>
 
@@ -12,4 +15,8 @@ export default {
 </script>
 
 <style lang="css">
+  .counting {
+    font-weight: 800;
+    font-size: 13px;
+  }
 </style>

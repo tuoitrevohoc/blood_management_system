@@ -1,7 +1,10 @@
 <template lang="html">
-  <li>
-    <span>{{user.name}}</span>
-    <span class="pull-right">{{distanceOfTimeInWords}}</span>
+  <li class="user-list-grid">
+    <img :src="user.avatar.small.url" :alt="user.name" class="small-avatar float-left pdr-small">
+    <div class="list-text">
+      <a :href="`/users/${user.id}`">{{user.name}}</a>
+      <span class="pull-right time-stamp">{{distanceOfTimeInWords}}</span>
+    </div>
   </li>
 </template>
 

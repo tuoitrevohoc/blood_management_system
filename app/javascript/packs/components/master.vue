@@ -11,12 +11,12 @@
             <datepicker ref="programaticOpen" input-class="weekly-date"
               wrapper-class="date-picker-wrapper" :language="'vi'"
               @selected="redrawWeeklyChart" :format="'D, d MMMM'"
-              :placeholder="formatedDate"
+              :placeholder="formatedDate" :monday-first="true"
             />
             <i class="material-icons pull-right date-picker" @click="openPicker">event</i>
           </span>
         </h4>
-        <weekly :chart-data="weeklyData" :options="pieOptions" class="line-chart-wrapper"/>
+        <weekly :chart-data="weeklyData" :options="lineOptions" class="line-chart-wrapper"/>
       </div>
       <div class="col-md-3 col-sm-6 pie-chart">
         <h4>Sơ đồ Tỷ lệ nhóm máu</h4>
@@ -54,11 +54,27 @@ export default {
   },
   data() {
     return {
-      pieOptions: {responsive: true, maintainAspectRatio: false, legend: false, height:250},
       datacollection: null,
       bloodTypeData: null,
       weeklyData: null,
-      date: moment()
+      date: moment(),
+      pieOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: false,
+      },
+      lineOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: false,
+        scales: {
+          yAxes: [{
+             ticks: {
+                stepSize: 1
+             }
+          }]
+        },
+      },
     }
   },
   mounted () {
@@ -115,7 +131,7 @@ export default {
               datasets: [
                 {
                   label: 'Số lượt hiến',
-                  borderColor: '#FC2525',
+                  borderColor: '#9c27b0',
                   pointBackgroundColor: 'white',
                   borderWidth: 1,
                   pointBorderColor: 'white',
