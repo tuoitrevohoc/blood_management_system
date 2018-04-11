@@ -8,8 +8,12 @@
         <h4>
           Biểu đồ lượt hiến máu trong tuần
           <span class="pull-right group-control-2">
-            <input type="text" class="weekly-date" readonly>
-            <i class="material-icons pull-right date-picker">event</i>
+            <datepicker ref="programaticOpen" input-class="weekly-date"
+              wrapper-class="date-picker-wrapper" :language="'vi'"
+              @selected="redrawWeeklyChart" :format="'D, d MMMM'"
+              :placeholder="formatedDate"
+            />
+            <i class="material-icons pull-right date-picker" @click="openPicker">event</i>
           </span>
         </h4>
         <weekly :chart-data="weeklyData" :options="pieOptions" class="line-chart-wrapper"/>
@@ -37,6 +41,7 @@ import GenderPie from './dashboards/GenderPie.js'
 import BloodTypesPie from './dashboards/BloodTypesPie.js'
 import TopUsers from './dashboards/TopUsers.vue'
 import Weekly from './dashboards/Weekly.js'
+import Datepicker from 'vuejs-datepicker'
 
 export default {
   components: {
@@ -44,7 +49,8 @@ export default {
     "gender-pie-chart": GenderPie,
     "blood-types-chart": BloodTypesPie,
     "top-users": TopUsers,
-    Weekly
+    Weekly,
+    Datepicker
   },
   data() {
     return {
@@ -58,7 +64,12 @@ export default {
   mounted () {
     this.fillGenderData()
     this.fillBloodTypeData()
-    this.fetchWeeklyData()
+    this.fetchWeeklyData(this.date)
+  },
+  computed: {
+    formatedDate: function() {
+      return this.date.format('dddd, d MMMM')
+    }
   },
   methods: {
     fillGenderData () {
@@ -95,8 +106,8 @@ export default {
           error => console.log(error)
         )
     },
-    fetchWeeklyData () {
-      axios.get('/api/dashboard/weekly', {params: {date: this.date}})
+    fetchWeeklyData (date) {
+      axios.get('/api/dashboard/weekly', {params: {date: date}})
         .then(
           response => {
             this.weeklyData = {
@@ -116,12 +127,18 @@ export default {
           },
           error => console.log(error)
         )
+    },
+    openPicker () {
+      this.$refs.programaticOpen.showCalendar()
+    },
+    redrawWeeklyChart (date) {
+      this.fetchWeeklyData(moment(date))
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .pie-chart {
     .pie-chart-wrapper {
       height: 250px;
@@ -135,7 +152,7 @@ export default {
   }
 
   .group-control-2 {
-    display: inline-block;
+    display: flex;
 
     .weekly-date {
       width: auto;
@@ -143,6 +160,7 @@ export default {
       height: 28px;
       border: 1px solid #3c4857;
       background-color: rgba(255, 255, 255, .5);
+      padding-left: 10px;
     }
 
     .date-picker {
@@ -156,6 +174,12 @@ export default {
 
     .date-picker:hover {
       cursor: pointer;
+    }
+  }
+
+  .date-picker-wrapper {
+    .next, .prev {
+      display: inline-block !important;
     }
   }
 </style>

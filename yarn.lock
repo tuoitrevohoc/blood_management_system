@@ -6483,6 +6483,10 @@ vuebar@^0.0.18:
   version "0.0.18"
   resolved "https://registry.yarnpkg.com/vuebar/-/vuebar-0.0.18.tgz#d769b6af334abb2c3fc02dbb5a02381a9d1080cf"
 
+vuejs-datepicker@^0.9.29:
+  version "0.9.29"
+  resolved "https://registry.yarnpkg.com/vuejs-datepicker/-/vuejs-datepicker-0.9.29.tgz#b17e504a9ae699f590b2fbe07237d5309012083b"
+
 vuex@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
