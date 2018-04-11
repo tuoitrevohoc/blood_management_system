@@ -25,4 +25,25 @@ class Api::DashboardController < ApplicationController
     @top_value = top_histories.map {|u| u.quantity}.uniq[2]
     @top_donors = top_histories.select {|u| u.quantity >= @top_value}
   end
+
+  def weekly
+    real_data = History.this_week(selected_date)
+      .group(:date)
+      .count(:id)
+      .map {|k, v| {k.strftime("%a") => v}}
+      .reduce(:merge) || {}
+    @data = generate_week_dates.merge! real_data
+  end
+
+  private
+  def selected_date
+    date = params[:date].presence || Date.current
+    date.to_date
+  end
+
+  def generate_week_dates
+    (selected_date.at_beginning_of_week..selected_date.at_end_of_week).inject({}) do |list, date|
+      list.merge! date.strftime("%a") => 0
+    end
+  end
 end

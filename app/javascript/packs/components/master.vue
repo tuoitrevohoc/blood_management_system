@@ -4,8 +4,15 @@
       <statistics/>
     </div>
     <div class="row">
-      <div class="col-md-6 col-sm-12">
-        <h4>Biểu đồ lượt hiến máu trong tuần</h4>
+      <div class="col-md-6 col-sm-12 line-chart">
+        <h4>
+          Biểu đồ lượt hiến máu trong tuần
+          <span class="pull-right group-control-2">
+            <input type="text" class="weekly-date" readonly>
+            <i class="material-icons pull-right date-picker">event</i>
+          </span>
+        </h4>
+        <weekly :chart-data="weeklyData" :options="pieOptions" class="line-chart-wrapper"/>
       </div>
       <div class="col-md-3 col-sm-6 pie-chart">
         <h4>Sơ đồ Tỷ lệ nhóm máu</h4>
@@ -29,24 +36,29 @@ import Statistics from './dashboards/Statistics.vue'
 import GenderPie from './dashboards/GenderPie.js'
 import BloodTypesPie from './dashboards/BloodTypesPie.js'
 import TopUsers from './dashboards/TopUsers.vue'
+import Weekly from './dashboards/Weekly.js'
 
 export default {
   components: {
     "statistics": Statistics,
     "gender-pie-chart": GenderPie,
     "blood-types-chart": BloodTypesPie,
-    "top-users": TopUsers
+    "top-users": TopUsers,
+    Weekly
   },
   data() {
     return {
       pieOptions: {responsive: true, maintainAspectRatio: false, legend: false, height:250},
       datacollection: null,
-      bloodTypeData: null
+      bloodTypeData: null,
+      weeklyData: null,
+      date: moment()
     }
   },
   mounted () {
     this.fillGenderData()
     this.fillBloodTypeData()
+    this.fetchWeeklyData()
   },
   methods: {
     fillGenderData () {
@@ -82,6 +94,28 @@ export default {
           },
           error => console.log(error)
         )
+    },
+    fetchWeeklyData () {
+      axios.get('/api/dashboard/weekly', {params: {date: this.date}})
+        .then(
+          response => {
+            this.weeklyData = {
+              labels: Object.keys(response.data.weekly_data),
+              datasets: [
+                {
+                  label: 'Số lượt hiến',
+                  borderColor: '#FC2525',
+                  pointBackgroundColor: 'white',
+                  borderWidth: 1,
+                  pointBorderColor: 'white',
+                  backgroundColor: this.gradient,
+                  data: Object.values(response.data.weekly_data)
+                }
+              ]
+            }
+          },
+          error => console.log(error)
+        )
     }
   }
 }
@@ -91,6 +125,37 @@ export default {
   .pie-chart {
     .pie-chart-wrapper {
       height: 250px;
+    }
+  }
+
+  .line-chart {
+    .line-chart-wrapper {
+      height: 300px;
+    }
+  }
+
+  .group-control-2 {
+    display: inline-block;
+
+    .weekly-date {
+      width: auto;
+      font-size: 12px;
+      height: 28px;
+      border: 1px solid #3c4857;
+      background-color: rgba(255, 255, 255, .5);
+    }
+
+    .date-picker {
+      margin-top: 5px;
+      background-color: #3c4857;
+      height: 28px;
+      color: #fff;
+      font-weight: normal;
+      padding-top: 3px;
+    }
+
+    .date-picker:hover {
+      cursor: pointer;
     }
   }
 </style>

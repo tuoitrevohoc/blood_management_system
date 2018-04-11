@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       get '/genders', to: 'dashboard#genders'
       get '/blood_types', to: 'dashboard#blood_types'
       get '/users', to: 'dashboard#users'
+      get '/weekly', to: 'dashboard#weekly'
     end
   end
 end
