@@ -12,6 +12,7 @@ vi:
     genders:
       male: Nam
       female: Nữ
+    undefined_blood_type: "Chưa xác định"
     blood_types:
       a_pos: Nhóm A+
       a_neg: Nhóm A-

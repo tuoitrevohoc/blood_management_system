@@ -21,6 +21,9 @@ class History < ApplicationRecord
 
   scope :newest, -> {reorder date: :desc, created_at: :desc}
   scope :eldest, -> {reorder date: :asc}
+  scope :this_week, -> date = Time.current do
+    ransack(date_gteq: date.at_beginning_of_week, date_lteq: date.at_end_of_week).result
+  end
 
   def next_donation_due_date
     self.date + Settings.minimum_frequency.try(self.donation_type).months

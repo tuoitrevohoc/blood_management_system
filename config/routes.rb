@@ -48,4 +48,14 @@ Rails.application.routes.draw do
     resources :events, except: :show
     resources :patients
   end
+
+  namespace :api, format: :json do
+    scope :dashboard do
+      get '/statistics', to: 'dashboard#statistics'
+      get '/genders', to: 'dashboard#genders'
+      get '/blood_types', to: 'dashboard#blood_types'
+      get '/users', to: 'dashboard#users'
+      get '/weekly', to: 'dashboard#weekly'
+    end
+  end
 end
