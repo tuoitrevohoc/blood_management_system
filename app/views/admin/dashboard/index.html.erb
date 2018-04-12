@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <div id="app">
+    <master><%= t ".loading" %></master>
+  </div>
+</div>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_pack_tag 'dashboard' %>
+<% end %>

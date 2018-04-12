@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resources :donators, only: [:index, :show]
       resources :patients, only: [:index, :destroy, :update]
     end
-    root "events#index"
+    root "dashboard#index"
     resources :dashboard, only: :index
     resources :bloods, only: :index do
       collection do
@@ -47,5 +47,15 @@ Rails.application.routes.draw do
     resources :articles, except: :show
     resources :events, except: :show
     resources :patients
+  end
+
+  namespace :api, format: :json do
+    scope :dashboard do
+      get '/statistics', to: 'dashboard#statistics'
+      get '/genders', to: 'dashboard#genders'
+      get '/blood_types', to: 'dashboard#blood_types'
+      get '/users', to: 'dashboard#users'
+      get '/weekly', to: 'dashboard#weekly'
+    end
   end
 end

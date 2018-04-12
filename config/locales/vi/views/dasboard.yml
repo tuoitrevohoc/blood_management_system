@@ -1,0 +1,5 @@
+vi:
+  admin:
+    dashboard:
+      index:
+        loading: "Đang tải dữ liệu..."

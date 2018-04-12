@@ -34,3 +34,8 @@ config/environments/*.local.yml
 .byebug_history
 .env
 .ruby-version
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

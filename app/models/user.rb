@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :admin_histories_created, class_name: AdminHistory.name, foreign_key: :admin_id, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :patients, through: :histories, class_name: History.name, foreign_key: :patient_id
+  has_many :reverse_histories, -> {reorder date: :asc}, class_name: History.name
 
   accepts_nested_attributes_for :histories, allow_destroy: true
 
@@ -33,10 +34,30 @@ class User < ApplicationRecord
   before_save downcase_email: -> {self.email.downcase! if self.email.present?}
 
   scope :blood_type_compatible_with, -> blood_type {where blood_type: blood_type}
+  scope :latest, -> time = Time.current do
+    ransack(created_at_gteq: time).result
+      .order(created_at: :desc)
+  end
+  scope :recent, -> do
+    select("histories.user_id, MAX(histories.date) as was_donating_at, users.*")
+      .joins(:histories)
+      .group(:id)
+      .order "was_donating_at desc"
+  end
+  scope :count_histories, -> do
+    select("COUNT(users.id) AS quantity, users.*")
+      .joins(:histories)
+      .group(:id)
+      .order "quantity DESC"
+  end
+
+  def lastest_history
+    self.histories.eldest.last
+  end
 
   def status
-    return :unknown unless self.histories.any?
-    next_donation_due_date = self.histories.eldest.last.next_donation_due_date
+    return :unknown unless self.reverse_histories.any?
+    next_donation_due_date = self.reverse_histories.first.next_donation_due_date
     case true
     when Date.current >= next_donation_due_date
       :can_donate
@@ -102,6 +123,30 @@ class User < ApplicationRecord
 
     def secure_random_uuid
       SecureRandom.uuid
+    end
+
+    def count_blood_types
+      query = <<-SQL
+        SELECT
+            blood_type,
+            COUNT(blood_type) AS q,
+            COUNT(blood_type) / (SELECT COUNT(blood_type) FROM users) * 100 AS per
+        FROM
+            users
+        GROUP BY blood_type
+      SQL
+      User.find_by_sql(query).map do |record|
+        blood_type = record.try :blood_type
+        quantity = record.try(:q)
+        if (quantity > 0)
+          {
+            blood_type: blood_type,
+            name: blood_type ? I18n.t("users.blood_types.#{blood_type}") : I18n.t("users.undefined_blood_type"),
+            quantity: quantity,
+            percentage: record.try(:per).to_f
+          }
+        end
+      end.compact
     end
   end
 
