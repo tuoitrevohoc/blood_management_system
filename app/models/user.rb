@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :admin_histories_created, class_name: AdminHistory.name, foreign_key: :admin_id, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :patients, through: :histories, class_name: History.name, foreign_key: :patient_id
-  has_many :reverse_histories, -> {reorder date: :asc}, class_name: History.name
 
   accepts_nested_attributes_for :histories, allow_destroy: true
 
@@ -50,14 +49,22 @@ class User < ApplicationRecord
       .group(:id)
       .order "quantity DESC"
   end
+  scope :with_last_history, -> do
+    select("MAX(histories.date) AS was_donating_at,
+      IF(histories.donation_type = 1, 'platelets', 'whole_blood') as donation_type,
+      users.*")
+      .joins("LEFT JOIN histories ON histories.user_id = users.id")
+      .group "users.id"
+  end
 
   def lastest_history
     self.histories.eldest.last
   end
 
   def status
-    return :unknown unless self.reverse_histories.any?
-    next_donation_due_date = self.reverse_histories.first.next_donation_due_date
+    return :unknown unless self.try(:was_donating_at).present?
+    next_donation_due_date = self.was_donating_at +
+      Settings.minimum_frequency.try(self.donation_type).months
     case true
     when Date.current >= next_donation_due_date
       :can_donate

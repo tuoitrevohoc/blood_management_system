@@ -10,7 +10,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def status_title
-    return unless self.histories.any? && !can_donate?
+    return unless self.try(:was_donating_at).present? && !can_donate?
     I18n.l histories.last.try(:next_donation_due_date), format: :default_date rescue nil
   end
 

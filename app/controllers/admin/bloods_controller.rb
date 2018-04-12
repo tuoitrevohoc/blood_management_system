@@ -20,7 +20,7 @@ class Admin::BloodsController < Admin::BaseController
       {
         id: u.id,
         name: u.name,
-        avatar: u.avatar&.small.url,
+        avatar: u.avatar.try(:small).try(:url),
         status: u.status,
         position: {
           lat: u.lat,
@@ -41,7 +41,7 @@ class Admin::BloodsController < Admin::BaseController
 
   def load_data
     ransack_params = params[:q].except :non_attr if params[:q].present?
-    @q = User.includes(:histories).ransack ransack_params
+    @q = User.with_last_history.ransack ransack_params
     @users = @q.result
     @users = @users.decorate
     @users = User.sort_non_attribute @users, params[:q][:s] if params[:q] && params[:q][:s]
