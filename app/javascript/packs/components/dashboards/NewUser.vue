@@ -38,11 +38,15 @@ export default {
     .list-text {
       height: 24px;
       margin-left: 5px;
+      position: relative;
     }
 
     .time-stamp {
       font-size: 13px;
       color: #797979;
+      position: absolute;
+      right: 0;
+      bottom: 0;
     }
   }
   .user-list-grid:hover {
