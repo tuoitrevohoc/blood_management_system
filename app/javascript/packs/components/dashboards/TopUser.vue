@@ -18,5 +18,8 @@ export default {
   .counting {
     font-weight: 800;
     font-size: 13px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 </style>
