@@ -1,7 +1,7 @@
 class Api::DashboardController < ApplicationController
   def statistics
-    users = User.includes :reverse_histories
-    @user_size = users.size
+    users = User.with_last_history
+    @user_size = users.length
     @history_size = History.distinct.size
     @patient_size = Patient.distinct.size
     @can_donate = users.to_a.count {|user| user.can_donate?}
