@@ -737,3 +737,28 @@ table.stats {
     margin-top: 15px;
   }
 }
+
+.top-20 {
+  margin-top: 20px;
+}
+
+.card-3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+
+  .card-content {
+    overflow: visible;
+  }
+}
+
+.no-height {
+  height: 0px;
+}
+
+.collapse-link.active::before {
+  content: '[-] ';
+}
+
+.collapse-link::before {
+  content: '[+] ';
+}

@@ -1,0 +1,38 @@
+<div class="card card-3">
+  <div class="card-content table-responsive">
+    <div class="row">
+      <div class="search-form">
+        <%= search_form_for q, url: :admin_bloods, method: :get, id: "advance-search-form" do |f| %>
+          <div class="form-group col-md-8 col-sm-12">
+            <%= f.search_field :name_cont, class: "form-control", placeholder: "Họ và tên",
+              value: params.dig(:q, :name_cont), autocomplete: 'off' %>
+          </div>
+          <div class="form-group col-md-4 col-sm-12">
+            <%= f.search_field :id_number_eq, class: "form-control", placeholder: "Số CMND",
+              value: params.dig(:q, :id_number_eq), autocomplete: 'off' %>
+          </div>
+          <div class="form-group col-md-5 col-sm-12">
+            <%= f.search_field :address_or_formatted_address_cont, class: "form-control", placeholder: "Địa chỉ",
+              value: params.dig(:q, :address_or_formatted_address_cont), autocomplete: 'off' %>
+          </div>
+          <div class="form-group col-md-3 col-sm-12">
+            <%= f.search_field :birthday_eq, class: "form-control date-picker",
+              placeholder: "Ngày sinh", value: params.dig(:q, :birthday_eq), autocomplete: 'off' %>
+          </div>
+          <div class="form-group col-md-4 col-sm-12">
+            <%= f.search_field :phone_number_or_phone_number_2_eq, class: "form-control", placeholder: "Số ĐT",
+              value: params.dig(:q, :phone_number_or_phone_number_2_eq), autocomplete: 'off' %>
+          </div>
+          <div class="form-group col-md-12 text-center">
+            <%= link_to :admin_bloods, class: "btn btn-info no-margin" do %>
+              <i class="material-icons">autorenew</i> Xoá
+            <% end %>
+            <button type="submit" class="btn btn-primary no-margin">
+              <i class="material-icons">search</i> Tìm kiếm
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

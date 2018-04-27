@@ -28,7 +28,15 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <a href="javascript:void(0);" class="pull-right top-20" data-toggle="collapse" data-target="#advance-search">
+        <strong class="collapse-link">Tìm kiếm nâng cao</strong>
+      </a>
       <%= render "stats", stats: @stats %>
+    </div>
+  </div>
+  <div class="row collapse" id="advance-search">
+    <div class="col-md-12">
+      <%= render "advance_search_form", q: @q %>
     </div>
   </div>
   <div class="row">
@@ -95,5 +103,12 @@
 <%= content_for :specific_page_js do %>
   <script type="text/javascript">
     <%= render "shared/submit_selectbox.js" %>
+    <%= render "shared/date_picker.js" %>
+
+    $(function() {
+      $(".collapse-link").on("click", function() {
+        $(this).toggleClass('active');
+      });
+    });
   </script>
 <% end %>
