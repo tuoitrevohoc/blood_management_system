@@ -1,5 +1,7 @@
 class ArticleDecorator < Draper::Decorator
   delegate_all
+  # For using helper `strip_tags`
+  include ActionView::Helpers::SanitizeHelper
 
   def formated_timestamp
     I18n.l article.created_at, format: :article_timestamp
