@@ -85,6 +85,12 @@ export default {
 }
 </script>
 
+<style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+</style>
+
 <style lang="scss">
   .badge-danger {
     color: #fff;
@@ -155,7 +161,7 @@ export default {
   .recent-users,
   .top-users {
     background-color: rgba(255, 255, 255, .5);
-    padding: 5px;
+    padding: 5px 10px 5px 5px;
   }
 
   .vuebar-element:hover {

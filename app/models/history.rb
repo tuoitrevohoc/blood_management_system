@@ -25,8 +25,8 @@ class History < ApplicationRecord
 
   scope :newest, -> {reorder date: :desc, created_at: :desc}
   scope :eldest, -> {reorder date: :asc}
-  scope :this_week, -> date = Time.current do
-    ransack(date_gteq: date.at_beginning_of_week, date_lteq: date.at_end_of_week).result
+  scope :date_between, -> dates = [7.days.ago.at_beginning_of_week, 7.days.ago.at_end_of_week] do
+    ransack(date_gteq: dates[0], date_lteq: dates[1]).result
   end
 
   def next_donation_due_date

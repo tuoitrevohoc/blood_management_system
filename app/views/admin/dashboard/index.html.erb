@@ -4,6 +4,10 @@
   </div>
 </div>
 
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_pack_tag 'dashboard' %>
+<% end %>
+
 <%= content_for :specific_page_js do %>
   <%= javascript_pack_tag 'dashboard' %>
 <% end %>
