@@ -45,6 +45,7 @@ class Admin::PatientsController < Admin::BaseController
 
   def destroy
     patient = Patient.find_by id: params[:id]
+    patient.deleted_by = current_user.id
     if patient && patient.destroy
       flash[:success] = "Bệnh nhân \"#{@patient.name}\" đã bị xoá!"
     else

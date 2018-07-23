@@ -29,12 +29,30 @@ class Admin::AdministratorAccountsController < Admin::BaseController
   end
 
   def destroy
-    if @user.destroy
-      flash[:success] = "Đã xóa!"
+    @user.deleted_by = current_user.id
+    if @user.update(reason_for_deleting: params[:reason].presence) && @user.destroy
+      message = "Đã xóa!"
+      respond_to do |format|
+        format.html do
+          flash[:success] = message
+          redirect_to admin_administrator_accounts_path
+        end
+        format.js do
+          render json: {msg: message}, status: 200
+        end
+      end
     else
-      flash[:danger] = "Xóa không thành công."
+      message = "Xóa không thành công."
+      respond_to do |format|
+        format.html do
+          flash[:danger] = message
+          redirect_to admin_administrator_accounts_path
+        end
+        format.js do
+          render json: {msg: message}, status: 400
+        end
+      end
     end
-    redirect_to admin_administrator_accounts_path
   end
 
   private

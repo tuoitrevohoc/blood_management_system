@@ -1,4 +1,8 @@
 class History < ApplicationRecord
+  acts_as_paranoid
+
+  attr_reader :deleted_by
+
   belongs_to :user
   belongs_to :place
   belongs_to :admin, class_name: User.name, foreign_key: :admin_id, optional: true
@@ -33,10 +37,18 @@ class History < ApplicationRecord
     self.patient_id?
   end
 
+  def deleted_by= user_id
+    @deleted_by = user_id
+  end
+
   private
   def phone_number_or_address
     if self.patient_phone_number.blank? && self.patient_address.blank?
       self.errors.add :base, :missing_phone_number_or_address
     end
+  end
+
+  def add_log
+    SystemLog.create! action_type: :remove, target_type: History.name, target_id: self.id, actor_id: self.deleted_by
   end
 end

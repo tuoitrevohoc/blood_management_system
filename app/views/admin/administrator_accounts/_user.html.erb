@@ -13,8 +13,8 @@
         <i class="material-icons">delete</i>
       <% end %>
     <% else %>
-      <%= link_to admin_administrator_account_path(user), class: "btn-destroy",
-        method: :delete, data: {confirm: "Xác nhận xóa tài khoản #{user.name&.titleize}?"} do %>
+      <%= link_to "javascript:void(0)", class: "btn-destroy",
+        data: {name: user.name&.titleize, href: admin_administrator_account_path(user), id: user.id} do %>
         <i class="material-icons">delete_forever</i>
       <% end %>
     <% end %>
