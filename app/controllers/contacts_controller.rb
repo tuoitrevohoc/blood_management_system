@@ -1,6 +1,7 @@
 class ContactsController < BaseController
   skip_load_and_authorize_resource
   authorize_resource class: false
+  skip_before_action :authenticate_user!
 
   def new
   end

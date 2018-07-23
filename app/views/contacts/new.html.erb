@@ -1,7 +1,7 @@
 <% provide :title, "Liên Hệ" %>
 <% provide :description, "Thông tin liên hệ của CLB Hiểu và Thương" %>
 
-<%= render "layouts/banner", banner_text: "Liên Hệ" %>
+<%= render "layouts/banner", banner_text: "" %>
 <section id="contact">
   <div class="container">
     <div class="row">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
+      <div class="col-md-offset-1 col-lg-6 col-md-6 col-sm-6">
         <div class="contact_form wow fadeInLeft">
           <%= form_tag contact_path, class: "submitphoto_form contact-form wp-form" do %>
             <%= text_field_tag "contact[name]", nil, class: "form-control wpcf7-text",
@@ -32,22 +32,29 @@
           <% end %>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="col-lg-5 col-md-5 col-sm-5">
         <div class="contact_address wow fadeInRight">
           <h3>Thông tin liên hệ</h3>
           <div class="address_group">
             <table class="table-contact">
               <tr>
-                <td>Hùng:</td>
+                <td>Email:</td>
+                <td>
+                  <a href="mailto:clbhieuvathuong1981@gmail.com?Subject=[CLB Hieu Va Thuong]" target="_top">
+                    clbhieuvathuong1981@gmail.com
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Hotline:</td>
                 <td>0934 782 006</td>
               </tr>
               <tr>
-                <td>Dương:</td>
-                <td>01269 1150 96</td>
-              </tr>
-              <tr>
-                <td>Hồ:</td>
-                <td>0905 927 739</td>
+                <td>Địa chỉ:</td>
+                <td>
+                  Đường Mai Đăng Chơn<br>
+                  Quận Ngũ Hành Sơn, Tp. Đà Nẵng
+                </td>
               </tr>
             </table>
           </div>
