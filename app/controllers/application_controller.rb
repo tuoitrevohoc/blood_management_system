@@ -1,10 +1,18 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied, ActiveRecord::RecordNotFound do
     respond_to do |format|
-      format.html {render_404 if Rails.env.production?}
+      format.html do
+        if Rails.env.production?
+          render_404
+        else
+          render json: {message: "Access Denied"}, status: 403
+        end
+      end
       format.js {render js: "showNotification('404: Không tìm thấy trang yêu cầu.', 'danger');"}
+      format.json {render json: {message: "Access Denied"}, status: 403}
     end
   end
 

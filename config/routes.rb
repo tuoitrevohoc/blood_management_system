@@ -47,6 +47,8 @@ Rails.application.routes.draw do
     resources :articles, except: :show
     resources :events, except: :show
     resources :patients
+    get 'activity_logs', to: 'activity_logs#index'
+    get 'restore', to: 'restore#index'
   end
 
   namespace :api, format: :json do
@@ -56,6 +58,12 @@ Rails.application.routes.draw do
       get '/blood_types', to: 'dashboard#blood_types'
       get '/users', to: 'dashboard#users'
       get '/weekly', to: 'dashboard#weekly'
+    end
+    scope :restore do
+      get 'users', to: 'restore#users'
+      get 'histories/:user_id', to: 'restore#histories'
+      post '/:user_id', to: 'restore#update'
+      delete 'really_destroy/:user_id', to: 'restore#really_destroy'
     end
   end
 end
