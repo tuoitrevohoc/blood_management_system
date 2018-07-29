@@ -53,6 +53,7 @@ class Admin::HistoriesController < Admin::BaseController
   end
 
   def destroy
+    @history.deleted_by = current_user.id
     if @history.destroy
       flash[:success] = "Đã xóa lịch sử hiến máu."
     else

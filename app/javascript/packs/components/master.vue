@@ -6,14 +6,12 @@
     <div class="row">
       <div class="col-md-6 col-sm-12 line-chart">
         <h4>
-          Biểu đồ lượt hiến máu trong tuần
+          Biểu đồ lượt hiến máu
           <span class="pull-right group-control-2">
-            <datepicker ref="programaticOpen" input-class="weekly-date"
-              wrapper-class="date-picker-wrapper" :language="'vi'"
-              @selected="redrawWeeklyChart" :format="'D, d MMMM'"
-              :placeholder="formatedDate" :monday-first="true"
-            />
-            <i class="material-icons pull-right date-picker" @click="openPicker">event</i>
+            <v-date-picker class="date-picker-wrapper" mode="range" v-model="selectedDate"
+              :theme-styles="themeStyles" :formats="{input: ['DD/MM/YYYY']}" :attributes="attributes">
+            </v-date-picker>
+            <i class="material-icons pull-right date-picker">event</i>
           </span>
         </h4>
         <weekly :chart-data="weeklyData" :options="lineOptions" class="line-chart-wrapper"/>
@@ -41,7 +39,6 @@ import GenderPie from './dashboards/GenderPie.js'
 import BloodTypesPie from './dashboards/BloodTypesPie.js'
 import TopUsers from './dashboards/TopUsers.vue'
 import Weekly from './dashboards/Weekly.js'
-import Datepicker from 'vuejs-datepicker'
 
 export default {
   components: {
@@ -49,11 +46,35 @@ export default {
     "gender-pie-chart": GenderPie,
     "blood-types-chart": BloodTypesPie,
     "top-users": TopUsers,
-    Weekly,
-    Datepicker
+    Weekly
   },
   data() {
+    const start = moment().subtract(6, 'days').startOf('isoWeek')
     return {
+      attributes: [{
+        bar: {
+          backgroundColor: '#ff8080',
+          borderColor: '#ff6666',
+          borderWidth: '2px',
+          borderStyle: 'solid'
+        },
+        dates: [new Date()]
+      }],
+      themeStyles: {
+        header: {
+          fontSize: '1.4rem'
+        },
+        weekdays: {
+          fontSize: '1.4rem'
+        },
+        dayContent: {
+          fontSize: '1.4rem'
+        }
+      },
+      selectedDate: {
+        start: start.toDate(),
+        end: moment(start).add(6, 'days').toDate()
+      },
       datacollection: null,
       bloodTypeData: null,
       weeklyData: null,
@@ -70,7 +91,7 @@ export default {
         scales: {
           yAxes: [{
              ticks: {
-                stepSize: 1
+                // stepSize: 1
              }
           }]
         },
@@ -80,11 +101,14 @@ export default {
   mounted () {
     this.fillGenderData()
     this.fillBloodTypeData()
-    this.fetchWeeklyData(this.date)
+    this.fetchWeeklyData(Object.values(this.selectedDate))
   },
   computed: {
     formatedDate: function() {
       return this.date.format('dddd, d MMMM')
+    },
+    startDate: function () {
+      return this.selectedDate.start
     }
   },
   methods: {
@@ -122,8 +146,8 @@ export default {
           error => console.log(error)
         )
     },
-    fetchWeeklyData (date) {
-      axios.get('/api/dashboard/weekly', {params: {date: date}})
+    fetchWeeklyData (dates) {
+      axios.get('/api/dashboard/weekly', {params: {dates}})
         .then(
           response => {
             this.weeklyData = {
@@ -143,13 +167,15 @@ export default {
           },
           error => console.log(error)
         )
-    },
-    openPicker () {
-      this.$refs.programaticOpen.showCalendar()
-    },
-    redrawWeeklyChart (date) {
-      this.fetchWeeklyData(moment(date))
     }
+  },
+  watch: {
+    startDate: function (start) {
+      let end = new Date(start)
+      end.setDate(start.getDate() + 6)
+      this.selectedDate.end = end
+      this.fetchWeeklyData(Object.values(this.selectedDate))
+    },
   }
 }
 </script>
@@ -196,6 +222,58 @@ export default {
   .date-picker-wrapper {
     .next, .prev {
       display: inline-block !important;
+    }
+  }
+
+  .small-avatar {
+    height: 24px;
+  }
+
+  .float-left {
+    float: left;
+  }
+
+  .pdr-small {
+    margin-right: 5px;
+  }
+
+  .user-list-grid {
+    margin: 5px 0;
+
+    .list-text {
+      height: 24px;
+      margin-left: 5px;
+      position: relative;
+    }
+
+    .time-stamp {
+      font-size: 13px;
+      color: #797979;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .user-list-grid:hover {
+    background-color: rgba(156, 39, 176, 0.1);
+  }
+
+  .date-picker-wrapper {
+    input {
+      font-size: 1.4rem;
+      padding-left: 5px;
+      padding-right: 7px;
+      height: 30px;
+      margin-top: 4px;
+      width: 170px;
+    }
+    .c-day-layer {
+      .c-day-background {
+        margin-bottom: 8px;
+      }
+      .c-day-bars {
+        margin-bottom: 5px;
+      }
     }
   }
 </style>

@@ -1,10 +1,16 @@
 class History < ApplicationRecord
+  acts_as_paranoid
+
+  attr_reader :deleted_by
+
   belongs_to :user
   belongs_to :place
   belongs_to :admin, class_name: User.name, foreign_key: :admin_id, optional: true
   belongs_to :patient, optional: true
 
   enum donation_type: [:whole_blood, :platelets]
+
+  after_real_destroy :add_log
 
   delegate :name, :address, to: :place, prefix: :place, allow_nil: true
   delegate :id, :name, :birthday, :gender, :blood_type, :facebook_account,to: :user,
@@ -21,8 +27,8 @@ class History < ApplicationRecord
 
   scope :newest, -> {reorder date: :desc, created_at: :desc}
   scope :eldest, -> {reorder date: :asc}
-  scope :this_week, -> date = Time.current do
-    ransack(date_gteq: date.at_beginning_of_week, date_lteq: date.at_end_of_week).result
+  scope :date_between, -> dates = [7.days.ago.at_beginning_of_week, 7.days.ago.at_end_of_week] do
+    ransack(date_gteq: dates[0], date_lteq: dates[1]).result
   end
 
   def next_donation_due_date
@@ -33,10 +39,18 @@ class History < ApplicationRecord
     self.patient_id?
   end
 
+  def deleted_by= user_id
+    @deleted_by = user_id
+  end
+
   private
   def phone_number_or_address
     if self.patient_phone_number.blank? && self.patient_address.blank?
       self.errors.add :base, :missing_phone_number_or_address
     end
+  end
+
+  def add_log
+    SystemLog.create! action_type: :remove, target_type: History.name, target_id: self.id, actor_id: self.deleted_by
   end
 end

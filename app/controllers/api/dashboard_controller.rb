@@ -27,23 +27,32 @@ class Api::DashboardController < ApplicationController
   end
 
   def weekly
-    real_data = History.this_week(selected_date)
+    real_data = History.date_between(selected_dates)
       .group(:date)
       .count(:id)
-      .map {|k, v| {k.strftime("%a") => v}}
+      .map {|k, v| {t("date.weekdays.#{k.strftime("%a").downcase}") => v}}
       .reduce(:merge) || {}
     @data = generate_week_dates.merge! real_data
   end
 
   private
-  def selected_date
-    date = params[:date].presence || Date.current
-    date.to_date
+  def selected_dates
+    if params[:dates].blank?
+      params[:dates] = [
+        7.days.ago.at_beginning_of_week,
+        7.days.ago.at_end_of_week
+      ]
+    else
+      params[:dates].map do |d|
+        date = d.presence || Date.current
+        Time.zone.parse(date).to_date
+      end
+    end
   end
 
   def generate_week_dates
-    (selected_date.at_beginning_of_week..selected_date.at_end_of_week).inject({}) do |list, date|
-      list.merge! date.strftime("%a") => 0
+    (selected_dates[0]..selected_dates[1]).inject({}) do |list, date|
+      list.merge! t("date.weekdays.#{date.strftime("%a").downcase}") => 0
     end
   end
 end

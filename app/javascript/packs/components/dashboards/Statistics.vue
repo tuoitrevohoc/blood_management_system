@@ -7,7 +7,9 @@
         </div>
         <div class="card-content">
           <p class="category">Tổng thành viên</p>
-          <h3 class="title">{{statistics.total_users}}</h3>
+          <h3 class="title">
+            <animated-number :value="statistics.total_users" :formatValue="toFixNum" :duration="duration"/>
+          </h3>
         </div>
       </div>
     </div>
@@ -18,7 +20,9 @@
         </div>
         <div class="card-content">
           <p class="category">Tổng bệnh nhân</p>
-          <h3 class="title">{{statistics.total_patients}}</h3>
+          <h3 class="title">
+            <animated-number :value="statistics.total_patients" :formatValue="toFixNum" :duration="duration"/>
+          </h3>
         </div>
       </div>
     </div>
@@ -29,7 +33,9 @@
         </div>
         <div class="card-content">
           <p class="category">Tổng lượt hiến</p>
-          <h3 class="title">{{statistics.total_histories}}</h3>
+          <h3 class="title">
+            <animated-number :value="statistics.total_histories" :formatValue="toFixNum" :duration="duration"/>
+          </h3>
         </div>
       </div>
     </div>
@@ -40,7 +46,9 @@
         </div>
         <div class="card-content">
           <p class="category">Có thể hiến máu</p>
-          <h3 class="title">{{statistics.can_donate}}</h3>
+          <h3 class="title">
+            <animated-number :value="statistics.can_donate" :formatValue="toFixNum" :duration="duration"/>
+          </h3>
         </div>
       </div>
     </div>
@@ -49,8 +57,17 @@
 
 <script>
 import {mapActions, mapState} from 'vuex'
+import AnimatedNumber from "animated-number-vue"
 
 export default {
+  data () {
+    return {
+      duration: 750
+    }
+  },
+  components: {
+    AnimatedNumber
+  },
   computed: {
     ...mapState('dashboard', [
       'statistics'
@@ -62,7 +79,11 @@ export default {
   methods: {
     ...mapActions('dashboard', [
       'fetchStatistics'
-    ])
+    ]),
+
+    toFixNum (val) {
+      return Math.round(val)
+    }
   }
 }
 </script>

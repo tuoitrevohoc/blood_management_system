@@ -3,6 +3,14 @@ vi:
     formats:
       default_date: &default_date "%d/%m/%Y"
       exp_date: "%d-%m-%Y"
+    weekdays:
+      sun: "CN"
+      mon: "Thứ 2"
+      tue: "Thứ 3"
+      wed: "Thứ 4"
+      thu: "Thứ 5"
+      fri: "Thứ 6"
+      sat: "Thứ 7"
   time:
     am: "AM"
     pm: "PM"

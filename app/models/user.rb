@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  attr_reader :is_signed_up_by_admin
+  acts_as_paranoid
+  attr_reader :is_signed_up_by_admin, :deleted_by
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,6 +32,7 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, presence: true, allow_nil: true
 
   before_save downcase_email: -> {self.email.downcase! if self.email.present?}
+  after_real_destroy :add_log
 
   scope :blood_type_compatible_with, -> blood_type {where blood_type: blood_type}
   scope :latest, -> time = Time.current do
@@ -104,6 +106,10 @@ class User < ApplicationRecord
     end
   end
 
+  def deleted_by= user_id
+    @deleted_by = user_id
+  end
+
   class << self
     def sort_non_attribute collection, criteria
       criteria = criteria.split " "
@@ -160,5 +166,11 @@ class User < ApplicationRecord
   protected
   def email_required?
     false
+  end
+
+  private
+  def add_log
+    SystemLog.create! action_type: :remove, target_type: User.name, target_id: self.id,
+      actor_id: self.deleted_by, description: self.reason_for_deleting
   end
 end

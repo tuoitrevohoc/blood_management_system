@@ -1,0 +1,15 @@
+<% provide :title, "Khôi phục thông tin đã bị xoá" %>
+
+<div class="container-fluid" id="restore-app">
+  <master>
+    Đang tải...
+  </master>
+</div>
+
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_pack_tag 'restore' %>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <%= javascript_pack_tag 'restore' %>
+<% end %>

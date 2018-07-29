@@ -101,4 +101,18 @@ module ApplicationHelper
         <i class="fa fa-asterisk text-danger" style="font-size: #{font_size}px;"></i>
       </sup>|
   end
+
+  def pagination_meta paginated_object
+    {
+      current_page: paginated_object.current_page,
+      limit_value: paginated_object.limit_value,
+      total_pages: paginated_object.total_pages,
+      next_page: paginated_object.next_page,
+      prev_page: paginated_object.prev_page,
+      first_page: paginated_object.first_page?,
+      last_page: paginated_object.last_page?,
+      out_of_range: paginated_object.out_of_range?,
+      total_count: paginated_object.total_count
+    }
+  end
 end

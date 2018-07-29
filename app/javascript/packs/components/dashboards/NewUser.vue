@@ -19,37 +19,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .small-avatar {
-    height: 24px;
-  }
-
-  .float-left {
-    float: left;
-  }
-
-  .pdr-small {
-    margin-right: 5px;
-  }
-
-  .user-list-grid {
-    margin: 5px 0;
-
-    .list-text {
-      height: 24px;
-      margin-left: 5px;
-      position: relative;
-    }
-
-    .time-stamp {
-      font-size: 13px;
-      color: #797979;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
-  }
-  .user-list-grid:hover {
-    background-color: rgba(156, 39, 176, 0.1);
-  }
+<style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
 </style>

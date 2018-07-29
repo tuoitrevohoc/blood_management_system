@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002084358) do
+ActiveRecord::Schema.define(version: 20180723145741) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -91,20 +91,16 @@ ActiveRecord::Schema.define(version: 20171002084358) do
     t.integer  "place_id"
     t.date     "date"
     t.integer  "admin_id"
-    t.boolean  "is_verified",          default: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "donation_type",        default: 0
+    t.boolean  "is_verified",    default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "donation_type",  default: 0
     t.integer  "platelet_count"
     t.string   "referer"
-    t.string   "patient_name"
-    t.integer  "patient_age"
-    t.string   "patient_pathological"
-    t.string   "patient_phone_number"
-    t.string   "patient_address"
-    t.string   "patient_description"
     t.integer  "patient_id"
+    t.datetime "deleted_at"
     t.index ["date"], name: "index_histories_on_date", using: :btree
+    t.index ["deleted_at"], name: "index_histories_on_deleted_at", using: :btree
     t.index ["patient_id"], name: "index_histories_on_patient_id", using: :btree
     t.index ["place_id"], name: "index_histories_on_place_id", using: :btree
     t.index ["user_id", "place_id", "date"], name: "index_histories_on_user_id_and_place_id_and_date", unique: true, using: :btree
@@ -128,6 +124,8 @@ ActiveRecord::Schema.define(version: 20171002084358) do
     t.integer  "department_id"
     t.string   "place_of_birth"
     t.string   "id_number"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_patients_on_deleted_at", using: :btree
     t.index ["department_id"], name: "index_patients_on_department_id", using: :btree
   end
 
@@ -151,6 +149,18 @@ ActiveRecord::Schema.define(version: 20171002084358) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+  end
+
+  create_table "system_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "action_type"
+    t.integer  "target_id"
+    t.integer  "actor_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "target_type"
+    t.index ["action_type"], name: "index_system_logs_on_action_type", using: :btree
+    t.index ["target_id"], name: "index_system_logs_on_target_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -191,8 +201,11 @@ ActiveRecord::Schema.define(version: 20171002084358) do
     t.string   "facebook_account"
     t.string   "place_of_birth"
     t.string   "description"
+    t.datetime "deleted_at"
+    t.string   "reason_for_deleting"
     t.index ["address"], name: "index_users_on_address", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["lat", "lon"], name: "index_users_on_lat_and_lon", using: :btree
     t.index ["lat"], name: "index_users_on_lat", using: :btree
