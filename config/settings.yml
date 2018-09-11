@@ -112,3 +112,6 @@ blood_donor_scheme:
     - ab_neg
     - o_pos
     - o_neg
+allowed_weekly_data:
+  - user
+  - history

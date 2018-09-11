@@ -13,7 +13,7 @@
         </div>
       </div>
       <p class="list-description">
-        Những viên mới trong vòng 30 ngày gần đây.
+        Những thành viên mới trong vòng 30 ngày gần đây.
       </p>
     </div>
     <div class="col-md-4 col-sm-12">

@@ -161,6 +161,10 @@ class User < ApplicationRecord
         end
       end.compact
     end
+
+    def count_by_months limit = 12
+      UserQuery.new.count_by_months(limit).reverse
+    end
   end
 
   protected

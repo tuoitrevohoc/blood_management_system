@@ -35,6 +35,23 @@ class Api::DashboardController < ApplicationController
     @data = generate_week_dates.merge! real_data
   end
 
+  def monthly
+    @type = params[:type].downcase.presence
+    klass = (@type || "User").classify.constantize
+    @data = []
+    if Settings.allowed_weekly_data.include? @type
+      real_data = klass.count_by_months.inject({}) do |list, month|
+        list.merge! month.month_year => {month.month_year => month.total}
+      end
+      @data = generate_last_n_months.merge(real_data)
+        .sort_by {|month, _| month.to_date}
+        .last(12)
+        .to_h
+        .values
+        .map {|e| e.map {|k, v| {month_year: k, total: v}}}.flatten
+    end
+  end
+
   private
   def selected_dates
     if params[:dates].blank?
@@ -53,6 +70,13 @@ class Api::DashboardController < ApplicationController
   def generate_week_dates
     (selected_dates[0]..selected_dates[1]).inject({}) do |list, date|
       list.merge! t("date.weekdays.#{date.strftime("%a").downcase}") => 0
+    end
+  end
+
+  def generate_last_n_months n = 12
+    n.downto(1).inject({}) do |list, i|
+      key = i.months.ago.strftime("%Y/%m")
+      list.merge! key => {key => 0}
     end
   end
 end

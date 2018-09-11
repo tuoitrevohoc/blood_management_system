@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       get '/blood_types', to: 'dashboard#blood_types'
       get '/users', to: 'dashboard#users'
       get '/weekly', to: 'dashboard#weekly'
+      get '/monthly', to: 'dashboard#monthly'
     end
     scope :restore do
       get 'users', to: 'restore#users'

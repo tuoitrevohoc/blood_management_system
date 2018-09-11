@@ -26,6 +26,16 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-md-6 col-sm-12 bar-chart">
+        <h4>Biểu đồ số thành viên mới hằng tháng</h4>
+        <users-monthly :chart-data="userMonthlyData" :options="barOptions" class="bar-chart-wrapper"></users-monthly>
+      </div>
+      <div class="col-md-6 col-sm-12 bar-chart">
+        <h4>Biểu đồ số lượt hiến hằng tháng</h4>
+        <histories-monthly :chart-data="historyMonthlyData" :options="barOptions" class="bar-chart-wrapper"></histories-monthly>
+      </div>
+    </div>
+    <div class="row">
       <top-users/>
     </div>
   </div>
@@ -39,16 +49,20 @@ import GenderPie from './dashboards/GenderPie.js'
 import BloodTypesPie from './dashboards/BloodTypesPie.js'
 import TopUsers from './dashboards/TopUsers.vue'
 import Weekly from './dashboards/Weekly.js'
+import UsersMonthly from './dashboards/UsersMonthly.js'
+import HistoriesMonthly from './dashboards/HistoriesMonthly.js'
 
 export default {
   components: {
-    "statistics": Statistics,
-    "gender-pie-chart": GenderPie,
-    "blood-types-chart": BloodTypesPie,
-    "top-users": TopUsers,
-    Weekly
+    'statistics': Statistics,
+    'gender-pie-chart': GenderPie,
+    'blood-types-chart': BloodTypesPie,
+    'top-users': TopUsers,
+    Weekly,
+    UsersMonthly,
+    HistoriesMonthly
   },
-  data() {
+  data () {
     const start = moment().subtract(6, 'days').startOf('isoWeek')
     return {
       attributes: [{
@@ -82,7 +96,7 @@ export default {
       pieOptions: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: false,
+        legend: false
       },
       lineOptions: {
         responsive: true,
@@ -90,21 +104,29 @@ export default {
         legend: false,
         scales: {
           yAxes: [{
-             ticks: {
-                // stepSize: 1
-             }
+            ticks: {
+              // stepSize: 1
+            }
           }]
-        },
+        }
       },
+      barOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: false
+      },
+      userMonthlyData: null,
+      historyMonthlyData: null
     }
   },
   mounted () {
     this.fillGenderData()
     this.fillBloodTypeData()
     this.fetchWeeklyData(Object.values(this.selectedDate))
+    this.fetchMonthlyData()
   },
   computed: {
-    formatedDate: function() {
+    formatedDate: function () {
       return this.date.format('dddd, d MMMM')
     },
     startDate: function () {
@@ -156,10 +178,9 @@ export default {
                 {
                   label: 'Số lượt hiến',
                   borderColor: '#9c27b0',
-                  pointBackgroundColor: 'white',
                   borderWidth: 1,
-                  pointBorderColor: 'white',
-                  backgroundColor: this.gradient,
+                  backgroundColor: 'white',
+                  hoverBackgroundColor: '#9c27b0',
                   data: Object.values(response.data.weekly_data)
                 }
               ]
@@ -167,6 +188,32 @@ export default {
           },
           error => console.log(error)
         )
+    },
+    fetchMonthlyData () {
+      const collection = ['user', 'history']
+      collection.forEach(type => {
+        const params = {type: type}
+        axios.get('/api/dashboard/monthly', {params})
+          .then(
+            response => {
+              this[`${type}MonthlyData`] = {
+                labels: response.data.monthly_data.map(m => m.month_year),
+                datasets: [
+                  {
+                    label: 'Số lượt hiến',
+                    borderWidth: 1,
+                    // backgroundColor: '#c9c9c9',
+                    hoverBorderColor: '#9c27b0',
+                    hoverBackgroundColor: 'white',
+                    hoverBorderWidth: 1,
+                    data: response.data.monthly_data.map(m => m.total)
+                  }
+                ]
+              }
+            },
+            error => console.log(error)
+          )
+      })
     }
   },
   watch: {
@@ -175,7 +222,7 @@ export default {
       end.setDate(start.getDate() + 6)
       this.selectedDate.end = end
       this.fetchWeeklyData(Object.values(this.selectedDate))
-    },
+    }
   }
 }
 </script>
@@ -192,6 +239,12 @@ export default {
       height: 300px;
     }
   }
+
+  // .bar-chart {
+  //   .bar-chart-wrapper {
+  //     height: 300px;
+  //   }
+  // }
 
   .group-control-2 {
     display: flex;
