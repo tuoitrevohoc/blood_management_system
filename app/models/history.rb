@@ -31,6 +31,12 @@ class History < ApplicationRecord
     ransack(date_gteq: dates[0], date_lteq: dates[1]).result
   end
 
+  class << self
+    def count_by_months limit = 12
+      HistoryQuery.new.count_by_months(limit).reverse
+    end
+  end
+
   def next_donation_due_date
     self.date + Settings.minimum_frequency.try(self.donation_type).months
   end
