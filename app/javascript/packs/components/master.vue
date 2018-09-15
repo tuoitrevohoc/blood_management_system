@@ -28,11 +28,11 @@
     <div class="row">
       <div class="col-md-6 col-sm-12 bar-chart">
         <h4>Biểu đồ số thành viên mới hằng tháng</h4>
-        <users-monthly :chart-data="userMonthlyData" :options="barOptions" class="bar-chart-wrapper"></users-monthly>
+        <users-monthly :chart-data="userMonthlyData" :options="barOptions" :height="300" class="bar-chart-wrapper"></users-monthly>
       </div>
       <div class="col-md-6 col-sm-12 bar-chart">
         <h4>Biểu đồ số lượt hiến hằng tháng</h4>
-        <histories-monthly :chart-data="historyMonthlyData" :options="barOptions" class="bar-chart-wrapper"></histories-monthly>
+        <histories-monthly :chart-data="historyMonthlyData" :options="barOptions" :height="300" class="bar-chart-wrapper"></histories-monthly>
       </div>
     </div>
     <div class="row">
@@ -43,6 +43,7 @@
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
 import {mapState} from 'vuex'
 import Statistics from './dashboards/Statistics.vue'
 import GenderPie from './dashboards/GenderPie.js'
@@ -63,7 +64,7 @@ export default {
     HistoriesMonthly
   },
   data () {
-    const start = moment().subtract(6, 'days').startOf('isoWeek')
+    const start = moment().startOf('isoWeek')
     return {
       attributes: [{
         bar: {
@@ -178,9 +179,10 @@ export default {
                 {
                   label: 'Số lượt hiến',
                   borderColor: '#9c27b0',
+                  pointBackgroundColor: 'white',
                   borderWidth: 1,
-                  backgroundColor: 'white',
-                  hoverBackgroundColor: '#9c27b0',
+                  pointBorderColor: 'white',
+                  backgroundColor: this.gradient,
                   data: Object.values(response.data.weekly_data)
                 }
               ]
@@ -190,8 +192,8 @@ export default {
         )
     },
     fetchMonthlyData () {
-      const collection = ['user', 'history']
-      collection.forEach(type => {
+      const collection = {user: 'Số thành viên mới', history: 'Số lượt hiến'}
+      Object.keys(collection).forEach(type => {
         const params = {type: type}
         axios.get('/api/dashboard/monthly', {params})
           .then(
@@ -200,12 +202,10 @@ export default {
                 labels: response.data.monthly_data.map(m => m.month_year),
                 datasets: [
                   {
-                    label: 'Số lượt hiến',
+                    label: collection[type],
                     borderWidth: 1,
-                    // backgroundColor: '#c9c9c9',
-                    hoverBorderColor: '#9c27b0',
-                    hoverBackgroundColor: 'white',
-                    hoverBorderWidth: 1,
+                    backgroundColor: this.gradient,
+                    hoverBackgroundColor: '#bbb',
                     data: response.data.monthly_data.map(m => m.total)
                   }
                 ]
