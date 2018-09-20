@@ -1,9 +1,9 @@
 class AdminHistory < ApplicationRecord
   belongs_to :user
-  belongs_to :place
+  belongs_to :place, optional: true
   belongs_to :admin, class_name: User.name, foreign_key: :admin_id
 
-  validates :user, :start_time, :end_time, :place, :admin, presence: true
+  validates :user, :start_time, :end_time, :admin, presence: true
   validates :end_time, date: {after: :start_time}
 
   scope :available, -> current = Time.current do

@@ -98,12 +98,13 @@ class User < ApplicationRecord
   end
 
   def available_places current = Time.current
-    if admin?
-      Place.all
-    else
-      places = admin_histories.available.pluck :place_id
-      Place.where id: places
-    end
+    return Place.all if admin?
+
+    available_admin_histories = admin_histories.available
+    return Place.all if available_admin_histories.any? {|admin_history| admin_history.place_id.nil?}
+
+    places = available_admin_histories.pluck :place_id
+    Place.where id: places
   end
 
   def deleted_by= user_id
