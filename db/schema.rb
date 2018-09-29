@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723145741) do
+ActiveRecord::Schema.define(version: 20180929064136) do
 
   create_table "admin_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180723145741) do
     t.string   "image"
     t.boolean  "is_pinned",                default: false
     t.integer  "views",                    default: 0
+    t.string   "uid"
     t.index ["title_slug"], name: "index_articles_on_title_slug", using: :btree
     t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
   end
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20180723145741) do
     t.boolean  "is_public",                default: false
     t.string   "title_slug"
     t.integer  "views",                    default: 0
+    t.string   "uid"
     t.index ["place_id"], name: "index_events_on_place_id", using: :btree
     t.index ["title"], name: "index_events_on_title", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree

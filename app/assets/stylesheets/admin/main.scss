@@ -761,3 +761,11 @@ table.stats {
 .collapse-link::before {
   content: '[+] ';
 }
+
+.datepicker {
+  .table-condensed {
+    .prev, .next {
+      display: block !important;
+    }
+  }
+}

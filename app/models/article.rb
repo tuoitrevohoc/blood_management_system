@@ -15,4 +15,15 @@ class Article < ApplicationRecord
   end
   scope :without_pinned, -> {where is_pinned: false}
   scope :pinned, -> {where is_pinned: true}
+
+  before_validation :set_uid, on: :create
+
+  def safe_slug
+    self.uid? ? "#{self.title_slug}-#{self.uid}" : self.title_slug
+  end
+
+  private
+  def set_uid
+    self.uid = SecureRandom.hex(4).upcase
+  end
 end

@@ -1,7 +1,6 @@
 class Admin::BloodsController < Admin::BaseController
   skip_load_and_authorize_resource
   authorize_resource History
-  authorize_resource User
 
   before_action :set_form, :load_data
 

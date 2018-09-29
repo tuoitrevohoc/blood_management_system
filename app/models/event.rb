@@ -14,11 +14,22 @@ class Event < ApplicationRecord
   scope :not_expired, -> current = Time.current {where "date_time > ?", current}
   scope :random, -> {order "RAND()"}
 
+  before_validation :set_uid, on: :create
+
   def date_time
     I18n.l attributes["date_time"], format: :full if date_time?
   end
 
   def is_expired?
     attributes["date_time"] + 4.hours < Time.current
+  end
+
+  def safe_slug
+    self.uid? ? "#{self.title_slug}-#{self.uid}" : self.title_slug
+  end
+
+  private
+  def set_uid
+    self.uid = SecureRandom.hex(4).upcase
   end
 end
