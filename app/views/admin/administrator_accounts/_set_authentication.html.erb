@@ -1,0 +1,57 @@
+<%= form_tag admin_ajax_set_authentication_path(user), id: 'set-email-password', method: :put do %>
+  <div class="col-md-6 col-sm-12">
+    <fieldset class="gr-fields">
+      <legend class="gr-subscription">Cấp thông tin đăng nhập</legend>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="error-messages" style="display: none;">
+            <div class="alert alert-danger">
+              <ul class="list errors"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= label_tag :email, "Email", class: "control-label" %>
+            <%= text_field_tag :email, user.email, class: "form-control", type: :email %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= label_tag :password, "Mật khẩu", class: "control-label" %>
+            <%= text_field_tag :password, nil, class: "form-control password-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= label_tag :my_password, "Xác nhận mật khẩu", class: "control-label" %>
+            <%= password_field_tag :my_password, nil, class: "form-control password-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <%= button_tag "Cấm truy cập", class: "btn btn-danger pull-left", type: :button, id: "btn-ban" %>
+          <%= button_tag "Lưu", class: "btn btn-primary pull-right", type: :button, id: "btn-sumit-auth" %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+  <script type="text/javascript">
+    var userName = "<%= user.name %>";
+    <%= render "admin/administrator_accounts/set_authentication.js" %>
+  </script>
+<% end %>

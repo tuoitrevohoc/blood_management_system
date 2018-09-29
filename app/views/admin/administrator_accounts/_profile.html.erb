@@ -11,7 +11,8 @@
     <% end %>
     <p class="card-content">
       Đăng nhập lần cuối vào lúc: <span class="non-break-line"><%= user.current_sign_in_at %></span><br>
-      Tại địa chỉ: <span class="non-break-line"><%= user.current_sign_in_ip %></span>
+      Tại địa chỉ: <span class="non-break-line"><%= user.current_sign_in_ip %></span><br>
+      Số lần đăng nhập: <%= user.sign_in_count %>
     </p>
   </div>
 </div>

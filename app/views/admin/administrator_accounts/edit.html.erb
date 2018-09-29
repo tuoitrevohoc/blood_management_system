@@ -11,8 +11,11 @@
               <p class="category">Chọn quyền và nhập lại mật khẩu của bạn để xác nhận.</p>
             </div>
             <div class="card-content">
-              <%= render "admin/administrator_accounts/set_admin_form",
-                user: @user, form: @form %>
+              <div class="row">
+                <%= render "admin/administrator_accounts/set_authentication", user: @user %>
+                <%= render "admin/administrator_accounts/set_admin_form",
+                  user: @user, form: @form %>
+              </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,54 @@
+function renderErrors(errors = []) {
+  return errors.map(msg => '<li>' + msg + '</li>').join('');
+}
+
+$(document).ready(function() {
+  $('#btn-sumit-auth').click(function() {
+    if (!confirm('Hành động này sẽ tạo lại Email và Mật khẩu mới cho ' + userName + '.\nBạn chắc chứ?')) {
+      return false;
+    }
+
+    var form = $(this).closest('form');
+    $.ajax({
+      url: form.attr('action'),
+      method: form.attr('method'),
+      dataType: 'json',
+      data: form.serialize(),
+      success: function(resp) {
+        showNotification('Đã lưu!', 'success');
+        form.find('.password-control').val(null);
+        form.find('.error-messages').hide();
+      },
+      error: function(error) {
+        form.find('.error-messages').show();
+        form.find('.errors').html(renderErrors(error.responseJSON.errors));
+      }
+    });
+  });
+
+  $('#btn-ban').click(function() {
+    if (!confirm(userName + ' sẽ không thể đăng nhập được nữa.\nBạn chắc chứ?')) {
+      return false;
+    }
+
+    var form = $(this).closest('form');
+    $.ajax({
+      url: form.attr('action'),
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        my_password: form.find('input[name="my_password"]').val(),
+        _method: 'DELETE',
+      },
+      success: function(resp) {
+        showNotification('Đã lưu!', 'success');
+        form.find('.password-control').val(null);
+        form.find('.error-messages').hide();
+      },
+      error: function(error) {
+        form.find('.error-messages').show();
+        form.find('.errors').html(renderErrors(error.responseJSON.errors));
+      }
+    });
+  });
+});
