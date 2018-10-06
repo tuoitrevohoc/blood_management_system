@@ -4,7 +4,6 @@ class Article < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :title, presence: true, length: {maximum: 200}
-  validates :title_slug, presence: true, length: {maximum: 256}
   validates :content, presence: true, length: {maximum: 65535}
 
   scope :available, -> {where is_public: true}
@@ -16,14 +15,12 @@ class Article < ApplicationRecord
   scope :without_pinned, -> {where is_pinned: false}
   scope :pinned, -> {where is_pinned: true}
 
-  before_validation :set_uid, on: :create
-
-  def safe_slug
-    self.uid? ? "#{self.title_slug}-#{self.uid}" : self.title_slug
-  end
+  after_save :set_title_slug
 
   private
-  def set_uid
-    self.uid = SecureRandom.hex(4).upcase
+  def set_title_slug
+    return unless self.title_changed?
+    unique_slug = "#{Slugify.create(self.title)}-#{self.id}"
+    self.update_column :title_slug, unique_slug
   end
 end

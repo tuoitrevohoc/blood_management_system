@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  validates :title, :date_time, :place, :content, :title_slug, presence: true
+  validates :title, :date_time, :place, :content, presence: true
 
   delegate :name, :address, :latitude, :longitude, :formatted_address, to: :place, prefix: :place, allow_nil: true
 
@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   scope :not_expired, -> current = Time.current {where "date_time > ?", current}
   scope :random, -> {order "RAND()"}
 
-  before_validation :set_uid, on: :create
+  after_save :set_title_slug
 
   def date_time
     I18n.l attributes["date_time"], format: :full if date_time?
@@ -24,12 +24,10 @@ class Event < ApplicationRecord
     attributes["date_time"] + 4.hours < Time.current
   end
 
-  def safe_slug
-    self.uid? ? "#{self.title_slug}-#{self.uid}" : self.title_slug
-  end
-
   private
-  def set_uid
-    self.uid = SecureRandom.hex(4).upcase
+  def set_title_slug
+    return unless self.title_changed?
+    unique_slug = "#{Slugify.create(self.title)}-#{self.id}"
+    self.update_column :title_slug, unique_slug
   end
 end

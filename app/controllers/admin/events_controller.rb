@@ -1,5 +1,3 @@
-require "slugify"
-
 class Admin::EventsController < Admin::BaseController
   before_action :set_form, only: [:new, :create, :edit, :update]
   before_action :load_event, only: [:edit, :update, :destroy]
@@ -27,8 +25,7 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def update
-    @event.assign_attributes update_params
-    @event.assign_attributes title_slug: make_slug if @event.title_changed?
+    @event.assign_attributes event_params
     if @event.save
       flash[:success] = "Đã lưu!"
       redirect_to admin_events_path
@@ -48,14 +45,9 @@ class Admin::EventsController < Admin::BaseController
 
   private
   def event_params
-    params[:event].merge! is_public: is_public?, user_id: current_user.id, title_slug: make_slug
-    params.require(:event).permit :title, :image, :date_time, :place_id, :content,
-      :title_slug, :is_public, :user_id
-  end
-
-  def update_params
     params[:event].merge! is_public: is_public?
-    params.require(:event).permit :title, :image, :date_time, :place_id, :content, :is_public
+    params[:event].merge! user_id: current_user.id if action_name == 'create'
+    params.require(:event).permit :title, :image, :date_time, :place_id, :content, :is_public, :user_id
   end
 
   def is_public?
@@ -68,9 +60,5 @@ class Admin::EventsController < Admin::BaseController
 
   def load_event
     render_404 unless (@event = Event.find_by id: params[:id])
-  end
-
-  def make_slug
-    Slugify.create(params[:event][:title]) << "-" << SecureRandom.hex(3).upcase
   end
 end

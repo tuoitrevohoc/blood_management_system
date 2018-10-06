@@ -26,8 +26,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    @article.assign_attributes update_params
-    @article.assign_attributes title_slug: make_slug
+    @article.assign_attributes article_params
     if @article.save
       flash[:success] = is_public? ? "Thay đổi đã được lưu." : "Đã đóng bài viết."
       redirect_to admin_articles_path
@@ -47,21 +46,13 @@ class Admin::ArticlesController < Admin::BaseController
 
   private
   def article_params
-    params[:article].merge! is_public: is_public?, title_slug: make_slug, user_id: current_user.id
-    params.require(:article).permit :title, :content, :image, :is_public, :title_slug, :user_id
-  end
-
-  def update_params
     params[:article].merge! is_public: is_public?
-    params.require(:article).permit :title, :content, :image, :is_public, :title_slug, :user_id
+    params[:article].merge! user_id: current_user.id if action_name == 'create'
+    params.require(:article).permit :title, :content, :image, :is_public, :user_id
   end
 
   def is_public?
     params[:commit] == "public"
-  end
-
-  def make_slug
-    Slugify.create(params[:article][:title]) << "-" << SecureRandom.hex(3).upcase
   end
 
   def load_article
