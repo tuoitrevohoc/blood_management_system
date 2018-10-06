@@ -1,0 +1,14 @@
+<tr>
+  <td><%= admin_history_counter + 1 %></td>
+  <td><%= link_to admin_history.admin_name, user_path(admin_history.user) %></td>
+  <td><%= l admin_history.start_time, format: :full %></td>
+  <td><%= l admin_history.end_time, format: :full %></td>
+  <td><%= raw (admin_history.place_name || '<span class="unlimited-place">không giới hạn</span>') %></td>
+  <td><%= l admin_history.created_at, format: :full %></td>
+  <td>
+    <%= link_to "javascript:void(0)", class: "text-danger btn-destroy",
+      data: {href: admin_ajax_admin_history_path(admin_history)}, title: 'Xoá!' do %>
+      <i class="material-icons">delete_forever</i>
+    <% end %>
+  </td>
+</tr>

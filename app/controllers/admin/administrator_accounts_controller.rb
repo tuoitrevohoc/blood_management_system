@@ -18,6 +18,7 @@ class Admin::AdministratorAccountsController < Admin::BaseController
 
   def edit
     @admin_history = @user.admin_histories.new
+    @admin_histories = @user.admin_histories.with_details
   end
 
   def update

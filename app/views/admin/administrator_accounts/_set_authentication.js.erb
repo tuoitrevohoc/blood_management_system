@@ -34,11 +34,10 @@ $(document).ready(function() {
     var form = $(this).closest('form');
     $.ajax({
       url: form.attr('action'),
-      method: 'POST',
+      method: 'DELETE',
       dataType: 'json',
       data: {
         my_password: form.find('input[name="my_password"]').val(),
-        _method: 'DELETE',
       },
       success: function(resp) {
         showNotification('Đã lưu!', 'success');

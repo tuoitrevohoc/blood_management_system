@@ -7,9 +7,11 @@ class Admin::AdminHistoriesController < Admin::BaseController
     @admin_history.admin_id = current_user.id
     if @admin_history.save
       flash[:success] = "Đã lưu."
+      return redirect_to edit_admin_administrator_account_path(@user)
     else
       render "admin/administrator_accounts/edit" and return
     end
+    @admin_histories = @user.admin_histories.with_details
     @admin_history = @user.admin_histories.new
     render "admin/administrator_accounts/edit"
   end
