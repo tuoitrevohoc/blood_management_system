@@ -9,4 +9,9 @@ class AdminHistory < ApplicationRecord
   scope :available, -> current = Time.current do
     ransack(start_time_lteq: current, end_time_gteq: current).result
   end
+
+  scope :with_details, -> do
+    select('admin_histories.*, users.name admin_name, places.name place_name')
+      .left_joins(:place, :admin)
+  end
 end

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
       resources :places_departments, only: [:new, :create]
       resources :donators, only: [:index, :show]
       resources :patients, only: [:index, :destroy, :update]
+      resources :set_authentications, only: [:update, :destroy]
+      resources :admin_histories, only: :destroy
     end
     root "dashboard#index"
     resources :dashboard, only: :index

@@ -1,30 +1,35 @@
 <%= form_for user, url: admin_administrator_account_path(user) do |f| %>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="error-messages-container">
-        <%= render "shared/error_messages", object: f.object %>
+  <div class="col-md-6 col-sm-12">
+    <fieldset class="gr-fields">
+      <legend class="gr-subscription">Cấp quyền hạn</legend>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="error-messages-container">
+            <%= render "shared/error_messages", object: f.object %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= f.label :role, "Quyền truy cập", class: "control-label" %>
-        <%= f.select :role, form.roles, {}, class: "form-control" %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= f.label :role, "Quyền truy cập", class: "control-label" %>
+            <%= f.select :role, form.roles, {}, class: "form-control" %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= label_tag :password, "Xác nhận mật khẩu", class: "control-label" %>
-        <%= password_field_tag :password, nil, class: "form-control" %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= label_tag :password, "Xác nhận mật khẩu", class: "control-label" %>
+            <%= password_field_tag :password, nil, class: "form-control" %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.submit "Lưu", class: "btn btn-primary pull-right" %>
-    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= f.submit "Lưu", class: "btn btn-primary pull-right" %>
+        </div>
+      </div>
+    </fieldset>
   </div>
 <% end %>

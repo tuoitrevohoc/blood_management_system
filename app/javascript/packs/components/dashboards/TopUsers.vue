@@ -109,6 +109,7 @@ export default {
 
   .vuebar-element {
     height: 250px;
+    padding-right: 15px;
   }
 
   .vb > .vb-dragger {
@@ -161,7 +162,7 @@ export default {
   .recent-users,
   .top-users {
     background-color: rgba(255, 255, 255, .5);
-    padding: 5px 10px 5px 5px;
+    padding: 5px;
   }
 
   .vuebar-element:hover {

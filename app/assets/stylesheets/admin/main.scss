@@ -761,3 +761,17 @@ table.stats {
 .collapse-link::before {
   content: '[+] ';
 }
+
+.datepicker {
+  .table-condensed {
+    .prev, .next {
+      display: block !important;
+    }
+  }
+}
+.table-ad-history {
+  .unlimited-place {
+    color: grey;
+    font-style: italic;
+  }
+}

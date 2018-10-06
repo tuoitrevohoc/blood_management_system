@@ -2,7 +2,12 @@ $(document).ready(function() {
   var min_age = 18;
   var max_age = 50;
   var birthday_picker = initialize_date_picker(".date-picker");
-  birthday_picker.data("DateTimePicker").maxDate(moment().subtract(min_age, "years"));
-  birthday_picker.data("DateTimePicker").minDate(moment().subtract(max_age, "years"));
-  birthday_picker.data("DateTimePicker").viewMode("years");
+  birthday_picker.data("DateTimePicker")
+    .maxDate(moment().subtract(min_age, "years")
+    .startOf('day'));
+  birthday_picker.data("DateTimePicker")
+    .minDate(moment().subtract(max_age, "years")
+    .startOf('day'));
+  birthday_picker.data("DateTimePicker")
+    .viewMode("years");
 });

@@ -43,7 +43,7 @@ group :development, :test do
   gem "faker"
   gem "awesome_print"
   gem "binding_of_caller"
-  gem "better_errors"
+  # gem "better_errors"
   gem "dotenv-rails"
 end
 
