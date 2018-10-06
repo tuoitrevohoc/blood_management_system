@@ -1,5 +1,7 @@
 function renderErrors(errors = []) {
-  return errors.map(msg => '<li>' + msg + '</li>').join('');
+  return errors.map(function(msg) {
+    return '<li>' + msg + '</li>'
+  }).join('');
 }
 
 $(document).ready(function() {
