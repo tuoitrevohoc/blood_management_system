@@ -1,3 +1,3 @@
 class PatientImage < Image
-  mount_uploader :file, ImageUploader
+  mount_uploader :file, PhotoUploader
 end
