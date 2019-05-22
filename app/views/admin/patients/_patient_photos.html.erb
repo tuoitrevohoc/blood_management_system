@@ -1,0 +1,30 @@
+<div class="patient-photos">
+  <div class="slideshow-container">
+    <% if patient.patient_images.any? %>
+      <% patient.patient_images.each do |photo| %>
+        <div class="mySlides fade">
+          <img src="<%= photo.file.url %>">
+        </div>
+      <% end %>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <% else %>
+      <i class="no-image">Chưa có hình ảnh</i>
+    <% end %>
+  </div>
+  <div style="text-align:center">
+    <% patient.patient_images.length.times do |n| %>
+      <span class="dot" onclick="currentSlide(<%= n + 1 %>)"></span>
+    <% end %>
+  </div>
+</div>
+
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_link_tag "admin/slideshow", media: "all" %>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+<script type="text/javascript">
+  <%= render "patient_slide_photos.js" %>
+</script>
+<% end %>

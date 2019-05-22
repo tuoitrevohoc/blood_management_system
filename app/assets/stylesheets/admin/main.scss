@@ -596,15 +596,17 @@ table.stats {
   span.fb-cover-name {
     font-weight: bold;
   }
-}
 
-.patient-profile {
   .t-head {
     th {
       text-transform: uppercase;
       font-weight: bold;
       text-align: center;
     }
+  }
+
+  &.donators-table {
+    margin-top: 20px;
   }
 }
 

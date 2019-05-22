@@ -11,6 +11,7 @@ Rails.application.config.assets.version = '1.0'
 assets_stylesheet = <<-CSS_FILES
   customize_alert.css customize_checkboxes.css material/material-dashboard.css
   admin/main.css libs/nanoscroller.css template/header.css libs/jquery-ui.css
+  admin/slideshow.css
 CSS_FILES
 assets_javascript = <<-JS_FILES
   material/material.min.js material/material-dashboard.js admin/main.js ckeditor/*
