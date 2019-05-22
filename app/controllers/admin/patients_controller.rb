@@ -70,8 +70,6 @@ class Admin::PatientsController < Admin::BaseController
 
   def patch_photos
     return if params[:patient][:patient_images].blank?
-
-    @patient.patient_images.destroy_all
     warning_msg = nil
     params[:patient][:patient_images].each do |file|
       image = @patient.patient_images.new file: file

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :patients, only: [:index, :destroy, :update]
       resources :set_authentications, only: [:update, :destroy]
       resources :admin_histories, only: :destroy
+      resources :patient_images, only: :destroy
     end
     root "dashboard#index"
     resources :dashboard, only: :index

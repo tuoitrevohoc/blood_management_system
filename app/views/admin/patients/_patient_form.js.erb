@@ -1,4 +1,9 @@
-
+function clearFileInput() {
+  $("#photos-preview").html("");
+  $("#patient_photos").val(null);
+  $("#file-count-text").text("Đã thêm 0 ảnh");
+  $("#find-count").addClass("hidden");
+}
 
 $(function() {
   $("#patient-department-id").on("change", function() {
@@ -13,7 +18,7 @@ $(function() {
 
   $("#patient_photos").on("change", function() {
     if (!this.files[0]) {
-      $("#find-count").addClass('hidden');
+      clearFileInput();
       return;
     }
 
@@ -36,14 +41,29 @@ $(function() {
     }
 
     $("#photos-preview").html(images);
-    $("#file-count-text").text("Đã chọn " + this.files.length + " ảnh.");
+    $("#file-count-text").text("Đã thêm " + this.files.length + " ảnh.");
     $("#find-count").removeClass("hidden");
   });
 
-  $("#clear-input").on("click", function() {
-    $("#photos-preview").html("");
-    $("#patient_photos").val(null);
-    $("#file-count-text").text("Đã chọn 0 ảnh");
-    $("#find-count").addClass("hidden");
+  $("#clear-input").on("click", clearFileInput);
+
+  $(".destroy-image").on("click", function() {
+    if (confirm("Xác nhận bạn muốn xoá ảnh này?")) {
+      var figure = $(this).closest('.patient-img-prev');
+      figure.addClass("loading");
+      $.ajax({
+        url: this.dataset.path,
+        method: "DELETE",
+        dataType: "json",
+        success(data) {
+          figure.fadeOut();
+          showNotification(data.msg, type = "success");
+        },
+        error(error) {
+          figure.removeClass("loading");
+          showNotification(error.responseJSON.msg, type = "danger");
+        },
+      });
+    }
   });
 });

@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20190521035502) do
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
-  create_table "system_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "system_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "action_type"
     t.integer  "target_id"
     t.integer  "actor_id"

@@ -794,7 +794,7 @@ table.stats {
     }
   }
 
-  #photos-preview {
+  .photos-preview {
     display: flex;
     align-items: center;
     flex-flow: wrap;
@@ -804,17 +804,38 @@ table.stats {
       max-height: 180px;
       width: auto;
       height: auto;
-      margin: 5px 10px 0 0;
+      margin: 10px 10px 0 0;
       border: 1px solid #ccc;
       border-radius: 4px;
-      overflow: hidden;
+      position: relative;
       display: flex;
       flex-direction: column;
+
+      .spinner {
+        display: none;
+      }
+
+      &.loading {
+        .spinner {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: white;
+          opacity: 0.8;
+        }
+      }
 
       img {
         max-width: 160px;
         width: auto;
         height: auto;
+        max-height: 160px;
+        object-fit: cover;
       }
 
       figcaption {
@@ -826,6 +847,19 @@ table.stats {
         line-height: 20px;
         background: #ccc;
       }
+    }
+
+    .destroy-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      z-index: 2;
+      padding: 0 6px;
+      background: red;
+      border: 1px solid white;
+      color: white;
     }
   }
 
