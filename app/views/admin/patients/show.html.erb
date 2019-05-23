@@ -13,10 +13,13 @@
         </div>
         <div class="card-content">
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-7 col-sm-12">
               <%= render "patient_profile", patient: @patient %>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-5 col-sm-12">
+              <%= render "patient_photos", patient: @patient %>
+            </div>
+            <div class="col-md-12">
               <%= render "donators", patient: @patient, q: @q, donators: [] %>
             </div>
           </div>

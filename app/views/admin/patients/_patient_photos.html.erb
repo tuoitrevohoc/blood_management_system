@@ -1,0 +1,37 @@
+<div class="patient-photos">
+  <div class="slideshow-container">
+    <% if patient.patient_images.any? %>
+      <% patient.patient_images.each do |photo| %>
+        <div class="mySlides fade">
+          <img src="<%= photo.file.url %>">
+        </div>
+      <% end %>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <% else %>
+      <div class="no-image">
+        <i>Chưa có hình ảnh</i>
+        <%= link_to [:edit, :admin, patient], class: "btn btn-primary" do %>
+          <i class="fa fa-folder-open-o"></i>&nbsp;Thêm Hình
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div style="text-align:center">
+    <% patient.patient_images.length.times do |n| %>
+      <span class="dot" onclick="currentSlide(<%= n + 1 %>)"></span>
+    <% end %>
+  </div>
+</div>
+
+<%= content_for :specific_page_css do %>
+  <%= stylesheet_link_tag "admin/slideshow", media: "all" %>
+<% end %>
+
+<%= content_for :specific_page_js do %>
+<script type="text/javascript">
+  var slideIndex = <%= patient.patient_images.any? ? 1 : 0 %>;
+
+  <%= render "patient_slide_photos.js" %>
+</script>
+<% end %>

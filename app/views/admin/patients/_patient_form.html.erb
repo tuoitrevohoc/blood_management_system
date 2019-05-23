@@ -1,4 +1,4 @@
-<%= form_for [:admin, patient], html: {id: "new-patient"} do |f| %>
+<%= form_for [:admin, patient], html: {id: "new-patient", class: "patient-form"} do |f| %>
   <div class="row">
     <div class="col-md-12">
       <div class="error-messages-container">
@@ -53,8 +53,8 @@
         <%= f.text_field :pathological, class: "form-control" %>
       </div>
       <div class="form-group label-floating">
-        <%= f.label :department_id, "Khoa Điều Trị #{required_mark}".html_safe, class: "control-label" %>
-        <p class="flabel-subtitle">Không tìm khoa điều trị? <a href="javascript:void(0);" id="register-department">Bấm để thêm mới</a></p>
+        <%= f.label :department_id, "Khoa #{required_mark}".html_safe, class: "control-label" %>
+        <p class="flabel-subtitle">Không tìm thấy khoa điều trị? <a href="javascript:void(0);" id="register-department">Thêm mới</a></p>
         <%= f.select :department_id, form.departments, {prompt: "--- Chọn khoa đang điều trị ---"}, class: "form-control select2", id: "patient-department-id" %>
       </div>
       <div class="form-group label-floating">
@@ -65,18 +65,55 @@
         <%= f.label :history_of_pathology, "Lịch Sử Bệnh Lý", class: "control-label" %>
         <%= f.text_area :history_of_pathology, class: "form-control autosize", rows: 1 %>
       </div>
-      <div class="col-md-4 no-padding-left">
+      <div class="col-md-4 col-sm-4 no-padding-left">
         <div class="form-group label-floating">
           <%= f.label :room_number, "Phòng bệnh", class: "control-label" %>
           <%= f.text_field :room_number, class: "form-control" %>
         </div>
       </div>
-      <div class="col-md-8 no-padding-right">
+      <div class="col-md-8 col-sm-8 no-padding-right">
         <div class="form-group label-floating">
           <%= f.label :description, "Ghi Chú", class: "control-label" %>
           <%= f.text_area :description, class: "form-control autosize", rows: 1 %>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group form-group--file">
+        <label>Hình ảnh</label>
+        <label class="btn btn-primary">
+          Chọn Ảnh...
+          <%= f.file_field :patient_images, class: "hidden", multiple: true, id: "patient_photos" %>
+        </label>
+      </div>
+      <div class="file-count hidden" id="find-count">
+        <p id="file-count-text" class="file-count__text"></p>
+        <a href="javascript:void(0);" id="clear-input">
+          <i class="fa fa-close" title="Xoá ảnh đã chọn"></i> Xoá
+        </a>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="photos-preview">
+        <% if f.object.patient_images.length > 0 %>
+          <% f.object.patient_images.each do |file| %>
+            <figure class="patient-img-prev" title="<%= file.file.filename %>">
+              <img src="<%= file.file.url %>" alt="<%= file.file.filename %>">
+              <figcaption><%= file.file.filename %></figcaption>
+              <button type="button" class="destroy-image"
+                data-path="<%= admin_ajax_patient_image_path file %>">
+                <i class="fa fa-close"></i>
+              </button>
+              <div class="spinner">
+                <i class="fa fa-refresh fa-spin fa-3x"></i>
+              </div>
+            </figure>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="photos-preview" id="photos-preview"></div>
     </div>
   </div>
   <div class="row">

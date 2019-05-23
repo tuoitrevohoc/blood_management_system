@@ -6,6 +6,7 @@ class Patient < ApplicationRecord
   belongs_to :department
   has_many :histories
   has_many :users, through: :histories
+  has_many :patient_images, as: :imageable, dependent: :destroy
 
   enum gender: [:female, :male]
   enum blood_type: [:a_pos, :a_neg, :b_pos, :b_neg, :ab_pos, :ab_neg, :o_pos, :o_neg]

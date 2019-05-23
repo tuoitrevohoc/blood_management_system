@@ -21,6 +21,8 @@ class Admin::PatientsController < Admin::BaseController
 
   def create
     @patient = Patient.new patient_params
+    patch_photos
+
     if @patient.save
       flash[:success] = "Bệnh nhân \"#{@patient.name}\" đã được tạo!"
       redirect_to admin_patients_path
@@ -34,6 +36,8 @@ class Admin::PatientsController < Admin::BaseController
   end
 
   def update
+    patch_photos
+
     if @patient.update patient_params
       flash[:success] = "Thay đổi đã được lưu!"
       redirect_to admin_patients_path
@@ -62,5 +66,17 @@ class Admin::PatientsController < Admin::BaseController
 
   def load_form
     @form = Support::UserForm.new
+  end
+
+  def patch_photos
+    return if params[:patient][:patient_images].blank?
+    warning_msg = nil
+    params[:patient][:patient_images].each do |file|
+      image = @patient.patient_images.new file: file
+      unless image.save
+        warning_msg = "Tải lên hình ảnh KHÔNG thành công!"
+      end
+    end
+    flash[:warning] = warning_msg if warning_msg.present?
   end
 end

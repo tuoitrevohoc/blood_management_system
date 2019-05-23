@@ -56,7 +56,7 @@ module ApplicationHelper
     profile_url = "#{Settings.fb_search_path.home}/#{username}"
     web_contents = open(profile_url) {|f| f.read}
     html_content = Nokogiri::HTML.parse(web_contents)
-    avatar_tag = html_content.css("img.profilePic.img").first
+    avatar_tag = html_content.css(".profilePicThumb img").first
     cover_name = html_content.css("span#fb-timeline-cover-name").first
     {
       cover_name: cover_name.children.text,
