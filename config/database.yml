@@ -54,4 +54,5 @@ production:
   pool: 5
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  url: <%= ENV['DATABASE_URL'] %>
+  socket: <%= ENV.fetch("DATABASE_SOCKET", "/var/run/mysqld/mysqld.sock") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "db") %>

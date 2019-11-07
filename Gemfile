@@ -38,13 +38,13 @@ gem "addressable"
 gem 'active_model_serializers', require: true
 gem 'webpacker', '~> 3.4'
 gem "paranoia", "~> 2.2"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "pry-rails"
   gem "awesome_print"
   gem "binding_of_caller"
   # gem "better_errors"
-  gem "dotenv-rails"
 end
 
 group :development do
