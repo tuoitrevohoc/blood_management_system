@@ -1,0 +1,46 @@
+version: '2'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/rails/Dockerfile
+    # command: bundle exec unicorn -p 3000 -c /app/config/unicorn.rb
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - '3000:3000'
+    volumes:
+      - /var/tmp
+      - .:/app
+    depends_on:
+      - db
+    extends:
+      file: ./docker/mysql/password.yml
+      service: password
+    environment:
+      - DATABASE_NAME=clbhieuvathuong
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=zaq12wsx
+      - RAILS_ENV=production
+      - RACK_ENV=production
+      - SECRET_KEY_BASE=e8492f98cf1b1128785a83b8f7aaa620a35bd517524d5a77e3d453b59a2047412ad5d30e6c89c700771b0ff272a4fc0a39c8952abba3615cb8397b2ba737b067
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    extends:
+      file: ./docker/mysql/password.yml
+      service: password
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - '80:80'
+    volumes_from:
+      - app
+volumes:
+  db_data:
