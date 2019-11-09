@@ -1,7 +1,11 @@
 stages:
-- name: deploy
+- name: compile
   steps:
-  - applyYamlConfig:
-      path: ./docker-compose.yml
+  - publishImageConfig:
+      dockerfilePath: ./docker/rails/Dockerfile
+      buildContext: .
+      tag: blood-rail
+      pushRemote: true
+      registry: index.docker.io
 timeout: 60
 notification: {}
